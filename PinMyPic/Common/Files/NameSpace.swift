@@ -90,6 +90,15 @@ enum Texts {
         static let checkProfileInput = "닉네임과 mbti가 모두 잘 입력되었는지 확인해주세요."
         static let signupComplete = "가입이 완료되었습니다"
     }
+    
+    enum PageTitle {
+        static let nicknameSetting = "Nickname Setting"
+        static let profileImageSetting = "Profile Image Setting"
+//        static func searchMain(nickname:String) -> String {
+//            return "\(nickname)'s Meaning Out"
+//        }
+//        static let Settings = "Settings"
+    }
 }
 
 

@@ -43,6 +43,11 @@
 		7D9D1A842C4FE6A4004FD89A /* BaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9D1A832C4FE6A4004FD89A /* BaseRepository.swift */; };
 		7D9D1A862C4FE77B004FD89A /* UserInfoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9D1A852C4FE77B004FD89A /* UserInfoRepository.swift */; };
 		7D9D1A882C4FE81B004FD89A /* LikedPhotoInfoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9D1A872C4FE81B004FD89A /* LikedPhotoInfoRepository.swift */; };
+		7D9D1A8D2C4FFDFE004FD89A /* ProfileImageSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9D1A8C2C4FFDFE004FD89A /* ProfileImageSettingViewController.swift */; };
+		7D9D1A8F2C4FFE28004FD89A /* ProfileImageSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9D1A8E2C4FFE28004FD89A /* ProfileImageSettingView.swift */; };
+		7D9D1A912C4FFF94004FD89A /* Utilfunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9D1A902C4FFF94004FD89A /* Utilfunc.swift */; };
+		7D9D1A942C500171004FD89A /* ProfileImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9D1A932C500171004FD89A /* ProfileImageCollectionViewCell.swift */; };
+		7D9D1A972C5001D5004FD89A /* ProfileImageSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9D1A962C5001D5004FD89A /* ProfileImageSettingViewModel.swift */; };
 		7DCDB1FC2C4F9BF20055CBF3 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCDB1FB2C4F9BF20055CBF3 /* UserInfo.swift */; };
 		7DCDB1FF2C4FD0EA0055CBF3 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7DCDB1FE2C4FD0EA0055CBF3 /* RealmSwift */; };
 /* End PBXBuildFile section */
@@ -84,6 +89,11 @@
 		7D9D1A832C4FE6A4004FD89A /* BaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRepository.swift; sourceTree = "<group>"; };
 		7D9D1A852C4FE77B004FD89A /* UserInfoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoRepository.swift; sourceTree = "<group>"; };
 		7D9D1A872C4FE81B004FD89A /* LikedPhotoInfoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedPhotoInfoRepository.swift; sourceTree = "<group>"; };
+		7D9D1A8C2C4FFDFE004FD89A /* ProfileImageSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageSettingViewController.swift; sourceTree = "<group>"; };
+		7D9D1A8E2C4FFE28004FD89A /* ProfileImageSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageSettingView.swift; sourceTree = "<group>"; };
+		7D9D1A902C4FFF94004FD89A /* Utilfunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilfunc.swift; sourceTree = "<group>"; };
+		7D9D1A932C500171004FD89A /* ProfileImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		7D9D1A962C5001D5004FD89A /* ProfileImageSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageSettingViewModel.swift; sourceTree = "<group>"; };
 		7DCDB1FB2C4F9BF20055CBF3 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,7 +153,8 @@
 			isa = PBXGroup;
 			children = (
 				7D92B7CC2C4E813F0000EEB0 /* SearchPhoto */,
-				7D92B7CA2C4E81240000EEB0 /* ProfileSetting */,
+				7D9D1A892C4FFDCA004FD89A /* ProfileImageSetting */,
+				7D92B7CA2C4E81240000EEB0 /* NicknameSetting */,
 				7D92B7C92C4E81110000EEB0 /* Onboarding */,
 			);
 			path = Pages;
@@ -212,6 +223,7 @@
 			children = (
 				7D92B7BD2C4E6FAF0000EEB0 /* NameSpace.swift */,
 				7D92B7FC2C4E92F90000EEB0 /* Enums.swift */,
+				7D9D1A902C4FFF94004FD89A /* Utilfunc.swift */,
 			);
 			path = Files;
 			sourceTree = "<group>";
@@ -261,14 +273,14 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
-		7D92B7CA2C4E81240000EEB0 /* ProfileSetting */ = {
+		7D92B7CA2C4E81240000EEB0 /* NicknameSetting */ = {
 			isa = PBXGroup;
 			children = (
 				7D92B7FE2C4E93240000EEB0 /* ViewModel */,
 				7D92B7ED2C4E8DD40000EEB0 /* View */,
 				7D92B7EA2C4E8D4C0000EEB0 /* ViewController */,
 			);
-			path = ProfileSetting;
+			path = NicknameSetting;
 			sourceTree = "<group>";
 		};
 		7D92B7CC2C4E813F0000EEB0 /* SearchPhoto */ = {
@@ -384,6 +396,49 @@
 			path = Observe;
 			sourceTree = "<group>";
 		};
+		7D9D1A892C4FFDCA004FD89A /* ProfileImageSetting */ = {
+			isa = PBXGroup;
+			children = (
+				7D9D1A952C5001C6004FD89A /* ViewModel */,
+				7D9D1A922C50015E004FD89A /* CollectionViewCell */,
+				7D9D1A8B2C4FFDF1004FD89A /* View */,
+				7D9D1A8A2C4FFDE7004FD89A /* ViewController */,
+			);
+			path = ProfileImageSetting;
+			sourceTree = "<group>";
+		};
+		7D9D1A8A2C4FFDE7004FD89A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7D9D1A8C2C4FFDFE004FD89A /* ProfileImageSettingViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		7D9D1A8B2C4FFDF1004FD89A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7D9D1A8E2C4FFE28004FD89A /* ProfileImageSettingView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7D9D1A922C50015E004FD89A /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				7D9D1A932C500171004FD89A /* ProfileImageCollectionViewCell.swift */,
+			);
+			path = CollectionViewCell;
+			sourceTree = "<group>";
+		};
+		7D9D1A952C5001C6004FD89A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7D9D1A962C5001D5004FD89A /* ProfileImageSettingViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -472,6 +527,7 @@
 				7D92B79E2C4E6B8B0000EEB0 /* ViewController.swift in Sources */,
 				7D92B79A2C4E6B8B0000EEB0 /* AppDelegate.swift in Sources */,
 				7D92B7D82C4E87390000EEB0 /* BaseView.swift in Sources */,
+				7D9D1A8F2C4FFE28004FD89A /* ProfileImageSettingView.swift in Sources */,
 				7D92B7C52C4E74A60000EEB0 /* NetworkRequest.swift in Sources */,
 				7D92B7DC2C4E877F0000EEB0 /* UIView++.swift in Sources */,
 				7D92B7E92C4E8B720000EEB0 /* UIViewController++.swift in Sources */,
@@ -482,12 +538,14 @@
 				7D92B7B92C4E6C990000EEB0 /* APIURL.swift in Sources */,
 				7D9D1A842C4FE6A4004FD89A /* BaseRepository.swift in Sources */,
 				7D92B7F22C4E8E7C0000EEB0 /* ProfileCircleView.swift in Sources */,
+				7D9D1A8D2C4FFDFE004FD89A /* ProfileImageSettingViewController.swift in Sources */,
 				7D92B7E72C4E8AB00000EEB0 /* MainNormalButton.swift in Sources */,
 				7D92B79C2C4E6B8B0000EEB0 /* SceneDelegate.swift in Sources */,
 				7D92B7C32C4E743E0000EEB0 /* APIFetcher.swift in Sources */,
 				7D92B7EF2C4E8DDB0000EEB0 /* NicknameSettingView.swift in Sources */,
 				7D92B8002C4E93320000EEB0 /* NicknameSettingViewModel.swift in Sources */,
 				7D92B7D52C4E86330000EEB0 /* OnboardingViewController.swift in Sources */,
+				7D9D1A972C5001D5004FD89A /* ProfileImageSettingViewModel.swift in Sources */,
 				7D92B7F72C4E90650000EEB0 /* Separator.swift in Sources */,
 				7D92B7EC2C4E8D580000EEB0 /* NicknameSettingViewController.swift in Sources */,
 				7D92B7F92C4E90DC0000EEB0 /* UITextField++.swift in Sources */,
@@ -497,6 +555,8 @@
 				7DCDB1FC2C4F9BF20055CBF3 /* UserInfo.swift in Sources */,
 				7D9D1A882C4FE81B004FD89A /* LikedPhotoInfoRepository.swift in Sources */,
 				7D92B7DE2C4E88690000EEB0 /* OnboardingView.swift in Sources */,
+				7D9D1A942C500171004FD89A /* ProfileImageCollectionViewCell.swift in Sources */,
+				7D9D1A912C4FFF94004FD89A /* Utilfunc.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

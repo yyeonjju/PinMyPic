@@ -13,7 +13,7 @@ final class NicknameSettingViewController : UIViewController {
     private let viewManager = NicknameSettingView()
     
     // MARK: - Properties
-    var pageMode : OnboardingPageMode = .onboarding
+    var pageMode : PageMode = .create
     let vm = NicknameSettingViewModel()
     let userInfo = UserInfo()
 
@@ -29,7 +29,7 @@ final class NicknameSettingViewController : UIViewController {
         setupDelegate()
         setupAddTarget()
         setupGestureEvent()
-        if pageMode == .onboarding {
+        if pageMode == .create {
             vm.inputViewDidLoadTrigger.value = ()
         }
         
@@ -50,18 +50,16 @@ final class NicknameSettingViewController : UIViewController {
             viewManager.nicknameTextFieldView.textField.text = value
         }
         
-        if pageMode == .onboarding{
-            vm.outputRamdomProfileImageName.bind { [weak self] value in
-                guard let self else {return }
-                //userInfo 객체에 임시 저장
-                self.userInfo.profileImageName = value
-                configureProfileImage(imageName : value)
-            }
+        vm.outputProfileImageName.bind { [weak self] value in
+            guard let self else {return }
+            //userInfo 객체에 임시 저장
+            self.userInfo.profileImageName = value
+            configureProfileImage(imageName : value)
         }
         
         vm.outputPermitToPageTransition.bind(onlyCallWhenValueDidSet: true) {[weak self]  _ in
             guard let self else {return }
-            if self.pageMode == .onboarding {
+            if self.pageMode == .create {
                 ///루트뷰 변경
                 print("💚💚 루트뷰 변경")
                 let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
@@ -101,10 +99,12 @@ final class NicknameSettingViewController : UIViewController {
                 guard let self else{return }
                 //확인버튼 누르면 해줄 작업
                 
-                //💚💚 입력한 닉네임 저장
+                //입력한 닉네임 저장
                 self.userInfo.nickname = viewManager.nicknameTextFieldView.textField.text!
-                if self.pageMode == .onboarding{
-                    //💚💚 가입한 날짜 저장
+                //선택한 프로필 이미지 이름 저장
+                self.userInfo.profileImageName = vm.outputProfileImageName.value
+                if self.pageMode == .create{
+                    // 가입한 날짜 저장
                     self.userInfo.registerDate = Date()
                 }
                 
@@ -123,17 +123,14 @@ final class NicknameSettingViewController : UIViewController {
     }
     
     @objc func profileImageTapped() {
-        pushToNextPage()
-    }
-    
-    // MARK: - PageTransition
-    private func pushToNextPage() {
-//        let nextVC = ProfileImageSettingViewController()
-//        nextVC.pageMode = self.pageMode
-//        let savedImageName = UserDefaults.standard.getProfileImageName()
-//        
-//        nextVC.profileImageName = savedImageName
-//        navigationController?.pushViewController(nextVC, animated: true)
+        let vc = ProfileImageSettingViewController()
+        vc.pageMode = pageMode
+        vc.selectedProfileImageName = userInfo.profileImageName
+        vc.willDisappear = {[weak self] selectedImageName in
+            guard let self else{return }
+            vm.inputSelectedProfileImageName.value = selectedImageName
+        }
+        pageTransition(to: vc, type: .push)
     }
     
     // MARK: - Method

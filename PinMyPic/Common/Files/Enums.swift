@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum OnboardingPageMode {
-    case onboarding
+enum PageMode {
+    case create
     case edit
 }

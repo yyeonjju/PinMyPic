@@ -19,6 +19,8 @@ final class NicknameSettingViewModel {
     var inputNicknameText : Observable<String?> = Observable(nil)
     // viewDidLoad 시점에 랜덤으로 프로필 사진 세팅해줄 때
     var inputViewDidLoadTrigger : Observable<Void?> = Observable(nil)
+    //프로필 화면에서 선택한 프로필을 받아서 프로필 사진 세팅해줄 때
+    var inputSelectedProfileImageName : Observable<String?> = Observable(nil)
     //프로필 세팅 유효성을 모두 통과한 시점에 유저 프로필을 저장할 수 있도록
     var inputPermitToSaveProfile : Observable<UserInfo?> = Observable(nil)
     
@@ -32,8 +34,8 @@ final class NicknameSettingViewModel {
     var outputChatacterValidation = Observable(false)
     //입력한 인풋 count 유효성에 대한 문자 자르기 여부
     var outputCountResettingNicknameText = Observable("")
-    //랜덤으로 프로필 사진 세팅
-    var outputRamdomProfileImageName = Observable("")
+    //프로필 사진 세팅
+    var outputProfileImageName = Observable("")
     //프로필 세팅하거나 수정완료하고 저장 잘 됐을 때 페이지 이동할 수 있도록
     var outputPermitToPageTransition : Observable<Void?> = Observable(nil)
     
@@ -53,7 +55,12 @@ final class NicknameSettingViewModel {
             guard let self else {return }
             let ramdomProfileImageName = ProfileImageName.returnRandomProfileImageName()
             //랜덤으로 선택된 이미지 화면에 반영
-            self.outputRamdomProfileImageName.value = ramdomProfileImageName
+            self.outputProfileImageName.value = ramdomProfileImageName
+        }
+        
+        inputSelectedProfileImageName.bind(onlyCallWhenValueDidSet: true) {[weak self] name in
+            guard let self, let name else {return }
+            self.outputProfileImageName.value = name
         }
         
         inputPermitToSaveProfile.bind(onlyCallWhenValueDidSet: true) { [weak self] value in
