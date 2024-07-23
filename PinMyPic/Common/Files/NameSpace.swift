@@ -10,7 +10,7 @@ import UIKit
 
 enum Assets{
     enum Images {
-        static let launchImage = UIImage(named: "launchImage")
+        static let launch = UIImage(named: "launchImage")
         static let sort = UIImage(named: "sort")
         
         static let likeCircleInactive = UIImage(named: "like_circle_inactive")
@@ -31,15 +31,64 @@ enum Assets{
         static let tapTrendInactive = UIImage(named: "tap_trend_inactive")
     }
     
+    enum IconImage {
+//        static let search = UIImage(systemName: "magnifyingglass")
+//        static let clock = UIImage(systemName: "clock")
+//        static let person = UIImage(systemName: "person")
+//        static let xmark = UIImage(systemName: "xmark")
+//        static let chevronRight = UIImage(systemName: "chevron.right")
+//        static let chevronLeft = UIImage(systemName: "chevron.left")
+        static let cameraFill = UIImage(systemName: "camera.fill")
+//        static let starFill = UIImage(systemName: "star.fill")
+//        static let cartFill = UIImage(systemName: "cart.fill")
+    }
+    
     
     enum Colors {
-        static let mainBlue = UIColor(named: "mainBlue")
-        static let pointPink = UIColor(named: "pointPink")
-        static let black = UIColor(named: "black")
-        static let gray1 = UIColor(named: "gray1")
-        static let gray2 = UIColor(named: "gray2")
-        static let gray3 = UIColor(named: "gray3")
-        static let white = UIColor(named: "white")
+        static let mainBlue = UIColor(named: "mainBlue")!
+        static let pointPink = UIColor(named: "pointPink")!
+        static let black = UIColor(named: "black")!
+        static let gray1 = UIColor(named: "gray1")!
+        static let gray2 = UIColor(named: "gray2")!
+        static let gray3 = UIColor(named: "gray3")!
+        static let white = UIColor(named: "white")!
+    }
+}
+
+enum Constants {
+    enum Size {
+        static let bigProfileImageWidth = CGFloat(110)
+        static let middleProfileImageWidth = CGFloat(80)
+    }
+    
+    
+    enum NicknameValidation {
+        static let invalidSpecialCharaters = ["@", "#", "$", "%"]
+        static let textMinCount = 2
+        static let textMaxCount = 9
+    }
+}
+
+
+
+enum Texts {
+    enum NicknameValidationNoticeText {
+        static let validNickname = "사용할 수 있는 닉네임이에요"
+        
+        static let invalidCount = "2글자 이상 10글자 미만으로 작성해주세요"
+        static let invalidNumber = "숫자는 입력할 수 없어요"
+        static func invalidCharacter(invalid : String) -> String {
+            return "닉네임에 \(invalid)은 포함할 수 없어요"
+        }
+    }
+    
+    enum AlertTitle {
+        static let profileSettingComplete =  "프로필 세팅을 완료하시겠습니까?"
+    }
+    
+    enum ToastMessage {
+        static let checkProfileInput = "닉네임과 mbti가 모두 잘 입력되었는지 확인해주세요."
+        static let signupComplete = "가입이 완료되었습니다"
     }
 }
 
