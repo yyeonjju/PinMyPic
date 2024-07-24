@@ -116,7 +116,7 @@ final class ProfileCircleView : UIView {
             imageContentView.layer.borderWidth = 3
             imageContentView.alpha = 1
         } else {
-            imageContentView.layer.borderColor = Assets.Colors.gray3.cgColor
+            imageContentView.layer.borderColor = Assets.Colors.gray2.cgColor
             imageContentView.layer.borderWidth = 1
             imageContentView.alpha = 0.5
             

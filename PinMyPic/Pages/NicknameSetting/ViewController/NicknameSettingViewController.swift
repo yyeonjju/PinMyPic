@@ -7,6 +7,11 @@
 
 import UIKit
 import Toast
+import RealmSwift
+
+
+
+
 
 final class NicknameSettingViewController : UIViewController {
     // MARK: - UI
@@ -70,12 +75,22 @@ final class NicknameSettingViewController : UIViewController {
                 self.navigationController?.popViewController(animated: true)
             }
         }
+        
+        vm.outputMbtiList.bind(onlyCallWhenValueDidSet: true) {[weak self] list in
+            guard let self else {return }
+            self.viewManager.mbtiCollectionView.reloadData()
+            vm.setupMbtiInitialStringList()
+        }
 
     }
     
     // MARK: - SetupDelegate
     private func setupDelegate() {
         viewManager.nicknameTextFieldView.textField.delegate = self
+        
+        viewManager.mbtiCollectionView.dataSource = self
+        viewManager.mbtiCollectionView.delegate = self
+        viewManager.mbtiCollectionView.register(MBTICollectionViewCell.self, forCellWithReuseIdentifier: MBTICollectionViewCell.description())
     }
 
     // MARK: - AddTarget
@@ -103,6 +118,12 @@ final class NicknameSettingViewController : UIViewController {
                 self.userInfo.nickname = viewManager.nicknameTextFieldView.textField.text!
                 //선택한 프로필 이미지 이름 저장
                 self.userInfo.profileImageName = vm.outputProfileImageName.value
+                //선택한
+                let mbtiRealmList = List<String>()
+                vm.outputMbtiInitialStringList.forEach{
+                    mbtiRealmList.append($0)
+                }
+                self.userInfo.mbti = mbtiRealmList
                 if self.pageMode == .create{
                     // 가입한 날짜 저장
                     self.userInfo.registerDate = Date()
@@ -156,6 +177,8 @@ final class NicknameSettingViewController : UIViewController {
     
 }
 
+
+
 extension NicknameSettingViewController : UITextFieldDelegate{
     //입력할때마다
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -163,3 +186,27 @@ extension NicknameSettingViewController : UITextFieldDelegate{
         return vm.outputChatacterValidation.value
     }
 }
+
+
+extension NicknameSettingViewController : UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let list = vm.outputMbtiList.value else{return 0}
+        return list.count
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MBTICollectionViewCell.description(), for: indexPath) as! MBTICollectionViewCell
+        guard let list = vm.outputMbtiList.value else{return cell}
+        let data = list[indexPath.item]
+        cell.configureData(data: data)
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let list = vm.outputMbtiList.value else{return }
+        let selectedMbti = list[indexPath.item]
+        vm.inputSelectedMbti.value = selectedMbti
+    }
+}
+ 

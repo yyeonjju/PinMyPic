@@ -48,6 +48,8 @@
 		7D9D1A912C4FFF94004FD89A /* Utilfunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9D1A902C4FFF94004FD89A /* Utilfunc.swift */; };
 		7D9D1A942C500171004FD89A /* ProfileImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9D1A932C500171004FD89A /* ProfileImageCollectionViewCell.swift */; };
 		7D9D1A972C5001D5004FD89A /* ProfileImageSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9D1A962C5001D5004FD89A /* ProfileImageSettingViewModel.swift */; };
+		7D9D1ABF2C50E8CF004FD89A /* RoundedCircleCharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9D1ABE2C50E8CF004FD89A /* RoundedCircleCharacterView.swift */; };
+		7D9D1AC52C50FEFD004FD89A /* MBTICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9D1AC42C50FEFD004FD89A /* MBTICollectionViewCell.swift */; };
 		7DCDB1FC2C4F9BF20055CBF3 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCDB1FB2C4F9BF20055CBF3 /* UserInfo.swift */; };
 		7DCDB1FF2C4FD0EA0055CBF3 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7DCDB1FE2C4FD0EA0055CBF3 /* RealmSwift */; };
 /* End PBXBuildFile section */
@@ -94,6 +96,8 @@
 		7D9D1A902C4FFF94004FD89A /* Utilfunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilfunc.swift; sourceTree = "<group>"; };
 		7D9D1A932C500171004FD89A /* ProfileImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		7D9D1A962C5001D5004FD89A /* ProfileImageSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageSettingViewModel.swift; sourceTree = "<group>"; };
+		7D9D1ABE2C50E8CF004FD89A /* RoundedCircleCharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCircleCharacterView.swift; sourceTree = "<group>"; };
+		7D9D1AC42C50FEFD004FD89A /* MBTICollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBTICollectionViewCell.swift; sourceTree = "<group>"; };
 		7DCDB1FB2C4F9BF20055CBF3 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -276,6 +280,7 @@
 		7D92B7CA2C4E81240000EEB0 /* NicknameSetting */ = {
 			isa = PBXGroup;
 			children = (
+				7D9D1AC32C50FEF0004FD89A /* CollectionViewCell */,
 				7D92B7FE2C4E93240000EEB0 /* ViewModel */,
 				7D92B7ED2C4E8DD40000EEB0 /* View */,
 				7D92B7EA2C4E8D4C0000EEB0 /* ViewController */,
@@ -368,6 +373,7 @@
 			children = (
 				7D92B7F12C4E8E7C0000EEB0 /* ProfileCircleView.swift */,
 				7D92B7F62C4E90650000EEB0 /* Separator.swift */,
+				7D9D1ABE2C50E8CF004FD89A /* RoundedCircleCharacterView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -437,6 +443,14 @@
 				7D9D1A962C5001D5004FD89A /* ProfileImageSettingViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7D9D1AC32C50FEF0004FD89A /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				7D9D1AC42C50FEFD004FD89A /* MBTICollectionViewCell.swift */,
+			);
+			path = CollectionViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -522,11 +536,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D9D1ABF2C50E8CF004FD89A /* RoundedCircleCharacterView.swift in Sources */,
 				7D92B7D12C4E82050000EEB0 /* SearchPhoto.swift in Sources */,
 				7D92B7F52C4E90450000EEB0 /* NormalTextFieldView.swift in Sources */,
 				7D92B79E2C4E6B8B0000EEB0 /* ViewController.swift in Sources */,
 				7D92B79A2C4E6B8B0000EEB0 /* AppDelegate.swift in Sources */,
 				7D92B7D82C4E87390000EEB0 /* BaseView.swift in Sources */,
+				7D9D1AC52C50FEFD004FD89A /* MBTICollectionViewCell.swift in Sources */,
 				7D9D1A8F2C4FFE28004FD89A /* ProfileImageSettingView.swift in Sources */,
 				7D92B7C52C4E74A60000EEB0 /* NetworkRequest.swift in Sources */,
 				7D92B7DC2C4E877F0000EEB0 /* UIView++.swift in Sources */,

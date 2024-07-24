@@ -13,28 +13,29 @@ final class NicknameSettingView : BaseView {
     // MARK: - UI
     let profileCircleView = ProfileCircleView(width: Constants.Size.bigProfileImageWidth)
     
-    let nicknameTextFieldView = NormalTextFieldView(placeholder: "닉네임을 입력해주세요 :)")
+    let nicknameTextFieldView = NormalTextFieldView(placeholder: Texts.Placeholder.nicknameTextField)
+    
+    let mbtiLabel = {
+       let label = UILabel()
+        label.text = "MBTI"
+        label.font = Font.bold16
+        return label
+    }()
+    
+    let mbtiCollectionView = {
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: configureCollectionVewLayout(numberofItemInrow: 4, cellIneterSpacing: 4,sectionSpacing : 0, totalWidth: Constants.Size.mbtiCollectionViewWidth))
+//        cv.backgroundColor = .cyan
+        return cv
+    }()
+
     
     let completeButton = MainNormalButton(title: "완료")
-    
-    // MARK: - Initializer
-    
-    override init(frame : CGRect) {
-        super.init(frame: frame)
-        
-        configureSubView()
-        configureLayout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     
     // MARK: - ConfigureUI
     
     override func configureSubView() {
-        [profileCircleView, nicknameTextFieldView, completeButton]
+        [profileCircleView, nicknameTextFieldView, completeButton, mbtiLabel, mbtiCollectionView]
             .forEach{
                 addSubview($0)
             }
@@ -48,7 +49,19 @@ final class NicknameSettingView : BaseView {
         
         nicknameTextFieldView.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(20)
-            make.top.equalTo(profileCircleView.snp.bottom).offset(40)
+            make.top.equalTo(profileCircleView.snp.bottom).offset(30)
+        }
+        
+        mbtiLabel.snp.makeConstraints { make in
+            make.leading.equalTo(safeAreaLayoutGuide).offset(20)
+            make.top.equalTo(nicknameTextFieldView.snp.bottom).offset(30)
+        }
+        
+        mbtiCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(nicknameTextFieldView.snp.bottom).offset(30)
+            make.width.equalTo(Constants.Size.mbtiCollectionViewWidth)
+            make.trailing.equalTo(safeAreaLayoutGuide).offset(-20)
+            make.height.equalTo(200)
         }
         
         completeButton.snp.makeConstraints { make in

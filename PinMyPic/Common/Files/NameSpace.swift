@@ -59,6 +59,8 @@ enum Constants {
     enum Size {
         static let bigProfileImageWidth = CGFloat(110)
         static let middleProfileImageWidth = CGFloat(80)
+        
+        static let mbtiCollectionViewWidth = CGFloat(260)
     }
     
     
@@ -99,6 +101,10 @@ enum Texts {
 //        }
 //        static let Settings = "Settings"
     }
+    
+    enum Placeholder {
+        static let nicknameTextField = "닉네임을 입력해주세요 :)"
+    }
 }
 
 
@@ -112,6 +118,8 @@ enum Font {
     static let bold14 = UIFont.boldSystemFont(ofSize: 14)
     static let bold15 = UIFont.boldSystemFont(ofSize: 15)
     static let bold16 = UIFont.boldSystemFont(ofSize: 16)
+    static let bold17 = UIFont.boldSystemFont(ofSize: 17)
+    static let bold18 = UIFont.boldSystemFont(ofSize: 18)
 }
 
 

@@ -7,23 +7,45 @@
 
 import Foundation
 
+struct MbtiItem : Equatable {
+    let itemInitialString : String
+    var isSelected : Bool
+    let mbtiIndex : Int
+}
+
 
 final class NicknameSettingViewModel {
 
-    let userInfoRepository = UserInfoRepository()
+    private let userInfoRepository = UserInfoRepository()
+    private var mbtiItemList = [
+        MbtiItem(itemInitialString: "E", isSelected: false, mbtiIndex: 0),
+        MbtiItem(itemInitialString: "S", isSelected: false, mbtiIndex: 1),
+        MbtiItem(itemInitialString: "T", isSelected: false, mbtiIndex: 2),
+        MbtiItem(itemInitialString: "J", isSelected: false, mbtiIndex: 3),
+        
+        MbtiItem(itemInitialString: "I", isSelected: false, mbtiIndex: 0),
+        MbtiItem(itemInitialString: "N", isSelected: false, mbtiIndex: 1),
+        MbtiItem(itemInitialString: "F", isSelected: false, mbtiIndex: 2),
+        MbtiItem(itemInitialString: "P", isSelected: false, mbtiIndex: 3),
+    ]
+    //mbti에 대한 string list
+    var outputMbtiInitialStringList : [String] = []
+    
+    
     
     //in
     //닉네임 textField 입력 - shouldChangeCharactersIn 시점
     var inputNicknameWillReplaced = Observable("")
     //닉네임 textField 입력 - editingChanged 시점
     var inputNicknameText : Observable<String?> = Observable(nil)
-    // viewDidLoad 시점에 랜덤으로 프로필 사진 세팅해줄 때
+    // viewDidLoad 시점에 랜덤으로 프로필 사진, mbti 세팅해줄 때
     var inputViewDidLoadTrigger : Observable<Void?> = Observable(nil)
     //프로필 화면에서 선택한 프로필을 받아서 프로필 사진 세팅해줄 때
     var inputSelectedProfileImageName : Observable<String?> = Observable(nil)
     //프로필 세팅 유효성을 모두 통과한 시점에 유저 프로필을 저장할 수 있도록
     var inputPermitToSaveProfile : Observable<UserInfo?> = Observable(nil)
-    
+    //mbti 선택했을 때
+    var inputSelectedMbti : Observable<MbtiItem?> = Observable(nil)
     
     
     
@@ -38,9 +60,14 @@ final class NicknameSettingViewModel {
     var outputProfileImageName = Observable("")
     //프로필 세팅하거나 수정완료하고 저장 잘 됐을 때 페이지 이동할 수 있도록
     var outputPermitToPageTransition : Observable<Void?> = Observable(nil)
-    
+    //mbti 아이템 리스트 전달
+    var outputMbtiList : Observable<[MbtiItem]?> = Observable(nil)
+
     
     init() {
+        print("🧡userInfoRepository")
+        userInfoRepository.checkSchemaVersion()
+        
         inputNicknameWillReplaced.bind { [weak self] value in
             guard let self else {return }
             self.outputChatacterValidation.value = self.whetherToKeepChanging(replacementString: value)
@@ -56,6 +83,8 @@ final class NicknameSettingViewModel {
             let ramdomProfileImageName = ProfileImageName.returnRandomProfileImageName()
             //랜덤으로 선택된 이미지 화면에 반영
             self.outputProfileImageName.value = ramdomProfileImageName
+            //mbti 리스트 전달
+            self.outputMbtiList.value = mbtiItemList
         }
         
         inputSelectedProfileImageName.bind(onlyCallWhenValueDidSet: true) {[weak self] name in
@@ -68,6 +97,39 @@ final class NicknameSettingViewModel {
             //realm에 데이터 저장하기
             self.saveUserData(profile : value)
         }
+        
+        inputSelectedMbti.bind(onlyCallWhenValueDidSet: true) {[weak self] mbtiItem in
+            guard let self, let mbtiItem else {return }
+            self.changeMbtiItemSelection(item : mbtiItem)
+        }
+    }
+    
+    func setupMbtiInitialStringList() {
+        guard let itemList = outputMbtiList.value else{return }
+        outputMbtiInitialStringList = itemList.filter{$0.isSelected}.map{$0.itemInitialString}
+    }
+    
+    private func changeMbtiItemSelection(item : MbtiItem) {
+        guard let itemIndex = mbtiItemList.firstIndex(where: {$0 == item}) else {return }
+        
+        if item.isSelected {
+            //선택되어 있었던 걸 선택 해제할 때
+            mbtiItemList[itemIndex].isSelected = false
+        } else {
+            //선택되어 있지 않았던걸 선택할 때
+            mbtiItemList[itemIndex].isSelected = true
+            
+            //이 아이템이랑 똑같은 mbtiIndex를 가진 item은 선택 해제
+            mbtiItemList.enumerated().forEach{
+
+                if $0.element.mbtiIndex == item.mbtiIndex && $0.element.itemInitialString != item.itemInitialString {
+                    mbtiItemList[$0.offset].isSelected = false
+                    
+                }
+            }
+        }
+        
+        outputMbtiList.value = mbtiItemList
     }
     
     private func saveUserData(profile : UserInfo) {

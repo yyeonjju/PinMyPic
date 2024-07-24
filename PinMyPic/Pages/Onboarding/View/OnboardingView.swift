@@ -28,19 +28,6 @@ final class OnboardingView : BaseView{
     
     let startButton = MainNormalButton(title : "시작하기")
     
-    // MARK: - Initializer
-    
-    override init(frame : CGRect) {
-        super.init(frame: frame)
-        
-        configureSubView()
-        configureLayout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     
     // MARK: - ConfigureUI
     
