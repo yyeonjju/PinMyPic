@@ -28,9 +28,8 @@ final class NicknameSettingViewModel {
         MbtiItem(itemInitialString: "F", isSelected: false, mbtiIndex: 2),
         MbtiItem(itemInitialString: "P", isSelected: false, mbtiIndex: 3),
     ]
-    //mbti에 대한 string list
-    var outputMbtiInitialStringList : [String] = []
-    
+    //mbti에 대한 string list(사용자가 mbti 선택/해제해서 mbtiItemList가 바뀔 떄마다 다시 세팅됨)
+    var mbtiInitialStringList : [String] = []
     
     
     //in
@@ -46,7 +45,8 @@ final class NicknameSettingViewModel {
     var inputPermitToSaveProfile : Observable<UserInfo?> = Observable(nil)
     //mbti 선택했을 때
     var inputSelectedMbti : Observable<MbtiItem?> = Observable(nil)
-    
+    //완료버튼눌렀을 때 최종 유효성 -> alert 띄울지, 미완료 toast 띄울지 output
+    var inputCompleteButtonValidation : Observable<String?> = Observable(nil)
     
     
     //out
@@ -62,20 +62,25 @@ final class NicknameSettingViewModel {
     var outputPermitToPageTransition : Observable<Void?> = Observable(nil)
     //mbti 아이템 리스트 전달
     var outputMbtiList : Observable<[MbtiItem]?> = Observable(nil)
-
+    //완료버튼눌렀을 때 최종 유효성에 따른 토스트 메세지
+    var outputValidationToastText : Observable<String?> = Observable(nil)
+    // 완료버튼 활성화 여부
+    var outputActivateCompleteButton : Observable<Bool> = Observable(false)
+    //완료버튼눌렀을 때 유효성 통과 -> 유저 데이터 저장하고 페이지 이동할 수 있도록
+    var outputAllowComplete : Observable<Void?> = Observable(nil)
     
     init() {
-        print("🧡userInfoRepository")
-        userInfoRepository.checkSchemaVersion()
         
         inputNicknameWillReplaced.bind { [weak self] value in
             guard let self else {return }
             self.outputChatacterValidation.value = self.whetherToKeepChanging(replacementString: value)
         }
         
-        inputNicknameText.bind {[weak self] value in
-            guard let self else {return }
+        inputNicknameText.bind(onlyCallWhenValueDidSet: true) {[weak self] value in
+            guard let self, let value else {return }
+            realtimeValidation(nickname: value)
             validateNicknameCount(inputValue : value)
+
         }
         
         inputViewDidLoadTrigger.bind {[weak self] _ in
@@ -102,11 +107,45 @@ final class NicknameSettingViewModel {
             guard let self, let mbtiItem else {return }
             self.changeMbtiItemSelection(item : mbtiItem)
         }
+        
+        inputCompleteButtonValidation.bind(onlyCallWhenValueDidSet: true) {[weak self] finalNickname in
+            guard let self, let finalNickname else {return }
+            self.completeButtonValidation(nickname: finalNickname)
+        }
     }
     
     func setupMbtiInitialStringList() {
         guard let itemList = outputMbtiList.value else{return }
-        outputMbtiInitialStringList = itemList.filter{$0.isSelected}.map{$0.itemInitialString}
+        mbtiInitialStringList = itemList.filter{$0.isSelected}.map{$0.itemInitialString}
+    }
+    
+    func realtimeValidation(nickname : String) {
+        let textCount = nickname.count
+        
+        if textCount >= Constants.NicknameValidation.textMinCount
+            && textCount <= Constants.NicknameValidation.textMaxCount
+            && mbtiInitialStringList.count == 4 {
+            outputActivateCompleteButton.value = true
+        }else {
+            outputActivateCompleteButton.value = false
+        }
+    }
+    
+    private func completeButtonValidation(nickname : String) {
+        let textCount = nickname.count
+        
+        guard textCount >= Constants.NicknameValidation.textMinCount
+            && textCount <= Constants.NicknameValidation.textMaxCount else {
+            outputValidationToastText.value = Texts.ToastMessage.checkNickname
+            return
+        }
+        
+        guard mbtiInitialStringList.count == 4 else{
+            outputValidationToastText.value = Texts.ToastMessage.checkMbti
+            return
+        }
+        
+        outputAllowComplete.value = ()
     }
     
     private func changeMbtiItemSelection(item : MbtiItem) {

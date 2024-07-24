@@ -89,7 +89,8 @@ enum Texts {
     }
     
     enum ToastMessage {
-        static let checkProfileInput = "닉네임과 mbti가 모두 잘 입력되었는지 확인해주세요."
+        static let checkNickname = "닉네임이 잘 입력되었는지 확인해주세요."
+        static let checkMbti = "mbti가 잘 선택되었는지 확인해주세요."
         static let signupComplete = "가입이 완료되었습니다"
     }
     

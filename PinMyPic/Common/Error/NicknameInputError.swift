@@ -12,6 +12,7 @@ enum NicknameInputError : Error {
     case numberInput
     case lessThanMinAmount
     case moreThanMaxAmount
+    case invalidateAmount
     
     func validationNoticeText() -> String {
         switch self {
@@ -19,7 +20,7 @@ enum NicknameInputError : Error {
             return Texts.NicknameValidationNoticeText.invalidCharacter(invalid: invalidCharacter)
         case .numberInput:
             return Texts.NicknameValidationNoticeText.invalidNumber
-        case .lessThanMinAmount, .moreThanMaxAmount:
+        case .lessThanMinAmount, .moreThanMaxAmount, .invalidateAmount:
             return Texts.NicknameValidationNoticeText.invalidCount
         }
     }

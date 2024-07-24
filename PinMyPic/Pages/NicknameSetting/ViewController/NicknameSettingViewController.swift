@@ -53,6 +53,7 @@ final class NicknameSettingViewController : UIViewController {
         vm.outputCountResettingNicknameText.bind { [weak self] value in
             guard let self else {return }
             viewManager.nicknameTextFieldView.textField.text = value
+            vm.realtimeValidation(nickname: value)
         }
         
         vm.outputProfileImageName.bind { [weak self] value in
@@ -77,9 +78,28 @@ final class NicknameSettingViewController : UIViewController {
         }
         
         vm.outputMbtiList.bind(onlyCallWhenValueDidSet: true) {[weak self] list in
-            guard let self else {return }
+            guard let self, let nickname = viewManager.nicknameTextFieldView.textField.text else {return }
             self.viewManager.mbtiCollectionView.reloadData()
             vm.setupMbtiInitialStringList()
+            
+            //완료버튼 활성화 여부 판단하기 위한 realtimeValidation
+            vm.realtimeValidation(nickname: nickname)
+        }
+        
+        vm.outputValidationToastText.bind(onlyCallWhenValueDidSet: true) {[weak self] text in
+            guard let self, let text else {return }
+            self.view.makeToast(text, position: .top)
+        }
+        
+        vm.outputAllowComplete.bind(onlyCallWhenValueDidSet: true) { [weak self] _ in
+            guard let self else {return }
+            self.showCompleteAlert()
+        }
+        
+        vm.outputActivateCompleteButton.bind {[weak self] isActivate in
+            guard let self else {return }
+            self.viewManager.completeButton.backgroundColor = isActivate ? Assets.Colors.mainBlue : Assets.Colors.gray2
+            
         }
 
     }
@@ -105,42 +125,37 @@ final class NicknameSettingViewController : UIViewController {
     }
     
     // MARK: - EventSelector
-    @objc func completeButtonTapped() {
-        guard let textCount = viewManager.nicknameTextFieldView.textField.text?.count else {return }
-
-        if textCount >= Constants.NicknameValidation.textMinCount 
-            && textCount <= Constants.NicknameValidation.textMaxCount{
-            showAlert(title: Texts.AlertTitle.profileSettingComplete, message: nil, style: .alert){[weak self] in
-                guard let self else{return }
-                //확인버튼 누르면 해줄 작업
-                
-                //입력한 닉네임 저장
-                self.userInfo.nickname = viewManager.nicknameTextFieldView.textField.text!
-                //선택한 프로필 이미지 이름 저장
-                self.userInfo.profileImageName = vm.outputProfileImageName.value
-                //선택한
-                let mbtiRealmList = List<String>()
-                vm.outputMbtiInitialStringList.forEach{
-                    mbtiRealmList.append($0)
-                }
-                self.userInfo.mbti = mbtiRealmList
-                if self.pageMode == .create{
-                    // 가입한 날짜 저장
-                    self.userInfo.registerDate = Date()
-                }
-                
-                vm.inputPermitToSaveProfile.value = self.userInfo
-                
+    private func showCompleteAlert() {
+        showAlert(title: Texts.AlertTitle.profileSettingComplete, message: nil, style: .alert){[weak self] in
+            guard let self else{return }
+            //확인버튼 누르면 해줄 작업
+            
+            //입력한 닉네임 저장
+            self.userInfo.nickname = viewManager.nicknameTextFieldView.textField.text!
+            //선택한 프로필 이미지 이름 저장
+            self.userInfo.profileImageName = vm.outputProfileImageName.value
+            //선택한
+            let mbtiRealmList = List<String>()
+            vm.mbtiInitialStringList.forEach{
+                mbtiRealmList.append($0)
             }
-        }else {
-            self.view.makeToast(Texts.ToastMessage.checkProfileInput, duration: 2.0, position: .top)
+            self.userInfo.mbti = mbtiRealmList
+            if self.pageMode == .create{
+                // 가입한 날짜 저장
+                self.userInfo.registerDate = Date()
+            }
+            
+            vm.inputPermitToSaveProfile.value = self.userInfo
         }
+    }
+    
+    @objc func completeButtonTapped() {
+        vm.inputCompleteButtonValidation.value = viewManager.nicknameTextFieldView.textField.text
 
     }
     
     @objc func nicknameTextFieldDidChange() {
         vm.inputNicknameText.value = viewManager.nicknameTextFieldView.textField.text
-
     }
     
     @objc func profileImageTapped() {
@@ -187,7 +202,7 @@ extension NicknameSettingViewController : UITextFieldDelegate{
     }
 }
 
-
+//mbti 컬렉션뷰
 extension NicknameSettingViewController : UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let list = vm.outputMbtiList.value else{return 0}
