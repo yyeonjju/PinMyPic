@@ -16,7 +16,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         
-        changeRootViewControllerToOnboarding()
+//        changeRootViewControllerToOnboarding()
+        
+        changeRootViewControllerToHome()
+        
 //        if UserDefaults.standard.getNickname() == nil {
 //            changeRootViewControllerToOnboarding()
 //        } else {
@@ -72,7 +75,10 @@ extension SceneDelegate {
     }
     
     func changeRootViewControllerToHome() {
+        guard let window = self.window else { return }
+        let tabBarVC = CustomTabBarController(type: TabViewType.self)
         
+        window.rootViewController = tabBarVC
     }
 }
 

@@ -36,7 +36,6 @@
 		7D92B7F52C4E90450000EEB0 /* NormalTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D92B7F42C4E90450000EEB0 /* NormalTextFieldView.swift */; };
 		7D92B7F72C4E90650000EEB0 /* Separator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D92B7F62C4E90650000EEB0 /* Separator.swift */; };
 		7D92B7F92C4E90DC0000EEB0 /* UITextField++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D92B7F82C4E90DC0000EEB0 /* UITextField++.swift */; };
-		7D92B7FD2C4E92F90000EEB0 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D92B7FC2C4E92F90000EEB0 /* Enums.swift */; };
 		7D92B8002C4E93320000EEB0 /* NicknameSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D92B7FF2C4E93320000EEB0 /* NicknameSettingViewModel.swift */; };
 		7D92B8032C4E93710000EEB0 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D92B8022C4E93710000EEB0 /* Observable.swift */; };
 		7D92B8052C4E94010000EEB0 /* NicknameInputError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D92B8042C4E94010000EEB0 /* NicknameInputError.swift */; };
@@ -50,6 +49,13 @@
 		7D9D1A972C5001D5004FD89A /* ProfileImageSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9D1A962C5001D5004FD89A /* ProfileImageSettingViewModel.swift */; };
 		7D9D1ABF2C50E8CF004FD89A /* RoundedCircleCharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9D1ABE2C50E8CF004FD89A /* RoundedCircleCharacterView.swift */; };
 		7D9D1AC52C50FEFD004FD89A /* MBTICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9D1AC42C50FEFD004FD89A /* MBTICollectionViewCell.swift */; };
+		7D9D1AC92C51CD19004FD89A /* TopicTrendPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9D1AC82C51CD19004FD89A /* TopicTrendPhotoViewController.swift */; };
+		7D9D1ACB2C51CD56004FD89A /* SearchPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9D1ACA2C51CD56004FD89A /* SearchPhotoViewController.swift */; };
+		7D9D1ACF2C51CDBC004FD89A /* RandomPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9D1ACE2C51CDBC004FD89A /* RandomPhotoViewController.swift */; };
+		7D9D1AD32C51CE4E004FD89A /* LikePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9D1AD22C51CE4E004FD89A /* LikePhotoViewController.swift */; };
+		7D9D1AD62C51CF2D004FD89A /* ETC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9D1AD52C51CF2D004FD89A /* ETC.swift */; };
+		7D9D1AD82C51CF49004FD89A /* TabViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9D1AD72C51CF49004FD89A /* TabViewType.swift */; };
+		7D9D1ADC2C51CFD7004FD89A /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9D1ADB2C51CFD7004FD89A /* CustomTabBarController.swift */; };
 		7DCDB1FC2C4F9BF20055CBF3 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCDB1FB2C4F9BF20055CBF3 /* UserInfo.swift */; };
 		7DCDB1FF2C4FD0EA0055CBF3 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7DCDB1FE2C4FD0EA0055CBF3 /* RealmSwift */; };
 /* End PBXBuildFile section */
@@ -84,7 +90,6 @@
 		7D92B7F42C4E90450000EEB0 /* NormalTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalTextFieldView.swift; sourceTree = "<group>"; };
 		7D92B7F62C4E90650000EEB0 /* Separator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Separator.swift; sourceTree = "<group>"; };
 		7D92B7F82C4E90DC0000EEB0 /* UITextField++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField++.swift"; sourceTree = "<group>"; };
-		7D92B7FC2C4E92F90000EEB0 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		7D92B7FF2C4E93320000EEB0 /* NicknameSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameSettingViewModel.swift; sourceTree = "<group>"; };
 		7D92B8022C4E93710000EEB0 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		7D92B8042C4E94010000EEB0 /* NicknameInputError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameInputError.swift; sourceTree = "<group>"; };
@@ -98,6 +103,13 @@
 		7D9D1A962C5001D5004FD89A /* ProfileImageSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageSettingViewModel.swift; sourceTree = "<group>"; };
 		7D9D1ABE2C50E8CF004FD89A /* RoundedCircleCharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCircleCharacterView.swift; sourceTree = "<group>"; };
 		7D9D1AC42C50FEFD004FD89A /* MBTICollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBTICollectionViewCell.swift; sourceTree = "<group>"; };
+		7D9D1AC82C51CD19004FD89A /* TopicTrendPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicTrendPhotoViewController.swift; sourceTree = "<group>"; };
+		7D9D1ACA2C51CD56004FD89A /* SearchPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotoViewController.swift; sourceTree = "<group>"; };
+		7D9D1ACE2C51CDBC004FD89A /* RandomPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomPhotoViewController.swift; sourceTree = "<group>"; };
+		7D9D1AD22C51CE4E004FD89A /* LikePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikePhotoViewController.swift; sourceTree = "<group>"; };
+		7D9D1AD52C51CF2D004FD89A /* ETC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETC.swift; sourceTree = "<group>"; };
+		7D9D1AD72C51CF49004FD89A /* TabViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewType.swift; sourceTree = "<group>"; };
+		7D9D1ADB2C51CFD7004FD89A /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		7DCDB1FB2C4F9BF20055CBF3 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -156,6 +168,9 @@
 		7D92B7AD2C4E6C130000EEB0 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				7D9D1AD02C51CE2D004FD89A /* LikePhoto */,
+				7D9D1ACC2C51CD9F004FD89A /* RandomPhoto */,
+				7D9D1AC62C51CCD3004FD89A /* TopicTrendPhoto */,
 				7D92B7CC2C4E813F0000EEB0 /* SearchPhoto */,
 				7D9D1A892C4FFDCA004FD89A /* ProfileImageSetting */,
 				7D92B7CA2C4E81240000EEB0 /* NicknameSetting */,
@@ -167,6 +182,7 @@
 		7D92B7AE2C4E6C1C0000EEB0 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				7D9D1ADA2C51CFBA004FD89A /* TAbBar */,
 				7D92B7F32C4E90370000EEB0 /* TextField */,
 				7D92B7F02C4E8E750000EEB0 /* View */,
 				7D92B7E52C4E8A880000EEB0 /* Button */,
@@ -188,6 +204,7 @@
 		7D92B7B02C4E6C2D0000EEB0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				7D9D1AD42C51CEFC004FD89A /* Enums */,
 				7D92B8012C4E93650000EEB0 /* Observe */,
 				7D92B7C62C4E74D60000EEB0 /* Error */,
 				7D92B7BC2C4E6FA10000EEB0 /* Files */,
@@ -226,7 +243,6 @@
 			isa = PBXGroup;
 			children = (
 				7D92B7BD2C4E6FAF0000EEB0 /* NameSpace.swift */,
-				7D92B7FC2C4E92F90000EEB0 /* Enums.swift */,
 				7D9D1A902C4FFF94004FD89A /* Utilfunc.swift */,
 			);
 			path = Files;
@@ -301,6 +317,7 @@
 		7D92B7CD2C4E815B0000EEB0 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				7D9D1ACA2C51CD56004FD89A /* SearchPhotoViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -453,6 +470,71 @@
 			path = CollectionViewCell;
 			sourceTree = "<group>";
 		};
+		7D9D1AC62C51CCD3004FD89A /* TopicTrendPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				7D9D1AC72C51CCE2004FD89A /* ViewController */,
+			);
+			path = TopicTrendPhoto;
+			sourceTree = "<group>";
+		};
+		7D9D1AC72C51CCE2004FD89A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7D9D1AC82C51CD19004FD89A /* TopicTrendPhotoViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		7D9D1ACC2C51CD9F004FD89A /* RandomPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				7D9D1ACD2C51CDAB004FD89A /* ViewController */,
+			);
+			path = RandomPhoto;
+			sourceTree = "<group>";
+		};
+		7D9D1ACD2C51CDAB004FD89A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7D9D1ACE2C51CDBC004FD89A /* RandomPhotoViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		7D9D1AD02C51CE2D004FD89A /* LikePhoto */ = {
+			isa = PBXGroup;
+			children = (
+				7D9D1AD12C51CE40004FD89A /* ViewController */,
+			);
+			path = LikePhoto;
+			sourceTree = "<group>";
+		};
+		7D9D1AD12C51CE40004FD89A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7D9D1AD22C51CE4E004FD89A /* LikePhotoViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		7D9D1AD42C51CEFC004FD89A /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				7D9D1AD52C51CF2D004FD89A /* ETC.swift */,
+				7D9D1AD72C51CF49004FD89A /* TabViewType.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		7D9D1ADA2C51CFBA004FD89A /* TAbBar */ = {
+			isa = PBXGroup;
+			children = (
+				7D9D1ADB2C51CFD7004FD89A /* CustomTabBarController.swift */,
+			);
+			path = TAbBar;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -537,6 +619,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D9D1ABF2C50E8CF004FD89A /* RoundedCircleCharacterView.swift in Sources */,
+				7D9D1AC92C51CD19004FD89A /* TopicTrendPhotoViewController.swift in Sources */,
 				7D92B7D12C4E82050000EEB0 /* SearchPhoto.swift in Sources */,
 				7D92B7F52C4E90450000EEB0 /* NormalTextFieldView.swift in Sources */,
 				7D92B79E2C4E6B8B0000EEB0 /* ViewController.swift in Sources */,
@@ -545,10 +628,10 @@
 				7D9D1AC52C50FEFD004FD89A /* MBTICollectionViewCell.swift in Sources */,
 				7D9D1A8F2C4FFE28004FD89A /* ProfileImageSettingView.swift in Sources */,
 				7D92B7C52C4E74A60000EEB0 /* NetworkRequest.swift in Sources */,
+				7D9D1ACB2C51CD56004FD89A /* SearchPhotoViewController.swift in Sources */,
 				7D92B7DC2C4E877F0000EEB0 /* UIView++.swift in Sources */,
 				7D92B7E92C4E8B720000EEB0 /* UIViewController++.swift in Sources */,
 				7D92B7B72C4E6C8F0000EEB0 /* APIKey.swift in Sources */,
-				7D92B7FD2C4E92F90000EEB0 /* Enums.swift in Sources */,
 				7D92B7BE2C4E6FAF0000EEB0 /* NameSpace.swift in Sources */,
 				7D92B8032C4E93710000EEB0 /* Observable.swift in Sources */,
 				7D92B7B92C4E6C990000EEB0 /* APIURL.swift in Sources */,
@@ -568,9 +651,14 @@
 				7D9D1A862C4FE77B004FD89A /* UserInfoRepository.swift in Sources */,
 				7D92B8052C4E94010000EEB0 /* NicknameInputError.swift in Sources */,
 				7D92B7C82C4E74E80000EEB0 /* RequestError.swift in Sources */,
+				7D9D1AD62C51CF2D004FD89A /* ETC.swift in Sources */,
 				7DCDB1FC2C4F9BF20055CBF3 /* UserInfo.swift in Sources */,
+				7D9D1AD32C51CE4E004FD89A /* LikePhotoViewController.swift in Sources */,
 				7D9D1A882C4FE81B004FD89A /* LikedPhotoInfoRepository.swift in Sources */,
+				7D9D1ACF2C51CDBC004FD89A /* RandomPhotoViewController.swift in Sources */,
 				7D92B7DE2C4E88690000EEB0 /* OnboardingView.swift in Sources */,
+				7D9D1AD82C51CF49004FD89A /* TabViewType.swift in Sources */,
+				7D9D1ADC2C51CFD7004FD89A /* CustomTabBarController.swift in Sources */,
 				7D9D1A942C500171004FD89A /* ProfileImageCollectionViewCell.swift in Sources */,
 				7D9D1A912C4FFF94004FD89A /* Utilfunc.swift in Sources */,
 			);
