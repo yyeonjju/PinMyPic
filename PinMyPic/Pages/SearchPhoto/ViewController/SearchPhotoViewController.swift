@@ -132,7 +132,7 @@ extension SearchPhotoViewController : UICollectionViewDataSourcePrefetching {
         
         for item in indexPaths {
             if result.results.count - 2 == item.row && vm.page < result.totalPages{
-                vm.inputPrefetchForPagenation.value = viewManager.searchBar.text
+                vm.inputPrefetchForPagenation.value = ()
             }
         }
     }

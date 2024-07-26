@@ -16,7 +16,7 @@ final class SearchPhotoViewModel {
     //search button clicked -> page 1
     var inputSearchKeyword : Observable<String?> = Observable(nil)
     //prefetch
-    var inputPrefetchForPagenation : Observable<String?> = Observable(nil)
+    var inputPrefetchForPagenation : Observable<Void?> = Observable(nil)
     
     
     //output
@@ -41,8 +41,8 @@ final class SearchPhotoViewModel {
             
         }
         
-        inputPrefetchForPagenation.bind(onlyCallWhenValueDidSet: true) {[weak self] keyword in
-            guard let self, let keyword else{return}
+        inputPrefetchForPagenation.bind(onlyCallWhenValueDidSet: true) {[weak self] _ in
+            guard let self, let keyword = self.inputSearchKeyword.value else{return}
             page += 1
             self.getSearchList(keyword)
         }
