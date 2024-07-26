@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D8EA03C2C523A0200077A7A /* CornerRadiusButton .swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8EA03B2C523A0200077A7A /* CornerRadiusButton .swift */; };
+		7D8EA03F2C5245CB00077A7A /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8EA03E2C5245CB00077A7A /* PhotoCollectionViewCell.swift */; };
+		7D8EA0412C52462700077A7A /* UIImageView++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8EA0402C52462700077A7A /* UIImageView++.swift */; };
+		7D8EA0442C538C7400077A7A /* SearchPhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8EA0432C538C7400077A7A /* SearchPhotoViewModel.swift */; };
+		7D8EA0472C539F6100077A7A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7D8EA0462C539F6100077A7A /* Alamofire */; };
 		7D92B79A2C4E6B8B0000EEB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D92B7992C4E6B8B0000EEB0 /* AppDelegate.swift */; };
 		7D92B79C2C4E6B8B0000EEB0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D92B79B2C4E6B8B0000EEB0 /* SceneDelegate.swift */; };
 		7D92B79E2C4E6B8B0000EEB0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D92B79D2C4E6B8B0000EEB0 /* ViewController.swift */; };
@@ -56,11 +61,16 @@
 		7D9D1AD62C51CF2D004FD89A /* ETC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9D1AD52C51CF2D004FD89A /* ETC.swift */; };
 		7D9D1AD82C51CF49004FD89A /* TabViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9D1AD72C51CF49004FD89A /* TabViewType.swift */; };
 		7D9D1ADC2C51CFD7004FD89A /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9D1ADB2C51CFD7004FD89A /* CustomTabBarController.swift */; };
+		7D9D1ADE2C51D5E1004FD89A /* SearchPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9D1ADD2C51D5E1004FD89A /* SearchPhotoView.swift */; };
 		7DCDB1FC2C4F9BF20055CBF3 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCDB1FB2C4F9BF20055CBF3 /* UserInfo.swift */; };
 		7DCDB1FF2C4FD0EA0055CBF3 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7DCDB1FE2C4FD0EA0055CBF3 /* RealmSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7D8EA03B2C523A0200077A7A /* CornerRadiusButton .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CornerRadiusButton .swift"; sourceTree = "<group>"; };
+		7D8EA03E2C5245CB00077A7A /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		7D8EA0402C52462700077A7A /* UIImageView++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView++.swift"; sourceTree = "<group>"; };
+		7D8EA0432C538C7400077A7A /* SearchPhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotoViewModel.swift; sourceTree = "<group>"; };
 		7D92B7962C4E6B8B0000EEB0 /* PinMyPic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinMyPic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D92B7992C4E6B8B0000EEB0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D92B79B2C4E6B8B0000EEB0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +120,7 @@
 		7D9D1AD52C51CF2D004FD89A /* ETC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETC.swift; sourceTree = "<group>"; };
 		7D9D1AD72C51CF49004FD89A /* TabViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewType.swift; sourceTree = "<group>"; };
 		7D9D1ADB2C51CFD7004FD89A /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		7D9D1ADD2C51D5E1004FD89A /* SearchPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotoView.swift; sourceTree = "<group>"; };
 		7DCDB1FB2C4F9BF20055CBF3 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,6 +130,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DCDB1FF2C4FD0EA0055CBF3 /* RealmSwift in Frameworks */,
+				7D8EA0472C539F6100077A7A /* Alamofire in Frameworks */,
 				7D92B7E42C4E8A1A0000EEB0 /* Toast in Frameworks */,
 				7D92B7E12C4E8A100000EEB0 /* SnapKit in Frameworks */,
 			);
@@ -127,6 +139,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D8EA03D2C5245B900077A7A /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				7D8EA03E2C5245CB00077A7A /* PhotoCollectionViewCell.swift */,
+			);
+			path = CollectionViewCell;
+			sourceTree = "<group>";
+		};
+		7D8EA0422C538C6300077A7A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7D8EA0432C538C7400077A7A /* SearchPhotoViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		7D92B78D2C4E6B8B0000EEB0 = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +225,7 @@
 				7D92B7DB2C4E877F0000EEB0 /* UIView++.swift */,
 				7D92B7E82C4E8B720000EEB0 /* UIViewController++.swift */,
 				7D92B7F82C4E90DC0000EEB0 /* UITextField++.swift */,
+				7D8EA0402C52462700077A7A /* UIImageView++.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -307,6 +336,8 @@
 		7D92B7CC2C4E813F0000EEB0 /* SearchPhoto */ = {
 			isa = PBXGroup;
 			children = (
+				7D8EA0422C538C6300077A7A /* ViewModel */,
+				7D8EA03D2C5245B900077A7A /* CollectionViewCell */,
 				7D92B7CF2C4E816C0000EEB0 /* Model */,
 				7D92B7CE2C4E81650000EEB0 /* View */,
 				7D92B7CD2C4E815B0000EEB0 /* ViewController */,
@@ -325,6 +356,7 @@
 		7D92B7CE2C4E81650000EEB0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7D9D1ADD2C51D5E1004FD89A /* SearchPhotoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -365,6 +397,7 @@
 			isa = PBXGroup;
 			children = (
 				7D92B7E62C4E8AB00000EEB0 /* MainNormalButton.swift */,
+				7D8EA03B2C523A0200077A7A /* CornerRadiusButton .swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -555,6 +588,7 @@
 				7D92B7E02C4E8A100000EEB0 /* SnapKit */,
 				7D92B7E32C4E8A1A0000EEB0 /* Toast */,
 				7DCDB1FE2C4FD0EA0055CBF3 /* RealmSwift */,
+				7D8EA0462C539F6100077A7A /* Alamofire */,
 			);
 			productName = PinMyPic;
 			productReference = 7D92B7962C4E6B8B0000EEB0 /* PinMyPic.app */;
@@ -588,6 +622,7 @@
 				7D92B7DF2C4E8A0F0000EEB0 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				7D92B7E22C4E8A1A0000EEB0 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				7DCDB1FD2C4FD0E90055CBF3 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				7D8EA0452C539F6100077A7A /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 7D92B7972C4E6B8B0000EEB0 /* Products */;
 			projectDirPath = "";
@@ -619,6 +654,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D9D1ABF2C50E8CF004FD89A /* RoundedCircleCharacterView.swift in Sources */,
+				7D8EA0442C538C7400077A7A /* SearchPhotoViewModel.swift in Sources */,
 				7D9D1AC92C51CD19004FD89A /* TopicTrendPhotoViewController.swift in Sources */,
 				7D92B7D12C4E82050000EEB0 /* SearchPhoto.swift in Sources */,
 				7D92B7F52C4E90450000EEB0 /* NormalTextFieldView.swift in Sources */,
@@ -627,6 +663,7 @@
 				7D92B7D82C4E87390000EEB0 /* BaseView.swift in Sources */,
 				7D9D1AC52C50FEFD004FD89A /* MBTICollectionViewCell.swift in Sources */,
 				7D9D1A8F2C4FFE28004FD89A /* ProfileImageSettingView.swift in Sources */,
+				7D8EA03F2C5245CB00077A7A /* PhotoCollectionViewCell.swift in Sources */,
 				7D92B7C52C4E74A60000EEB0 /* NetworkRequest.swift in Sources */,
 				7D9D1ACB2C51CD56004FD89A /* SearchPhotoViewController.swift in Sources */,
 				7D92B7DC2C4E877F0000EEB0 /* UIView++.swift in Sources */,
@@ -638,9 +675,11 @@
 				7D9D1A842C4FE6A4004FD89A /* BaseRepository.swift in Sources */,
 				7D92B7F22C4E8E7C0000EEB0 /* ProfileCircleView.swift in Sources */,
 				7D9D1A8D2C4FFDFE004FD89A /* ProfileImageSettingViewController.swift in Sources */,
+				7D8EA03C2C523A0200077A7A /* CornerRadiusButton .swift in Sources */,
 				7D92B7E72C4E8AB00000EEB0 /* MainNormalButton.swift in Sources */,
 				7D92B79C2C4E6B8B0000EEB0 /* SceneDelegate.swift in Sources */,
 				7D92B7C32C4E743E0000EEB0 /* APIFetcher.swift in Sources */,
+				7D9D1ADE2C51D5E1004FD89A /* SearchPhotoView.swift in Sources */,
 				7D92B7EF2C4E8DDB0000EEB0 /* NicknameSettingView.swift in Sources */,
 				7D92B8002C4E93320000EEB0 /* NicknameSettingViewModel.swift in Sources */,
 				7D92B7D52C4E86330000EEB0 /* OnboardingViewController.swift in Sources */,
@@ -650,6 +689,7 @@
 				7D92B7F92C4E90DC0000EEB0 /* UITextField++.swift in Sources */,
 				7D9D1A862C4FE77B004FD89A /* UserInfoRepository.swift in Sources */,
 				7D92B8052C4E94010000EEB0 /* NicknameInputError.swift in Sources */,
+				7D8EA0412C52462700077A7A /* UIImageView++.swift in Sources */,
 				7D92B7C82C4E74E80000EEB0 /* RequestError.swift in Sources */,
 				7D9D1AD62C51CF2D004FD89A /* ETC.swift in Sources */,
 				7DCDB1FC2C4F9BF20055CBF3 /* UserInfo.swift in Sources */,
@@ -897,6 +937,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		7D8EA0452C539F6100077A7A /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
 		7D92B7DF2C4E8A0F0000EEB0 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -924,6 +972,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7D8EA0462C539F6100077A7A /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7D8EA0452C539F6100077A7A /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
 		7D92B7E02C4E8A100000EEB0 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7D92B7DF2C4E8A0F0000EEB0 /* XCRemoteSwiftPackageReference "SnapKit" */;

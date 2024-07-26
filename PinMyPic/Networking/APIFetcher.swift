@@ -6,10 +6,15 @@
 //
 
 import Foundation
+import Alamofire
 
 
 protocol APIFetchable {
-    
+    func getCurrenWeather(keyword : String, handler: @escaping (Result<SearchPhoto, RequestError>) -> Void)
+}
+
+struct errorsResponse : Decodable {
+    let errors : [String]
 }
 
 
@@ -32,12 +37,11 @@ class APIFetcher {
         
         ///URLRequest
         guard let url = component.url else {return  completionHandler(.failure(.url))}
-        var request = URLRequest(url: url)
+        let request = try? URLRequest(url: url, method: requestType.method, headers: requestType.headers)
+
+        guard let request else {return  completionHandler( .failure(.urlRequestError)) }
         
-        request.httpMethod = requestType.method
-        requestType.headers.forEach { (key, value) in
-            request.addValue(key, forHTTPHeaderField: value)
-        }
+        
         
         ///dataTask
         URLSession.shared.dataTask(with: request) {data, response, error in
@@ -61,8 +65,8 @@ class APIFetcher {
                 
                 guard response.statusCode == 200 else {
                     var errorMessage: String?
-                    if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: String] {
-                        errorMessage = json["errorMessage"]
+                    if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: [String]] {
+                        errorMessage = json["errors"]?.first
                     }
                     completionHandler(.failure(.failResponse(code: response.statusCode, message: errorMessage ?? "-")))
 
@@ -87,7 +91,13 @@ class APIFetcher {
     
 }
 
-extension APIFetcher {
-    
+extension APIFetcher : APIFetchable {
+    func getCurrenWeather(keyword : String, handler: @escaping (Result<SearchPhoto, RequestError>) -> Void) {
+        let requestType = NetworkRequest.searchPhoto(query: keyword)
+        
+        getSingle(model : SearchPhoto.self, requestType : requestType){ result in
+            handler(result)
+        }
+    }
 }
 

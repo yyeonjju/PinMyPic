@@ -25,3 +25,7 @@ func configureCollectionVewLayout (scrollDirection :  UICollectionView.ScrollDir
     
     return layout
 }
+
+func isOnlyWhitespace(_ text: String) -> Bool {
+   return text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+}
