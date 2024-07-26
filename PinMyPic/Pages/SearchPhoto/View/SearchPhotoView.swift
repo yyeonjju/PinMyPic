@@ -20,6 +20,8 @@ final class SearchPhotoView : BaseView {
     let photosCollectionView = UICollectionView(frame: .zero, collectionViewLayout: configureCollectionVewLayout(numberofItemInrow: 2, cellIneterSpacing: 2, sectionSpacing: 2, height: 240))
 
 
+    let emptyView = ResultEmptyView()
+    
     
     // MARK: - Initializer
     
@@ -38,7 +40,7 @@ final class SearchPhotoView : BaseView {
     // MARK: - ConfigureUI
     
     override func configureSubView() {
-        [searchBar, sortButton, photosCollectionView]
+        [searchBar, sortButton, photosCollectionView, emptyView]
             .forEach{
                 addSubview($0)
             }
@@ -58,7 +60,10 @@ final class SearchPhotoView : BaseView {
         photosCollectionView.snp.makeConstraints { make in
             make.top.equalTo(sortButton.snp.bottom).offset(10)
             make.horizontalEdges.bottom.equalTo(safeAreaLayoutGuide)
-            
+        }
+        
+        emptyView.snp.makeConstraints { make in
+            make.edges.equalTo(photosCollectionView)
         }
     }
 

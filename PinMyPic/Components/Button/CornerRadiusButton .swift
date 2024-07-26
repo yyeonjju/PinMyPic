@@ -8,14 +8,16 @@
 import UIKit
 
 final class CornerRadiusButton : UIButton {
+//    
+//    override var isSelected: Bool {
+//        didSet {
+//            print("button isSelected -> ", isSelected)
+//        }
+//        
+//    }
     
-    override var isSelected: Bool {
-        didSet {
-            print("button isSelected -> ", isSelected)
-        }
-        
-    }
-    
+    var title : String?
+    var normalTitleColor : UIColor?
     
     // MARK: - Lifecycle
     
@@ -30,6 +32,9 @@ final class CornerRadiusButton : UIButton {
         super.draw(rect)
         
         self.titleLabel?.font = Font.bold13
+        
+
+        
     }
     
     // MARK: - Initializer
@@ -40,14 +45,15 @@ final class CornerRadiusButton : UIButton {
          allowSelection : Bool,
          normalTitleColor : UIColor = Assets.Colors.black,
          selectedTitleColor :  UIColor = Assets.Colors.white,
-         normalBgColr : UIColor = Assets.Colors.gray3,
+         normalBgColr : UIColor = .clear,
          selectedBgColor : UIColor = Assets.Colors.mainBlue,
          normalBorderColor : UIColor = Assets.Colors.gray3,
          selectedBorderoColor : UIColor = .clear
     ) {
         super.init(frame: .zero)
         
-        
+        self.title = title
+        self.normalTitleColor = normalTitleColor
     
 //        self.isSelected = isSelected
 //        self.normalTitleColor = normalTitleColor
@@ -66,34 +72,20 @@ final class CornerRadiusButton : UIButton {
         self.layer.masksToBounds = true
         
         self.backgroundColor = normalBgColr
-        self.setTitleColor(normalTitleColor, for: .normal)
+//        self.setTitleColor(normalTitleColor, for: .normal)
         
         let img = image?.withRenderingMode(.alwaysTemplate)
         self.setImage(img, for: .normal)
 //        self.tintColor = .yellow
         
         
+        self.configuration = makeConfig(title: title, normalTitleColor: normalTitleColor)
 
         
 //        self.titleLabel?.font = .systemFont(ofSize: 10)
         
         
-        var config = UIButton.Configuration.plain()
-        config.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10)
-        config.title = title
-        config.baseForegroundColor = normalTitleColor
-        config.baseBackgroundColor = normalBgColr
-        
-//        config.background.cornerRadius = 10
-//        config.background.strokeWidth = 2
-        
-        config.titleAlignment = .center
-//        config.attributedTitle = Attri
-        
-        let imageConfig = UIImage.SymbolConfiguration(pointSize: 10)
-        config.preferredSymbolConfigurationForImage = imageConfig
-        
-        self.configuration = config
+
         
 
         
@@ -109,6 +101,26 @@ final class CornerRadiusButton : UIButton {
     }
     
     // MARK: - Method
+    
+    private func makeConfig(title:String, normalTitleColor:UIColor) -> UIButton.Configuration{
+        var config = UIButton.Configuration.plain()
+        config.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10)
+        config.title = title
+        config.baseForegroundColor = normalTitleColor
+//        config.baseBackgroundColor = normalBgColr
+        
+//        config.background.cornerRadius = 10
+//        config.background.strokeWidth = 2
+        
+        config.titleAlignment = .center
+//        config.attributedTitle = Attri
+        
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 10)
+        config.preferredSymbolConfigurationForImage = imageConfig
+        
+        return config
+
+    }
     
 //    private func configureButtonBackgroundColor(isSelected: Bool, normalTitleColor : UIColor?, selectedTitleColor : UIColor?) {
 //        guard let normalTitleColor else {return }

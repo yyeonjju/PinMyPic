@@ -32,9 +32,10 @@ final class SearchPhotoViewController : UIViewController {
     
     // MARK: - setupBind
     private func setupBind() {
-        vm.outputSearchResult.bind(onlyCallWhenValueDidSet: true) { [weak self] value in
+        vm.outputSearchResult.bind { [weak self] value in
             guard let self else{return}
             self.viewManager.photosCollectionView.reloadData()
+            setupEmptyView()
         }
         
         vm.outputErrorMessage.bind(onlyCallWhenValueDidSet: true) { [weak self] message in
@@ -58,8 +59,29 @@ final class SearchPhotoViewController : UIViewController {
         viewManager.photosCollectionView.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: PhotoCollectionViewCell.description())
     }
     
+    // MARK: - Method
+    private func setupEmptyView() {
+        //검색하기 전 일 때
+        guard let searchResult = vm.outputSearchResult.value else{
+            viewManager.emptyView.isHidden = false
+            viewManager.emptyView.labal.text = "사진을 검색해보세요"
+            return
+        }
+        //검색 결과가 없을 때
+        if searchResult.results.isEmpty {
+            viewManager.emptyView.isHidden = false
+            viewManager.emptyView.labal.text = "검색결과가 없습니다."
+        } else{
+            //검색 결과가 있을 때
+            viewManager.emptyView.isHidden = true
+        }
+    }
+
+    
     // MARK: - AddTarget
     private func setupAddTarget() {
+
+
     }
     // MARK: - EventSelector
     // MARK: - SetupUI
