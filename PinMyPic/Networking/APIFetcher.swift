@@ -10,7 +10,7 @@ import Alamofire
 
 
 protocol APIFetchable {
-    func getCurrenWeather(keyword : String, handler: @escaping (Result<SearchPhoto, RequestError>) -> Void)
+    func getSearchPhoto(keyword : String, page: Int, handler: @escaping (Result<SearchPhoto, RequestError>) -> Void)
 }
 
 struct errorsResponse : Decodable {
@@ -25,7 +25,7 @@ class APIFetcher {
     
     private func getSingle<T : Decodable>(
         model : T.Type,
-        requestType : NetworkRequest,
+        requestType : RequestType,
         completionHandler : @escaping (Result<T, RequestError>) -> Void
     ) {
         ///URLComponents
@@ -92,8 +92,8 @@ class APIFetcher {
 }
 
 extension APIFetcher : APIFetchable {
-    func getCurrenWeather(keyword : String, handler: @escaping (Result<SearchPhoto, RequestError>) -> Void) {
-        let requestType = NetworkRequest.searchPhoto(query: keyword)
+    func getSearchPhoto(keyword : String, page: Int, handler: @escaping (Result<SearchPhoto, RequestError>) -> Void) {
+        let requestType = RequestType.searchPhoto(query: keyword, page : page)
         
         getSingle(model : SearchPhoto.self, requestType : requestType){ result in
             handler(result)

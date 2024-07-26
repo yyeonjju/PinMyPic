@@ -10,12 +10,13 @@ import Foundation
 
 final class SearchPhotoViewModel {
     
+    var page = 0
+    
     //input
-    //search button clicked
-    var inputSearchButtonClicked : Observable<String?> = Observable(nil)
-    
-    
-    
+    //search button clicked -> page 1
+    var inputSearchKeyword : Observable<String?> = Observable(nil)
+    //prefetch
+    var inputPrefetchForPagenation : Observable<String?> = Observable(nil)
     
     
     //output
@@ -23,8 +24,6 @@ final class SearchPhotoViewModel {
     var outputSearchResult : Observable<SearchPhoto?> = Observable(nil)
     //에러 메세지
     var outputErrorMessage : Observable<String?> = Observable(nil)
-    
-    
     
     
     init(){
@@ -35,12 +34,17 @@ final class SearchPhotoViewModel {
     
     private func setupBind(){
         
-        inputSearchButtonClicked.bind(onlyCallWhenValueDidSet: true) {[weak self] keyword in
+        inputSearchKeyword.bind(onlyCallWhenValueDidSet: true) {[weak self] keyword in
             guard let self, let keyword else{return}
+            page = 1
+            self.getSearchList(keyword)
             
-            if !isOnlyWhitespace(keyword) {
-                self.getSearchList(keyword)
-            }
+        }
+        
+        inputPrefetchForPagenation.bind(onlyCallWhenValueDidSet: true) {[weak self] keyword in
+            guard let self, let keyword else{return}
+            page += 1
+            self.getSearchList(keyword)
         }
         
         
@@ -49,11 +53,19 @@ final class SearchPhotoViewModel {
     
     
     private func getSearchList(_ keyword: String) {
-        APIFetcher.shared.getCurrenWeather(keyword: keyword) { [weak self] result in
+        
+        guard !isOnlyWhitespace(keyword) else{return}
+            
+        APIFetcher.shared.getSearchPhoto(keyword: keyword, page : page) { [weak self] result in
             guard let self else{return}
             switch result {
             case .success(let value):
-                outputSearchResult.value = value
+                if page < 2 {
+                    outputSearchResult.value = value
+                }else {
+                    outputSearchResult.value?.results.append(contentsOf: value.results)
+                }
+
             case .failure(let failure):
                 self.outputErrorMessage.value = failure.errorMessage
             }

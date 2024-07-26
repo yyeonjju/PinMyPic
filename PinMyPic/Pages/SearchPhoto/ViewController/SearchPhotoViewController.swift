@@ -35,7 +35,12 @@ final class SearchPhotoViewController : UIViewController {
         vm.outputSearchResult.bind { [weak self] value in
             guard let self else{return}
             self.viewManager.photosCollectionView.reloadData()
-            setupEmptyView()
+            self.setupEmptyView()
+            
+            guard let value else {return}
+            if vm.page == 1 && !value.results.isEmpty {
+                self.viewManager.photosCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+            }
         }
         
         vm.outputErrorMessage.bind(onlyCallWhenValueDidSet: true) { [weak self] message in
@@ -56,6 +61,7 @@ final class SearchPhotoViewController : UIViewController {
         
         viewManager.photosCollectionView.dataSource = self
         viewManager.photosCollectionView.delegate = self
+        viewManager.photosCollectionView.prefetchDataSource = self
         viewManager.photosCollectionView.register(PhotoCollectionViewCell.self, forCellWithReuseIdentifier: PhotoCollectionViewCell.description())
     }
     
@@ -111,8 +117,26 @@ extension SearchPhotoViewController : UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let text = searchBar.text
-        vm.inputSearchButtonClicked.value = text
+        if vm.inputSearchKeyword.value == text {
+            vm.outputErrorMessage.value = Texts.ToastMessage.searchSameKeyword
+        }else{
+            vm.inputSearchKeyword.value = text
+        }
+
     }
+}
+
+extension SearchPhotoViewController : UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        guard let result = vm.outputSearchResult.value else {return}
+        
+        for item in indexPaths {
+            if result.results.count - 2 == item.row && vm.page < result.totalPages{
+                vm.inputPrefetchForPagenation.value = viewManager.searchBar.text
+            }
+        }
+    }
+    
 }
 
 

@@ -92,6 +92,8 @@ enum Texts {
         static let checkNickname = "닉네임이 잘 입력되었는지 확인해주세요."
         static let checkMbti = "mbti가 잘 선택되었는지 확인해주세요."
         static let signupComplete = "가입이 완료되었습니다"
+        
+        static let searchSameKeyword = "동일한 키워드를 검색하셨습니다."
     }
     
     enum PageTitle {

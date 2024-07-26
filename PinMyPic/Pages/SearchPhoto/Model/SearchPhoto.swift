@@ -10,19 +10,30 @@ import Foundation
 
 struct SearchPhoto : Decodable {
     let total : Int
-    let total_pages : Int
-    let results : [PhotoResult]
+    let totalPages : Int
+    var results : [PhotoResult]
+    
+    enum CodingKeys : String, CodingKey {
+        case totalPages = "total_pages"
+        case total, results
+    }
 }
 
 struct PhotoResult : Decodable{
     let id : String
-    let created_at : String
-    let updated_at : String
+    let createdAt : String
+    let updatedAt : String
     let width : Int
     let height : Int
     let color : String
     let urls : PhotoURL
     let likes : Int
+    
+    enum CodingKeys : String, CodingKey {
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+        case id, width, height, color, urls, likes
+    }
 }
 
 struct PhotoURL : Decodable {
