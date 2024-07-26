@@ -49,6 +49,10 @@ final class SearchPhotoViewController : UIViewController {
             
         }
         
+        vm.outputReloadCollectionViewTrigger.bind(onlyCallWhenValueDidSet: true) { [weak self] _ in guard let self else{return}
+            self.viewManager.photosCollectionView.reloadData()
+        }
+        
         
         
     }
@@ -95,6 +99,8 @@ final class SearchPhotoViewController : UIViewController {
     // MARK: - PageTransition
 }
 
+
+//collectionView
 extension SearchPhotoViewController : UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -106,15 +112,20 @@ extension SearchPhotoViewController : UICollectionViewDataSource, UICollectionVi
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.description(), for: indexPath) as! PhotoCollectionViewCell
         guard let searchResult = vm.outputSearchResult.value?.results else{return cell}
         let data = searchResult[indexPath.item]
-        cell.configureData(data: data)
+        let alreadyLikedItem = vm.likedItemListData?.first(where: {$0.imageId == data.id})
+        cell.configureData(data: data, isLiked : !(alreadyLikedItem==nil) )
+        cell.toggleLikeStatus = {[weak self] in
+            guard let self else{return}
+            self.vm.inputLikeButtonTapped.value = indexPath.item
+        }
         return cell
     }
 }
 
 
-extension SearchPhotoViewController : UISearchBarDelegate {
 
-    
+//searchBar
+extension SearchPhotoViewController : UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let text = searchBar.text
         if vm.inputSearchKeyword.value == text {
@@ -126,6 +137,7 @@ extension SearchPhotoViewController : UISearchBarDelegate {
     }
 }
 
+//collectionView - prefetch
 extension SearchPhotoViewController : UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         guard let result = vm.outputSearchResult.value else {return}
