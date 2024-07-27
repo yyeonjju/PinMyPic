@@ -17,6 +17,8 @@ final class TopicContentsCollectionViewCell : UICollectionViewCell {
         return iv
     }()
     
+    private let likedAmount = CornerRadiusButton(title: "---", image: UIImage(systemName: "star.fill"), imageTintColor:.yellow, allowSelection: false, normalTitleColor : Assets.Colors.white, normalBgColr : Assets.Colors.gray1, normalBorderColor : .clear)
+    
     // MARK: - Initializer
     
     override init(frame : CGRect) {
@@ -30,11 +32,18 @@ final class TopicContentsCollectionViewCell : UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - ConfigureData
+    func configureData(data : PhotoResult) {
+        photoImageView.loadImage(urlString: data.urls.small)
+//        likedAmount.title = data.likes.formatted()
+        likedAmount.setTitle(data.likes.formatted(), for: .normal)
+    }
+    
     
     // MARK: - ConfigureUI
     
     private func configureSubView() {
-        [photoImageView]
+        [photoImageView, likedAmount]
             .forEach{
                 contentView.addSubview($0)
             }
@@ -43,6 +52,10 @@ final class TopicContentsCollectionViewCell : UICollectionViewCell {
     private func configureLayout() {
         photoImageView.snp.makeConstraints { make in
             make.edges.equalTo(contentView)
+        }
+        
+        likedAmount.snp.makeConstraints { make in
+            make.leading.bottom.equalTo(contentView).inset(4)
         }
     }
 

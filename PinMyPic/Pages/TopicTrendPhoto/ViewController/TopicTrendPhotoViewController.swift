@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import Toast
 
 final class TopicTrendPhotoViewController : UIViewController {
     // MARK: - UI
     private let viewManager = TopicTrendPhotoView()
     
     // MARK: - Properties
+    private let vm = TopicTrendPhotoViewModel()
     
     
     // MARK: - Lifecycle
@@ -23,7 +25,26 @@ final class TopicTrendPhotoViewController : UIViewController {
         super.viewDidLoad()
         
         setupDelegate()
+        setupBind()
         
+    }
+    
+    private func setupBind() {
+        vm.inputViewDidLoadTrigger.value = ()
+        
+        vm.outputErrorMessage.bind(onlyCallWhenValueDidSet: true) {[weak self] message in
+            guard let self else{return }
+            self.view.makeToast(message,position: .top)
+        }
+        
+        vm.outputTopicContents.bind(onlyCallWhenValueDidSet: true) {[weak self] (contents:[TopicContent]) in
+            guard let self else{return }
+
+            //원하는 토픽 갯수만큼 데이터 로드됐을 때 tableView와 collectionView reload될 수 있도록
+            if contents.count == vm.topicQueryList.count {
+                viewManager.topicsTableView.reloadData()
+            }
+        }
     }
 
     // MARK: - SetupDelegate
@@ -36,44 +57,41 @@ final class TopicTrendPhotoViewController : UIViewController {
         viewManager.topicsTableView.register(TopicsTableViewCell.self, forCellReuseIdentifier: TopicsTableViewCell.description())
         
     }
-    
-    // MARK: - AddTarget
-    private func setupAddTarget() {
-    }
-    // MARK: - EventSelector
-    // MARK: - SetupUI
-    // MARK: - APIFetch
-    // MARK: - PageTransition
 }
 
 
 extension TopicTrendPhotoViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return vm.outputTopicContents.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TopicsTableViewCell.description(), for: indexPath) as! TopicsTableViewCell
         
+        let topic = vm.outputTopicContents.value[indexPath.row].topic
+        let topicTitle = TopicQuery(rawValue: topic)?.koText
+        cell.topicTitleLabel.text = topicTitle
+        
         cell.topicContentsCollectionView.dataSource = self
         cell.topicContentsCollectionView.dataSource = self
         cell.topicContentsCollectionView.register(TopicContentsCollectionViewCell.self, forCellWithReuseIdentifier: TopicContentsCollectionViewCell.description())
+        
+        cell.topicContentsCollectionView.tag = indexPath.row
+        cell.topicContentsCollectionView.reloadData()
         return cell
     }
-    
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return "하하하하"
-//    }
 }
 
 extension TopicTrendPhotoViewController : UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        let dataList = vm.outputTopicContents.value[collectionView.tag].content
+        return dataList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopicContentsCollectionViewCell.description(), for: indexPath) as! TopicContentsCollectionViewCell
-        
+        let data = vm.outputTopicContents.value[collectionView.tag].content[indexPath.row]
+        cell.configureData(data: data)
         return cell
     }
 }
