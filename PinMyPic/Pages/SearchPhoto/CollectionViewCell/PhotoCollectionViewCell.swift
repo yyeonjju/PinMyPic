@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 final class PhotoCollectionViewCell : UICollectionViewCell {
-    var toggleLikeStatus : (()->Void)?
+    var toggleLikeStatus : ((UIImage?)->Void)?
     
     // MARK: - UI
     private let photoImageView = {
@@ -51,19 +51,32 @@ final class PhotoCollectionViewCell : UICollectionViewCell {
     // MARK: - ConfigureData
     func configureData(data : PhotoResult, isLiked : Bool) {
         likedAmount.setTitle(data.likes.formatted(), for: .normal)
-        photoImageView.loadImage(urlString: data.urls.small)
         likeImageView.image = isLiked ? Assets.Images.likeCircle : Assets.Images.likeCircleInactive
+        //파일매니저에 저장된 이미지(좋아요한 이미지) 확인하고 없으면 url로 이미지 로드
+        loadImage(imageId: data.id, urlString: data.urls.small)
+
     }
     
     
     // MARK: - AddEvent
-    
     @objc func likeTapped() {
-        toggleLikeStatus?()
+        toggleLikeStatus?(photoImageView.image)
     }
     
     
     // MARK: - ConfigureUI
+    
+    private func loadImage(imageId :String , urlString : String) {
+        if #available(iOS 16.0, *) {
+            if let image = ImageSavingManager.loadImageFromDocument(filename: imageId)  {
+                //파일매니저에 저장된 이미지가 있으면
+                photoImageView.image = image
+                return
+            }
+        }
+        //파일매니저에 저장된 이미지가 없으면
+        photoImageView.loadImage(urlString: urlString)
+    }
     
     private func configureSubView() {
         [photoImageView, likedAmount, likeImageView]

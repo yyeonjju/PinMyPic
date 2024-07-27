@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D84BD232C54BAA30093C6DE /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 7DCDB1FE2C4FD0EA0055CBF3 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		7D8EA03C2C523A0200077A7A /* CornerRadiusButton .swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8EA03B2C523A0200077A7A /* CornerRadiusButton .swift */; };
 		7D8EA03F2C5245CB00077A7A /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8EA03E2C5245CB00077A7A /* PhotoCollectionViewCell.swift */; };
 		7D8EA0412C52462700077A7A /* UIImageView++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8EA0402C52462700077A7A /* UIImageView++.swift */; };
 		7D8EA0442C538C7400077A7A /* SearchPhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8EA0432C538C7400077A7A /* SearchPhotoViewModel.swift */; };
 		7D8EA0472C539F6100077A7A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7D8EA0462C539F6100077A7A /* Alamofire */; };
 		7D8EA0492C53DB7100077A7A /* ResultEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8EA0482C53DB7100077A7A /* ResultEmptyView.swift */; };
+		7D8EA04C2C541FE300077A7A /* ImageSavingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8EA04B2C541FE300077A7A /* ImageSavingManager.swift */; };
 		7D92B79A2C4E6B8B0000EEB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D92B7992C4E6B8B0000EEB0 /* AppDelegate.swift */; };
 		7D92B79C2C4E6B8B0000EEB0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D92B79B2C4E6B8B0000EEB0 /* SceneDelegate.swift */; };
 		7D92B79E2C4E6B8B0000EEB0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D92B79D2C4E6B8B0000EEB0 /* ViewController.swift */; };
@@ -67,12 +69,27 @@
 		7DCDB1FF2C4FD0EA0055CBF3 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7DCDB1FE2C4FD0EA0055CBF3 /* RealmSwift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		7D84BD242C54BAA30093C6DE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7D84BD232C54BAA30093C6DE /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		7D8EA03B2C523A0200077A7A /* CornerRadiusButton .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CornerRadiusButton .swift"; sourceTree = "<group>"; };
 		7D8EA03E2C5245CB00077A7A /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		7D8EA0402C52462700077A7A /* UIImageView++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView++.swift"; sourceTree = "<group>"; };
 		7D8EA0432C538C7400077A7A /* SearchPhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhotoViewModel.swift; sourceTree = "<group>"; };
 		7D8EA0482C53DB7100077A7A /* ResultEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultEmptyView.swift; sourceTree = "<group>"; };
+		7D8EA04B2C541FE300077A7A /* ImageSavingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSavingManager.swift; sourceTree = "<group>"; };
 		7D92B7962C4E6B8B0000EEB0 /* PinMyPic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinMyPic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D92B7992C4E6B8B0000EEB0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D92B79B2C4E6B8B0000EEB0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -155,6 +172,14 @@
 				7D8EA0432C538C7400077A7A /* SearchPhotoViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7D8EA04A2C541FBB00077A7A /* FileManager */ = {
+			isa = PBXGroup;
+			children = (
+				7D8EA04B2C541FE300077A7A /* ImageSavingManager.swift */,
+			);
+			path = FileManager;
 			sourceTree = "<group>";
 		};
 		7D92B78D2C4E6B8B0000EEB0 = {
@@ -282,6 +307,7 @@
 		7D92B7BF2C4E73C30000EEB0 /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				7D8EA04A2C541FBB00077A7A /* FileManager */,
 				7D92B7C12C4E73D70000EEB0 /* Repository */,
 				7D92B7C02C4E73CD0000EEB0 /* Model */,
 			);
@@ -581,6 +607,7 @@
 				7D92B7922C4E6B8B0000EEB0 /* Sources */,
 				7D92B7932C4E6B8B0000EEB0 /* Frameworks */,
 				7D92B7942C4E6B8B0000EEB0 /* Resources */,
+				7D84BD242C54BAA30093C6DE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -703,6 +730,7 @@
 				7D92B7DE2C4E88690000EEB0 /* OnboardingView.swift in Sources */,
 				7D9D1AD82C51CF49004FD89A /* TabViewType.swift in Sources */,
 				7D9D1ADC2C51CFD7004FD89A /* CustomTabBarController.swift in Sources */,
+				7D8EA04C2C541FE300077A7A /* ImageSavingManager.swift in Sources */,
 				7D9D1A942C500171004FD89A /* ProfileImageCollectionViewCell.swift in Sources */,
 				7D9D1A912C4FFF94004FD89A /* Utilfunc.swift in Sources */,
 			);

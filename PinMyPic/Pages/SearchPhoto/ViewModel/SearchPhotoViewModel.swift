@@ -5,11 +5,15 @@
 //  Created by 하연주 on 7/26/24.
 //
 
-import Foundation
+import UIKit
 import RealmSwift
 
 
 final class SearchPhotoViewModel {
+    struct LikedTappedPhoto{
+        let imageId : String
+        let image : UIImage?
+    }
     
     var page = 0
     private let likedPhotoRepository = LikedPhotoInfoRepository()
@@ -21,7 +25,7 @@ final class SearchPhotoViewModel {
     //prefetch
     var inputPrefetchForPagenation : Observable<Void?> = Observable(nil)
     //좋아요 버튼 누른 셀의 index
-    var inputLikeButtonTapped : Observable<Int?> = Observable(nil)
+    var inputLikeButtonTapped : Observable<LikedTappedPhoto?> = Observable(nil)
     
     
     //output
@@ -34,7 +38,8 @@ final class SearchPhotoViewModel {
     
     
     init(){
-        likedPhotoRepository.checkFileURL()
+//        likedPhotoRepository.checkFileURL()
+        
         setupBind()
     }
     
@@ -54,10 +59,9 @@ final class SearchPhotoViewModel {
             self.getSearchList(keyword)
         }
         
-        inputLikeButtonTapped.bind(onlyCallWhenValueDidSet: true) {[weak self] index in
-            guard let self, let index else{return}
-            self.changeLikedItemData(index : index)
-            
+        inputLikeButtonTapped.bind(onlyCallWhenValueDidSet: true) {[weak self] (photoInfo:LikedTappedPhoto?) in
+            guard let self, let photoInfo else{return}
+            self.changeLikedItemData(photoInfo : photoInfo)
         }
         
         
@@ -85,22 +89,31 @@ final class SearchPhotoViewModel {
         }
     }
     
-    private func changeLikedItemData(index : Int) {
-        guard
-            let searchResult = outputSearchResult.value?.results,
-            let likedItemListData
-        else{return}
+    private func changeLikedItemData(photoInfo : LikedTappedPhoto) {
+        guard let likedItemListData else{return}
         
-        let clickedPhotoId = searchResult[index].id
+        let clickedPhotoId = photoInfo.imageId
         
         //클릭된 아이템이 이미 저장되어있는지
         if let savedItem = likedItemListData.first(where: {$0.imageId == clickedPhotoId}){
             //좋아요 되어 있다면 -> realm에서 삭제
             likedPhotoRepository.removeItem(savedItem)
+            
+            //파일매니저에서 이미지 삭제
+            if #available(iOS 16.0, *) {
+                ImageSavingManager.removeImageFromDocument(filename: clickedPhotoId)
+            }
+            
         } else{
             //좋아요 안되어 있다면 -> realm에 추가
             let itemData = LikedPhotoInfo(imageId: clickedPhotoId, savedDate: Date())
             likedPhotoRepository.createItem(itemData)
+            
+            //파일매니저에 이미지 저장
+            if #available(iOS 16.0, *) {
+                ImageSavingManager.saveImageToDocument(image: photoInfo.image, filename: clickedPhotoId)
+            }
+            
         }
         outputReloadCollectionViewTrigger.value = ()
 
