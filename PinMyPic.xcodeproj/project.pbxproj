@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		7D84BD232C54BAA30093C6DE /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 7DCDB1FE2C4FD0EA0055CBF3 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		7D84BD272C54F37C0093C6DE /* TopicTrendPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D84BD262C54F37C0093C6DE /* TopicTrendPhotoView.swift */; };
+		7D84BD2A2C54F8430093C6DE /* TopicsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D84BD292C54F8430093C6DE /* TopicsTableViewCell.swift */; };
+		7D84BD2C2C54FD800093C6DE /* TopicContentsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D84BD2B2C54FD800093C6DE /* TopicContentsCollectionViewCell.swift */; };
 		7D8EA03C2C523A0200077A7A /* CornerRadiusButton .swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8EA03B2C523A0200077A7A /* CornerRadiusButton .swift */; };
 		7D8EA03F2C5245CB00077A7A /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8EA03E2C5245CB00077A7A /* PhotoCollectionViewCell.swift */; };
 		7D8EA0412C52462700077A7A /* UIImageView++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8EA0402C52462700077A7A /* UIImageView++.swift */; };
@@ -84,6 +87,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7D84BD262C54F37C0093C6DE /* TopicTrendPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicTrendPhotoView.swift; sourceTree = "<group>"; };
+		7D84BD292C54F8430093C6DE /* TopicsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsTableViewCell.swift; sourceTree = "<group>"; };
+		7D84BD2B2C54FD800093C6DE /* TopicContentsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicContentsCollectionViewCell.swift; sourceTree = "<group>"; };
 		7D8EA03B2C523A0200077A7A /* CornerRadiusButton .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CornerRadiusButton .swift"; sourceTree = "<group>"; };
 		7D8EA03E2C5245CB00077A7A /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		7D8EA0402C52462700077A7A /* UIImageView++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView++.swift"; sourceTree = "<group>"; };
@@ -158,6 +164,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D84BD252C54F3730093C6DE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7D84BD262C54F37C0093C6DE /* TopicTrendPhotoView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7D84BD282C54F8280093C6DE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				7D84BD292C54F8430093C6DE /* TopicsTableViewCell.swift */,
+				7D84BD2B2C54FD800093C6DE /* TopicContentsCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		7D8EA03D2C5245B900077A7A /* CollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -535,6 +558,8 @@
 		7D9D1AC62C51CCD3004FD89A /* TopicTrendPhoto */ = {
 			isa = PBXGroup;
 			children = (
+				7D84BD282C54F8280093C6DE /* Cell */,
+				7D84BD252C54F3730093C6DE /* View */,
 				7D9D1AC72C51CCE2004FD89A /* ViewController */,
 			);
 			path = TopicTrendPhoto;
@@ -687,6 +712,8 @@
 				7D8EA0442C538C7400077A7A /* SearchPhotoViewModel.swift in Sources */,
 				7D9D1AC92C51CD19004FD89A /* TopicTrendPhotoViewController.swift in Sources */,
 				7D92B7D12C4E82050000EEB0 /* SearchPhoto.swift in Sources */,
+				7D84BD272C54F37C0093C6DE /* TopicTrendPhotoView.swift in Sources */,
+				7D84BD2C2C54FD800093C6DE /* TopicContentsCollectionViewCell.swift in Sources */,
 				7D92B7F52C4E90450000EEB0 /* NormalTextFieldView.swift in Sources */,
 				7D92B79E2C4E6B8B0000EEB0 /* ViewController.swift in Sources */,
 				7D92B79A2C4E6B8B0000EEB0 /* AppDelegate.swift in Sources */,
@@ -699,6 +726,7 @@
 				7D92B7DC2C4E877F0000EEB0 /* UIView++.swift in Sources */,
 				7D92B7E92C4E8B720000EEB0 /* UIViewController++.swift in Sources */,
 				7D92B7B72C4E6C8F0000EEB0 /* APIKey.swift in Sources */,
+				7D84BD2A2C54F8430093C6DE /* TopicsTableViewCell.swift in Sources */,
 				7D92B7BE2C4E6FAF0000EEB0 /* NameSpace.swift in Sources */,
 				7D92B8032C4E93710000EEB0 /* Observable.swift in Sources */,
 				7D92B7B92C4E6C990000EEB0 /* APIURL.swift in Sources */,

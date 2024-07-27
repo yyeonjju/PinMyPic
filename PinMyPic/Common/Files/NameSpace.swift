@@ -22,7 +22,7 @@ enum Assets{
         
         //탭이미지
         static let tabLikeInactive = UIImage(named: "tab_like_inactive")
-        static let tabLike = UIImage(named: "sort")
+        static let tabLike = UIImage(named: "tab_like")
         static let tabRandomInactive = UIImage(named: "tab_random_inactive")
         static let tabRandom = UIImage(named: "tab_random")
         static let tabSearchInactive = UIImage(named: "tab_search_inactive")
@@ -61,6 +61,9 @@ enum Constants {
         static let middleProfileImageWidth = CGFloat(80)
         
         static let mbtiCollectionViewWidth = CGFloat(260)
+        
+        static let topicsTableViewRowHeight = CGFloat(280)
+        static let topicContentsCollectionViewHeight = CGFloat(240)
     }
     
     
