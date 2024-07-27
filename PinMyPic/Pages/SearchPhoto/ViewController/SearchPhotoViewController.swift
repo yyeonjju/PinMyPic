@@ -27,6 +27,7 @@ final class SearchPhotoViewController : UIViewController {
         hideKeyboardWhenTappedAround()
         setupBind()
         setupDelegate()
+        setupSortMenuItem()
     }
     
     
@@ -86,6 +87,28 @@ final class SearchPhotoViewController : UIViewController {
             viewManager.emptyView.isHidden = true
         }
     }
+
+    // MARK: - setupMenuItem
+    private func setupSortMenuItem() {
+        let latestOrder = UIAction(title: SortOrder.latest.koText){ [weak self] _ in
+            guard let self else{return}
+            vm.inputSortMenuTapped.value = .latest
+            viewManager.sortButton.title = SortOrder.latest.koText
+        }
+        
+        let relevantOder = UIAction(title: SortOrder.relevant.koText){ [weak self] _ in
+            guard let self else{return}
+            vm.inputSortMenuTapped.value = .relevant
+            viewManager.sortButton.title = SortOrder.relevant.koText
+        }
+        
+        let items = [latestOrder, relevantOder]
+        let menu = UIMenu(title: "정렬", children: items)
+        viewManager.sortButton.menu = menu
+        viewManager.sortButton.showsMenuAsPrimaryAction = true
+    }
+    
+    
 
     
     // MARK: - AddTarget

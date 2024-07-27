@@ -16,7 +16,12 @@ final class CornerRadiusButton : UIButton {
 //        
 //    }
     
-    var title : String?
+    var title : String? {
+        didSet{
+            guard let title, let normalTitleColor else{return}
+            self.configuration = makeConfig(title:title, normalTitleColor:normalTitleColor)
+        }
+    }
     var normalTitleColor : UIColor?
     
     // MARK: - Lifecycle

@@ -14,7 +14,7 @@ final class SearchPhotoView : BaseView {
     
 //    let filterButtonsView = UIView()
     
-    let sortButton = CornerRadiusButton(title: "최신순", image: Assets.Images.sort, allowSelection: true)
+    let sortButton = CornerRadiusButton(title: SortOrder.relevant.koText, image: Assets.Images.sort, allowSelection: true)
     
     
     let photosCollectionView = UICollectionView(frame: .zero, collectionViewLayout: configureCollectionVewLayout(numberofItemInrow: 2, cellIneterSpacing: 2, sectionSpacing: 2, height: 240))
@@ -22,6 +22,7 @@ final class SearchPhotoView : BaseView {
 
     let emptyView = ResultEmptyView()
     
+
     
     // MARK: - Initializer
     

@@ -12,3 +12,17 @@ enum PageMode {
     case edit
 }
 
+enum SortOrder : String {
+    case relevant
+    case latest
+    
+    var koText : String {
+        switch self {
+        case .relevant:
+            "관련순"
+        case .latest:
+            "최신순"
+        }
+    }
+}
+

@@ -9,7 +9,8 @@ import Foundation
 import Alamofire
 
 enum RequestType {
-    case searchPhoto(query:String, page:Int)
+    case searchPhoto(query:String, page:Int, sortOrder : SortOrder)
+    
     
     private var baseURL : String{
         return "\(APIURL.scheme)://\(APIURL.host)/"
@@ -29,8 +30,8 @@ enum RequestType {
     
     var parameters : [String : String] {
         switch self {
-        case .searchPhoto(let query, let page) :
-            return ["query":query, "page":String(page), "per_page": "20", "order_by": "relevant"]
+        case .searchPhoto(let query, let page, let sortOrder) :
+            return ["query":query, "page":String(page), "per_page": "20", "order_by": sortOrder.rawValue]
             
         }
     }

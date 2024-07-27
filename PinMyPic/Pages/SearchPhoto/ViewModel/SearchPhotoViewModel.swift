@@ -26,6 +26,8 @@ final class SearchPhotoViewModel {
     var inputPrefetchForPagenation : Observable<Void?> = Observable(nil)
     //좋아요 버튼 누른 셀의 index
     var inputLikeButtonTapped : Observable<LikedTappedPhoto?> = Observable(nil)
+    //정렬 버튼 누름 (정렬버튼 누르지 않았을 때의 초기값 - relevant)
+    var inputSortMenuTapped : Observable<SortOrder> = Observable(.relevant)
     
     
     //output
@@ -49,14 +51,14 @@ final class SearchPhotoViewModel {
         inputSearchKeyword.bind(onlyCallWhenValueDidSet: true) {[weak self] keyword in
             guard let self, let keyword else{return}
             page = 1
-            self.getSearchList(keyword)
+            self.getSearchList(keyword, sortOrder : inputSortMenuTapped.value)
             
         }
         
         inputPrefetchForPagenation.bind(onlyCallWhenValueDidSet: true) {[weak self] _ in
             guard let self, let keyword = self.inputSearchKeyword.value else{return}
             page += 1
-            self.getSearchList(keyword)
+            self.getSearchList(keyword, sortOrder : inputSortMenuTapped.value)
         }
         
         inputLikeButtonTapped.bind(onlyCallWhenValueDidSet: true) {[weak self] (photoInfo:LikedTappedPhoto?) in
@@ -64,16 +66,22 @@ final class SearchPhotoViewModel {
             self.changeLikedItemData(photoInfo : photoInfo)
         }
         
+        inputSortMenuTapped.bind(onlyCallWhenValueDidSet: true) {[weak self] sortOrder in
+            guard let self, let searchKeyword = inputSearchKeyword.value else{return}
+            page = 1
+            self.getSearchList(searchKeyword, sortOrder : sortOrder)
+        }
+        
         
     }
     
     
     
-    private func getSearchList(_ keyword: String) {
+    private func getSearchList(_ keyword: String, sortOrder : SortOrder) {
         
         guard !isOnlyWhitespace(keyword) else{return}
             
-        APIFetcher.shared.getSearchPhoto(keyword: keyword, page : page) { [weak self] result in
+        APIFetcher.shared.getSearchPhoto(keyword: keyword, page : page, sortOrder : sortOrder) { [weak self] result in
             guard let self else{return}
             switch result {
             case .success(let value):

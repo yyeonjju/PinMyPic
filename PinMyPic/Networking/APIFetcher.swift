@@ -10,7 +10,7 @@ import Alamofire
 
 
 protocol APIFetchable {
-    func getSearchPhoto(keyword : String, page: Int, handler: @escaping (Result<SearchPhoto, RequestError>) -> Void)
+    func getSearchPhoto(keyword : String, page: Int, sortOrder : SortOrder, handler: @escaping (Result<SearchPhoto, RequestError>) -> Void)
 }
 
 struct errorsResponse : Decodable {
@@ -92,8 +92,8 @@ class APIFetcher {
 }
 
 extension APIFetcher : APIFetchable {
-    func getSearchPhoto(keyword : String, page: Int, handler: @escaping (Result<SearchPhoto, RequestError>) -> Void) {
-        let requestType = RequestType.searchPhoto(query: keyword, page : page)
+    func getSearchPhoto(keyword : String, page: Int, sortOrder : SortOrder, handler: @escaping (Result<SearchPhoto, RequestError>) -> Void) {
+        let requestType = RequestType.searchPhoto(query: keyword, page : page, sortOrder : sortOrder)
         
         getSingle(model : SearchPhoto.self, requestType : requestType){ result in
             handler(result)
