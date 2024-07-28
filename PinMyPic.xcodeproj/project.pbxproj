@@ -21,6 +21,7 @@
 		7D84BD462C563CC00093C6DE /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D84BD452C563CC00093C6DE /* PhotoDetailViewController.swift */; };
 		7D84BD482C563CCF0093C6DE /* PhotoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D84BD472C563CCF0093C6DE /* PhotoDetailView.swift */; };
 		7D84BD4B2C5650580093C6DE /* PhotoInformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D84BD4A2C5650580093C6DE /* PhotoInformationTableViewCell.swift */; };
+		7D84BD4D2C5658FF0093C6DE /* PhotoDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D84BD4C2C5658FF0093C6DE /* PhotoDetailViewModel.swift */; };
 		7D8EA03C2C523A0200077A7A /* CornerRadiusButton .swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8EA03B2C523A0200077A7A /* CornerRadiusButton .swift */; };
 		7D8EA03F2C5245CB00077A7A /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8EA03E2C5245CB00077A7A /* PhotoCollectionViewCell.swift */; };
 		7D8EA0412C52462700077A7A /* UIImageView++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8EA0402C52462700077A7A /* UIImageView++.swift */; };
@@ -110,6 +111,7 @@
 		7D84BD452C563CC00093C6DE /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
 		7D84BD472C563CCF0093C6DE /* PhotoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailView.swift; sourceTree = "<group>"; };
 		7D84BD4A2C5650580093C6DE /* PhotoInformationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInformationTableViewCell.swift; sourceTree = "<group>"; };
+		7D84BD4C2C5658FF0093C6DE /* PhotoDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewModel.swift; sourceTree = "<group>"; };
 		7D8EA03B2C523A0200077A7A /* CornerRadiusButton .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CornerRadiusButton .swift"; sourceTree = "<group>"; };
 		7D8EA03E2C5245CB00077A7A /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		7D8EA0402C52462700077A7A /* UIImageView++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView++.swift"; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 		7D84BD412C5639600093C6DE /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				7D84BD4C2C5658FF0093C6DE /* PhotoDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -856,6 +859,7 @@
 				7D92B7F22C4E8E7C0000EEB0 /* ProfileCircleView.swift in Sources */,
 				7D9D1A8D2C4FFDFE004FD89A /* ProfileImageSettingViewController.swift in Sources */,
 				7D8EA03C2C523A0200077A7A /* CornerRadiusButton .swift in Sources */,
+				7D84BD4D2C5658FF0093C6DE /* PhotoDetailViewModel.swift in Sources */,
 				7D92B7E72C4E8AB00000EEB0 /* MainNormalButton.swift in Sources */,
 				7D92B79C2C4E6B8B0000EEB0 /* SceneDelegate.swift in Sources */,
 				7D92B7C32C4E743E0000EEB0 /* APIFetcher.swift in Sources */,

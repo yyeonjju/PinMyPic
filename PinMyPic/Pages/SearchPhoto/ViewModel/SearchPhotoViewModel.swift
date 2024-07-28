@@ -8,13 +8,12 @@
 import UIKit
 import RealmSwift
 
+struct LikedTappedPhoto{
+    let imageId : String
+    let image : UIImage?
+}
 
 final class SearchPhotoViewModel {
-    struct LikedTappedPhoto{
-        let imageId : String
-        let image : UIImage?
-    }
-    
     var page = 0
     private let likedPhotoRepository = LikedPhotoInfoRepository()
     lazy var likedItemListData : Results<LikedPhotoInfo>! = likedPhotoRepository.getAllObjects(tableModel: LikedPhotoInfo.self)
@@ -107,20 +106,10 @@ final class SearchPhotoViewModel {
             //좋아요 되어 있다면 -> realm에서 삭제
             likedPhotoRepository.removeItem(savedItem)
             
-            //파일매니저에서 이미지 삭제
-            if #available(iOS 16.0, *) {
-                ImageSavingManager.removeImageFromDocument(filename: clickedPhotoId)
-            }
-            
         } else{
             //좋아요 안되어 있다면 -> realm에 추가
             let itemData = LikedPhotoInfo(imageId: clickedPhotoId, savedDate: Date())
-            likedPhotoRepository.createItem(itemData)
-            
-            //파일매니저에 이미지 저장
-            if #available(iOS 16.0, *) {
-                ImageSavingManager.saveImageToDocument(image: photoInfo.image, filename: clickedPhotoId)
-            }
+            likedPhotoRepository.createItemAndSaveToDocument(itemData, photoInfo.image)
             
         }
         outputReloadCollectionViewTrigger.value = ()

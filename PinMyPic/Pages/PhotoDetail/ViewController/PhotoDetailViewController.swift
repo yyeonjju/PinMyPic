@@ -6,20 +6,15 @@
 //
 
 import UIKit
+import Toast
 
 final class PhotoDetailViewController : UIViewController {
     // MARK: - UI
     private let viewManager = PhotoDetailView()
     
     // MARK: - Properties
-    var imageId : String?
-    var imageUrl : String?
-    var uploaderInfo : PhotoUser?
-    var createdAt : String?
-    var isLiked : Bool?
-    var wilDisappearClosure : (() -> Void)?
-    
-    
+    private let vm = PhotoDetailViewModel()
+    var photoData : PhotoResult?
     
     // MARK: - Lifecycle
     override func loadView() {
@@ -28,30 +23,75 @@ final class PhotoDetailViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupBind()
         setupBasicData()
         setupDelegate()
+        addLikeImageGestureEvent()
     }
+    
+    // MARK: - SetupBind
+    private func setupBind() {
+        vm.inputImageId.value = photoData?.id
+        
+        vm.outputErrorMessage.bind(onlyCallWhenValueDidSet: true) {[weak self] message in
+            guard let self else{return }
+            self.view.makeToast(message, position: .top)
+        }
+        
+        vm.outputStatisticData.bind(onlyCallWhenValueDidSet: true) {[weak self] data in
+            guard let self else{return }
+            self.viewManager.photoInformationTableView.reloadData()
+        }
+        vm.outputConfigureLikeImageTrigger.bind(onlyCallWhenValueDidSet: true) {[weak self] _ in
+            guard let self else{return }
+            configureLikeStatusImage()
+        }
+    }
+
     
     // MARK: - SetupBasicData
     private func setupBasicData() {
-        viewManager.uploaderProfileImageView.loadImage(urlString: uploaderInfo?.profileImage.medium ?? "")
+        viewManager.uploaderProfileImageView.loadImage(urlString: photoData?.user.profileImage.medium ?? "")
+        viewManager.uploaderNameLabel.text = photoData?.user.name ?? "-"
+        viewManager.createdAtLabel.text = photoData?.createdAt ?? "-"
         
-        viewManager.uploaderNameLabel.text = uploaderInfo?.name
-        viewManager.createdAtLabel.text = createdAt
-        viewManager.likeImageView.image = isLiked == true ? Assets.Images.like : Assets.Images.likeInactive
-        
+        configureLikeStatusImage()
+        configurePhotoImage()
+
+    }
+    
+    private func configurePhotoImage() {
         if #available(iOS 16.0, *) {
-            if let imageId, let image = ImageSavingManager.loadImageFromDocument(filename: imageId)  {
+            if let imageId = photoData?.id, let image = ImageSavingManager.loadImageFromDocument(filename: imageId)  {
                 //파일매니저에 저장된 이미지가 있으면
                 viewManager.photoImageView.image = image
                 return
             }
         }
         //파일매니저에 저장된 이미지가 없으면
-        viewManager.photoImageView.loadImage(urlString: imageUrl ?? "")
-        
+        viewManager.photoImageView.loadImage(urlString: photoData?.urls.small ?? "")
+    }
+    
+    private func configureLikeStatusImage(){
+        let isLiked = vm.likedItemListData.map{$0.imageId}.contains(photoData?.id)
+        let image = isLiked ? Assets.Images.like : Assets.Images.tabLikeInactive
+        viewManager.likeImageView.image = image
+    }
+    
+    
+    // MARK: - AddGestureEvent
+    private func addLikeImageGestureEvent() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(likeImageTapped))
+        viewManager.likeImageView.isUserInteractionEnabled = true
+        viewManager.likeImageView.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func likeImageTapped() {
+        guard let photoData else {return}
+        vm.inputLikeTappedId.value = LikedTappedPhoto(imageId: photoData.id, image: viewManager.photoImageView.image)
         
     }
+
 
     
     
@@ -65,12 +105,26 @@ final class PhotoDetailViewController : UIViewController {
 
 extension PhotoDetailViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return vm.informationOptions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PhotoInformationTableViewCell.description(), for: indexPath) as! PhotoInformationTableViewCell
-        cell.configureData(title: "title--", ststisticInfo: "statistic--")
+        let infoOption : PhotoDetailViewModel.PhotoInformationOptions = vm.informationOptions[indexPath.row]
+        var statisticText = "-"
+        switch infoOption {
+        case .resolution:
+            statisticText = photoData?.resolutionText ?? "-"
+        case .views:
+            if let views = vm.outputStatisticData.value?.views.total {
+                statisticText = views.formatted()
+            }
+        case .downloads:
+            if let downloads = vm.outputStatisticData.value?.downloads.total {
+                statisticText = downloads.formatted()
+            }
+        }
+        cell.configureData(title: infoOption.rawValue, ststisticInfo: statisticText)
         return cell
     }
 }

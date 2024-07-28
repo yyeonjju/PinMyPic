@@ -133,7 +133,7 @@ extension SearchPhotoViewController : UICollectionViewDataSource, UICollectionVi
         cell.configureData(likes : data.likes, id : data.id, url : data.urls.small, isLiked : !(alreadyLikedItem==nil) )
         cell.toggleLikeStatus = {[weak self] image in
             guard let self else{return}
-            let likedTappedPhoto = SearchPhotoViewModel.LikedTappedPhoto(imageId: data.id, image: image)
+            let likedTappedPhoto = LikedTappedPhoto(imageId: data.id, image: image)
             self.vm.inputLikeButtonTapped.value = likedTappedPhoto
         }
         return cell

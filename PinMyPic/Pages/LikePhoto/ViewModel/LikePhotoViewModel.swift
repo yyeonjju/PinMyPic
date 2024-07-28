@@ -58,11 +58,6 @@ final class LikePhotoViewModel {
             if let savedItem = likedItemListData.first(where: {$0.imageId == imageId}) {
                 //이미 좋아요 좋아요 되어 있는 이미지이므로 -> realm에서 삭제
                 likedPhotoRepository.removeItem(savedItem)
-                
-                //파일매니저에서 이미지 삭제
-                if #available(iOS 16.0, *) {
-                    ImageSavingManager.removeImageFromDocument(filename: imageId ?? "")
-                }
             }
             
             

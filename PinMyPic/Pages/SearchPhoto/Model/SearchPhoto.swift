@@ -35,6 +35,10 @@ struct PhotoResult : Decodable{
         case updatedAt = "updated_at"
         case id, width, height, color, urls, likes, user
     }
+    
+    var resolutionText : String{
+        return "\(width) x \(height)"
+    }
 }
 
 struct PhotoURL : Decodable {

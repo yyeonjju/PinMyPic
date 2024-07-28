@@ -96,19 +96,11 @@ extension TopicTrendPhotoViewController : UICollectionViewDelegate, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("💚💚 눌렸당!!")
         let data = vm.outputTopicContents.value[collectionView.tag].content[indexPath.row]
         
         let vc = PhotoDetailViewController()
         vc.hidesBottomBarWhenPushed = true
-        vc.imageUrl = data.urls.small
-        vc.imageId = data.id
-        vc.uploaderInfo = data.user
-        vc.createdAt = data.createdAt
-        vc.isLiked = true
-        vc.wilDisappearClosure = {
-            print("하하하하")
-        }
+        vc.photoData = data
         pageTransition(to: vc, type: .push)
     }
 }
