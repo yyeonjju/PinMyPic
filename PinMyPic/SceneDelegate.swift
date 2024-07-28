@@ -16,20 +16,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         
-        let userInfoRepository = UserInfoRepository()
-        let noUser = userInfoRepository.getUser(tableModel: UserInfo.self) == nil
-        
-        if noUser {
-            print("📍📍📍 유저 없음!")
-            changeRootViewControllerToOnboarding()
-        }else{
-            print("📍📍📍 유저 있음!")
-//            if let user = userInfoRepository.getUser(tableModel: UserInfo.self) {
-//                userInfoRepository.removeItem(user)
-//            }
-            changeRootViewControllerToHome()
-        }
-
+        let launchScreen = UINavigationController(rootViewController: LaunchScreenViewController())
+        window?.rootViewController = launchScreen
         window?.makeKeyAndVisible()
     }
 

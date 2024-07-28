@@ -7,9 +7,9 @@
 
 import UIKit
 
-final class OnboardingViewController : UIViewController {
+class OnboardingViewController : UIViewController {
     // MARK: - UI
-    private let viewManager = OnboardingView()
+    let viewManager = OnboardingView()
     
     // MARK: - Lifecycle
     

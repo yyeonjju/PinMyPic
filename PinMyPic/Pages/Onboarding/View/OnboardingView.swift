@@ -26,13 +26,21 @@ final class OnboardingView : BaseView{
         return iv
     }()
     
+    private let myName = {
+        let iv = UILabel()
+        iv.text = "하연주"
+        iv.font = .boldSystemFont(ofSize: 25)
+        iv.textColor = Assets.Colors.mainBlue
+        return iv
+    }()
+    
     let startButton = MainNormalButton(title : "시작하기")
     
     
     // MARK: - ConfigureUI
     
     override func configureSubView() {
-        [logoLabel, launchImageView, startButton]
+        [logoLabel, launchImageView, myName, startButton]
             .forEach{
                 addSubview($0)
 
@@ -51,6 +59,11 @@ final class OnboardingView : BaseView{
             make.top.equalTo(logoLabel.snp.bottom).offset(50)
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(40)
             make.height.equalTo(launchImageView.snp.width)
+        }
+        
+        myName.snp.makeConstraints { make in
+            make.top.equalTo(launchImageView.snp.bottom).offset(20)
+            make.centerX.equalTo(safeAreaLayoutGuide.snp.centerX)
         }
         
         startButton.snp.makeConstraints { make in
