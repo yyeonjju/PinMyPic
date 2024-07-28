@@ -32,6 +32,13 @@ class LikedPhotoInfo: Object {
     @Persisted var imageId : String
     @Persisted var savedDate : Date
     
+    //작가 이름
+    //@Persisted var uploaderName : String
+    //작가 사진?
+    //@Persisted var uploaderProfileImage : String
+    //created_at
+    //@Persisted var createdAt : String
+    
     
     convenience init(imageId: String, savedDate: Date) {
         self.init()

@@ -12,6 +12,7 @@ import Alamofire
 protocol APIFetchable {
     func getSearchPhoto(keyword : String, page: Int, sortOrder : SortOrder, handler: @escaping (Result<SearchPhoto, RequestError>) -> Void)
     func getTopicPhotos(topicSlug : String, handler: @escaping (Result<[PhotoResult], RequestError>) -> Void)
+    func getPhotoStatistic(imageId : String, handler: @escaping (Result<PhotoStatistic, RequestError>) -> Void)
 }
 
 struct errorsResponse : Decodable {
@@ -105,6 +106,14 @@ extension APIFetcher : APIFetchable {
         let requestType = RequestType.topicPhotos(topicSlug: topicSlug)
         
         fetch(model : [PhotoResult].self, requestType : requestType){ result in
+            handler(result)
+        }
+    }
+    
+    func getPhotoStatistic(imageId : String, handler: @escaping (Result<PhotoStatistic, RequestError>) -> Void) {
+        let requestType = RequestType.photoStatistic(imageId: imageId)
+        
+        fetch(model : PhotoStatistic.self, requestType : requestType){ result in
             handler(result)
         }
     }

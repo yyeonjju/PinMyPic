@@ -28,15 +28,31 @@ struct PhotoResult : Decodable{
     let color : String
     let urls : PhotoURL
     let likes : Int
+    let user : PhotoUser
     
     enum CodingKeys : String, CodingKey {
         case createdAt = "created_at"
         case updatedAt = "updated_at"
-        case id, width, height, color, urls, likes
+        case id, width, height, color, urls, likes, user
     }
 }
 
 struct PhotoURL : Decodable {
     let regular : String
     let small : String
+}
+
+struct PhotoUser : Decodable{
+    let name : String
+    let profileImage : PhotoUserProfileImage
+    
+    enum CodingKeys : String, CodingKey{
+        case name
+        case profileImage = "profile_image"
+    }
+    
+}
+
+struct PhotoUserProfileImage : Decodable {
+    let medium : String
 }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 struct TopicContent {
     let topic : String
@@ -13,9 +14,11 @@ struct TopicContent {
 }
 
 final class TopicTrendPhotoViewModel {
-    
-
     let topicQueryList = [TopicQuery.goldenHour.rawValue, TopicQuery.businessWork.rawValue, TopicQuery.architectureInterior.rawValue]
+    private let likedPhotoRepository = LikedPhotoInfoRepository()
+    lazy var likedItemListData : Results<LikedPhotoInfo>! = likedPhotoRepository.getAllObjects(tableModel: LikedPhotoInfo.self)
+    
+    
     
     //input
     let inputViewDidLoadTrigger : Observable<Void?> = Observable(nil)

@@ -11,6 +11,7 @@ import Alamofire
 enum RequestType {
     case searchPhoto(query:String, page:Int, sortOrder : SortOrder)
     case topicPhotos(topicSlug : String)
+    case photoStatistic(imageId : String)
     
     
     private var baseURL : String{
@@ -23,6 +24,8 @@ enum RequestType {
             return baseURL + APIURL.searchPhoto
         case .topicPhotos(let topicSlug) :
             return baseURL + "topics/\(topicSlug)/photos"
+        case .photoStatistic(let imageId) :
+            return baseURL + "photos/\(imageId)/statistics"
         }
     }
     
@@ -35,14 +38,14 @@ enum RequestType {
         switch self {
         case .searchPhoto(let query, let page, let sortOrder) :
             return ["query":query, "page":String(page), "per_page": "20", "order_by": sortOrder.rawValue]
-        case .topicPhotos :
+        case .topicPhotos, .photoStatistic :
             return [:]
         }
     }
     
     var headers : HTTPHeaders {
         switch self {
-        case .searchPhoto, .topicPhotos :
+        case .searchPhoto, .topicPhotos, .photoStatistic :
             return ["Authorization":APIKey.unsplashAccessKey]
             
         }

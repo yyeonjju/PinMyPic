@@ -73,7 +73,7 @@ extension TopicTrendPhotoViewController : UITableViewDelegate, UITableViewDataSo
         cell.topicTitleLabel.text = topicTitle
         
         cell.topicContentsCollectionView.dataSource = self
-        cell.topicContentsCollectionView.dataSource = self
+        cell.topicContentsCollectionView.delegate = self
         cell.topicContentsCollectionView.register(TopicContentsCollectionViewCell.self, forCellWithReuseIdentifier: TopicContentsCollectionViewCell.description())
         
         cell.topicContentsCollectionView.tag = indexPath.row
@@ -93,5 +93,22 @@ extension TopicTrendPhotoViewController : UICollectionViewDelegate, UICollection
         let data = vm.outputTopicContents.value[collectionView.tag].content[indexPath.row]
         cell.configureData(data: data)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("💚💚 눌렸당!!")
+        let data = vm.outputTopicContents.value[collectionView.tag].content[indexPath.row]
+        
+        let vc = PhotoDetailViewController()
+        vc.hidesBottomBarWhenPushed = true
+        vc.imageUrl = data.urls.small
+        vc.imageId = data.id
+        vc.uploaderInfo = data.user
+        vc.createdAt = data.createdAt
+        vc.isLiked = true
+        vc.wilDisappearClosure = {
+            print("하하하하")
+        }
+        pageTransition(to: vc, type: .push)
     }
 }
