@@ -10,16 +10,22 @@ import RealmSwift
 
 final class LikePhotoViewModel {
     private let likedPhotoRepository = LikedPhotoInfoRepository()
-//    lazy var likedItemListData : Results<LikedPhotoInfo>! = likedPhotoRepository.getAllObjects(tableModel: LikedPhotoInfo.self)
+    var likedItemListData : Results<LikedPhotoInfo>! {
+        didSet{
+            //inputLoadLikedItem 시점에 didSet됨
+            //outputReloadCollectionViewTrigger 보내기-> collectionView reload
+            outputReloadCollectionViewTrigger.value = ()
+        }
+    }
     
     //input
+    //viewDidLoad, viewWillAppear 시점
     let inputLoadLikedItem : Observable<Void?> = Observable(nil)
     //좋아요 버튼
     let inputSwitchToUnlike : Observable<String?> = Observable(nil)
     
     //output
-    let outputLikedItemList  : Observable<Results<LikedPhotoInfo>?> = Observable(nil)
-    //좋아요 해제(좋아요 realm데이터에서 삭제) 후 collectionView reload될 수 있도록
+    //likedItemListData didSet 시점 & 좋아요 해제(좋아요 realm데이터에서 삭제) 후 collectionView reload될 수 있도록
     let outputReloadCollectionViewTrigger : Observable<Void?> = Observable(nil)
     
     
@@ -33,13 +39,13 @@ final class LikePhotoViewModel {
             guard let self else{return}
 
             let list = likedPhotoRepository.getAllObjects(tableModel: LikedPhotoInfo.self)
-            outputLikedItemList.value = list
+            likedItemListData = list
         }
         
         inputSwitchToUnlike.bind(onlyCallWhenValueDidSet: true) {[weak self] imageId in
             guard let self else{return}
             
-            if let savedItem = outputLikedItemList.value?.first(where: {$0.imageId == imageId}) {
+            if let savedItem = likedItemListData.first(where: {$0.imageId == imageId}) {
                 //이미 좋아요 좋아요 되어 있는 이미지이므로 -> realm에서 삭제
                 likedPhotoRepository.removeItem(savedItem)
                 
@@ -49,15 +55,9 @@ final class LikePhotoViewModel {
                 }
             }
             
+            
+            //likedItemListData가 Results 타입이기 때문에 이미 realm 데이터에서 좋아요 삭제된게 반영되어 있지만 didSet에서 감지되진 않기 떄문에 outputReloadCollectionViewTrigger 보내줘야한다.
             outputReloadCollectionViewTrigger.value = ()
-            
-            //outputLikedItemList.value 가 바뀌긴 하는데 outputLikedItemList의 클로저가 실행되지 않는다? => outputReloadCollectionViewTrigger로 collectionView reload할 신호 한 번 더 주기!
-            // observable이 아니라 그냥 프로퍼티로 램 데이터 받아왔을 때 프로퍼티 옵저버(didSet)으로 outputReloadCollectionViewTrigger 보내도 똑같이 동작하는지 보기
-            // => 이것도 동일하게 동작하면 굳이 outputLikedItemList를 Observable로 만들어줄 필요가 없당
-            
-            
-            //& 좋아요 탭에서 좋아요 해제 하고 검색으로 돌아왔을 때
-            //좋아요 해제한거 반영해주기
             
         }
     }
