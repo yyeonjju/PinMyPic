@@ -108,5 +108,14 @@ extension LikePhotoViewController : UICollectionViewDataSource, UICollectionView
         }
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let data = vm.likedItemListData[indexPath.item]
+        
+        let vc = PhotoDetailViewController()
+        vc.hidesBottomBarWhenPushed = true
+        vc.photoData = PhotoResult(id: data.imageId, createdAt: data.createdAt, updatedAt: "", width: data.width, height: data.height, color: "", urls: PhotoURL(regular: "", small: data.imageURL), likes: 0, user: PhotoUser(name: data.uploaderName, profileImage: PhotoUserProfileImage(medium: data.uploaderProfileImage)))
+        pageTransition(to: vc, type: .push)
+    }
 }
 

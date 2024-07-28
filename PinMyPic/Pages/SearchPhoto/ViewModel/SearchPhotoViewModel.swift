@@ -23,8 +23,8 @@ final class SearchPhotoViewModel {
     var inputSearchKeyword : Observable<String?> = Observable(nil)
     //prefetch
     var inputPrefetchForPagenation : Observable<Void?> = Observable(nil)
-    //좋아요 버튼 누른 셀의 index
-    var inputLikeButtonTapped : Observable<LikedTappedPhoto?> = Observable(nil)
+    //좋아요 버튼 누른 이미지 정보
+    var inputLikeButtonTapped : Observable<(LikedPhotoInfo, UIImage)?> = Observable(nil)
     //정렬 버튼 누름 (정렬버튼 누르지 않았을 때의 초기값 - relevant)
     var inputSortMenuTapped : Observable<SortOrder> = Observable(.relevant)
     
@@ -60,9 +60,9 @@ final class SearchPhotoViewModel {
             self.getSearchList(keyword, sortOrder : inputSortMenuTapped.value)
         }
         
-        inputLikeButtonTapped.bind(onlyCallWhenValueDidSet: true) {[weak self] (photoInfo:LikedTappedPhoto?) in
-            guard let self, let photoInfo else{return}
-            self.changeLikedItemData(photoInfo : photoInfo)
+        inputLikeButtonTapped.bind(onlyCallWhenValueDidSet: true) {[weak self] value in
+            guard let self, let value else{return}
+            self.changeLikedItemData(photoInfo : value.0, image : value.1)
         }
         
         inputSortMenuTapped.bind(onlyCallWhenValueDidSet: true) {[weak self] sortOrder in
@@ -96,7 +96,7 @@ final class SearchPhotoViewModel {
         }
     }
     
-    private func changeLikedItemData(photoInfo : LikedTappedPhoto) {
+    private func changeLikedItemData(photoInfo : LikedPhotoInfo, image : UIImage) {
         guard let likedItemListData else{return}
         
         let clickedPhotoId = photoInfo.imageId
@@ -108,8 +108,8 @@ final class SearchPhotoViewModel {
             
         } else{
             //좋아요 안되어 있다면 -> realm에 추가
-            let itemData = LikedPhotoInfo(imageId: clickedPhotoId, savedDate: Date())
-            likedPhotoRepository.createItemAndSaveToDocument(itemData, photoInfo.image)
+            let itemData = photoInfo
+            likedPhotoRepository.createItemAndSaveToDocument(itemData, image)
             
         }
         outputReloadCollectionViewTrigger.value = ()

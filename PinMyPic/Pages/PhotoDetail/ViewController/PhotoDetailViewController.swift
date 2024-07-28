@@ -87,8 +87,10 @@ final class PhotoDetailViewController : UIViewController {
     }
     
     @objc private func likeImageTapped() {
-        guard let photoData else {return}
-        vm.inputLikeTappedId.value = LikedTappedPhoto(imageId: photoData.id, image: viewManager.photoImageView.image)
+        guard let photoData, let image = viewManager.photoImageView.image else {return}
+        
+        let likedTappedPhoto = LikedPhotoInfo(imageId: photoData.id, savedDate: Date(), uploaderName: photoData.user.name, uploaderProfileImage: photoData.user.profileImage.medium, createdAt: photoData.createdAt, width: photoData.width, height: photoData.height, imageURL: photoData.urls.small)
+        vm.inputLikeButtonTapped.value = (likedTappedPhoto, image)
         
     }
 

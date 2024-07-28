@@ -132,11 +132,23 @@ extension SearchPhotoViewController : UICollectionViewDataSource, UICollectionVi
         let alreadyLikedItem = vm.likedItemListData?.first(where: {$0.imageId == data.id})
         cell.configureData(likes : data.likes, id : data.id, url : data.urls.small, isLiked : !(alreadyLikedItem==nil) )
         cell.toggleLikeStatus = {[weak self] image in
-            guard let self else{return}
-            let likedTappedPhoto = LikedTappedPhoto(imageId: data.id, image: image)
-            self.vm.inputLikeButtonTapped.value = likedTappedPhoto
+            guard let self, let image else{return}
+            let likedTappedPhoto = LikedPhotoInfo(imageId: data.id, savedDate: Date(), uploaderName: data.user.name, uploaderProfileImage: data.user.profileImage.medium, createdAt: data.createdAt, width: data.width, height: data.height, imageURL: data.urls.small)
+            self.vm.inputLikeButtonTapped.value = (likedTappedPhoto, image)
+            
         }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let searchResult = vm.outputSearchResult.value?.results else{return}
+        let data = searchResult[indexPath.item]
+        
+        let vc = PhotoDetailViewController()
+        vc.hidesBottomBarWhenPushed = true
+        vc.photoData = data
+        
+        pageTransition(to: vc, type: .push)
     }
 }
 

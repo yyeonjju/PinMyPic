@@ -5,7 +5,7 @@
 //  Created by 하연주 on 7/28/24.
 //
 
-import Foundation
+import UIKit
 import RealmSwift
 
 final class PhotoDetailViewModel {
@@ -22,7 +22,7 @@ final class PhotoDetailViewModel {
     //이미지 아이디로 satistic 데이터 받기
     let inputImageId : Observable<String?> = Observable(nil)
     //좋아요 클릭했을 때
-    let inputLikeTappedId : Observable<LikedTappedPhoto?> = Observable(nil)
+    let inputLikeButtonTapped : Observable<(LikedPhotoInfo, UIImage)?> = Observable(nil)
     
     //output
     let outputErrorMessage : Observable<String?> = Observable(nil)
@@ -47,10 +47,10 @@ final class PhotoDetailViewModel {
             
         }
         
-        inputLikeTappedId.bind(onlyCallWhenValueDidSet: true) {[weak self] photoInfo in
-            guard let self, let photoInfo else{return }
+        inputLikeButtonTapped.bind(onlyCallWhenValueDidSet: true) {[weak self] value in
+            guard let self, let value else{return }
             
-            changeLikedItemData(photoInfo: photoInfo)
+            changeLikedItemData(photoInfo : value.0, image : value.1)
         }
     }
     
@@ -69,7 +69,7 @@ final class PhotoDetailViewModel {
         
     }
     
-    private func changeLikedItemData(photoInfo : LikedTappedPhoto) {
+    private func changeLikedItemData(photoInfo : LikedPhotoInfo, image : UIImage) {
         guard let likedItemListData else{return}
         
         let clickedPhotoId = photoInfo.imageId
@@ -81,8 +81,8 @@ final class PhotoDetailViewModel {
             
         } else{
             //좋아요 안되어 있다면 -> realm에 추가
-            let itemData = LikedPhotoInfo(imageId: clickedPhotoId, savedDate: Date())
-            likedPhotoRepository.createItemAndSaveToDocument(itemData, photoInfo.image)
+            let itemData = photoInfo
+            likedPhotoRepository.createItemAndSaveToDocument(itemData, image)
             
         }
         outputConfigureLikeImageTrigger.value = ()
