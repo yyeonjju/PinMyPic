@@ -26,6 +26,7 @@ final class LikePhotoViewController : UIViewController {
         
         setupBind()
         setupDelegate()
+        setupSortMenuItem()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -64,6 +65,28 @@ final class LikePhotoViewController : UIViewController {
             //좋아요한 아이템이 있을 때
             viewManager.emptyView.isHidden = true
         }
+    }
+    
+    // MARK: - setupMenuItem
+    private func setupSortMenuItem() {
+        viewManager.sortButton.title = vm.inputSelectedSortMenu.value.koText
+        
+        let latestOrder = UIAction(title: SortOrder.latest.koText){ [weak self] _ in
+            guard let self else{return}
+            vm.inputSelectedSortMenu.value = .latest
+            viewManager.sortButton.title = SortOrder.latest.koText
+        }
+        
+        let oldestOder = UIAction(title: SortOrder.oldest.koText){ [weak self] _ in
+            guard let self else{return}
+            vm.inputSelectedSortMenu.value = .oldest
+            viewManager.sortButton.title = SortOrder.oldest.koText
+        }
+        
+        let items = [latestOrder, oldestOder]
+        let menu = UIMenu(title: "정렬", children: items)
+        viewManager.sortButton.menu = menu
+        viewManager.sortButton.showsMenuAsPrimaryAction = true
     }
 }
 

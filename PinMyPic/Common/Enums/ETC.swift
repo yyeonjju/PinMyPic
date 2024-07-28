@@ -15,6 +15,7 @@ enum PageMode {
 enum SortOrder : String {
     case relevant
     case latest
+    case oldest
     
     var koText : String {
         switch self {
@@ -22,6 +23,8 @@ enum SortOrder : String {
             "관련순"
         case .latest:
             "최신순"
+        case .oldest :
+            "과거순"
         }
     }
 }

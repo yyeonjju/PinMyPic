@@ -23,6 +23,8 @@ final class LikePhotoViewModel {
     let inputLoadLikedItem : Observable<Void?> = Observable(nil)
     //좋아요 버튼
     let inputSwitchToUnlike : Observable<String?> = Observable(nil)
+    //정렬 버튼 누름 (정렬버튼 누르지 않았을 때의 초기값 - latest 최신에 좋아요한 것 부터)
+    var inputSelectedSortMenu : Observable<SortOrder> = Observable(.latest)
     
     //output
     //likedItemListData didSet 시점 & 좋아요 해제(좋아요 realm데이터에서 삭제) 후 collectionView reload될 수 있도록
@@ -37,10 +39,18 @@ final class LikePhotoViewModel {
     private func setupBind() {
         inputLoadLikedItem.bind(onlyCallWhenValueDidSet: true) {[weak self] _ in
             guard let self else{return}
-
+            
             let list = likedPhotoRepository.getAllObjects(tableModel: LikedPhotoInfo.self)
-            likedItemListData = list
+            //최신순, 과거순 정렬까지 된 리스트
+            let sortedList = list?.sorted(by: \.savedDate, ascending: self.inputSelectedSortMenu.value == .oldest)
+            likedItemListData = sortedList
         }
+        
+        inputSelectedSortMenu.bind(onlyCallWhenValueDidSet: true) {[weak self] sortOrder in
+            guard let self else{return}
+            self.inputLoadLikedItem.value = () // 다시한번 데이터 불러와주기
+        }
+        
         
         inputSwitchToUnlike.bind(onlyCallWhenValueDidSet: true) {[weak self] imageId in
             guard let self else{return}
