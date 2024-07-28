@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class PhotoCollectionViewCell : UICollectionViewCell {
+class PhotoCollectionViewCell : UICollectionViewCell {
     var toggleLikeStatus : ((UIImage?)->Void)?
     
     // MARK: - UI
@@ -38,7 +38,7 @@ final class PhotoCollectionViewCell : UICollectionViewCell {
     
     override init(frame : CGRect) {
         super.init(frame: frame)
-        
+        backgroundColor = .gray2
         configureSubView()
         configureLayout()
 
@@ -49,11 +49,13 @@ final class PhotoCollectionViewCell : UICollectionViewCell {
     }
     
     // MARK: - ConfigureData
-    func configureData(data : PhotoResult, isLiked : Bool) {
-        likedAmount.setTitle(data.likes.formatted(), for: .normal)
+    func configureData(likes : Int?, id : String, url : String?, isLiked : Bool) {
+        likedAmount.setTitle(likes?.formatted(), for: .normal)
+        likedAmount.isHidden = likes == nil
+        
         likeImageView.image = isLiked ? Assets.Images.likeCircle : Assets.Images.likeCircleInactive
         //파일매니저에 저장된 이미지(좋아요한 이미지) 확인하고 없으면 url로 이미지 로드
-        loadImage(imageId: data.id, urlString: data.urls.small)
+        loadImage(imageId: id, urlString: url)
 
     }
     
@@ -66,7 +68,7 @@ final class PhotoCollectionViewCell : UICollectionViewCell {
     
     // MARK: - ConfigureUI
     
-    private func loadImage(imageId :String , urlString : String) {
+    private func loadImage(imageId :String , urlString : String?) {
         if #available(iOS 16.0, *) {
             if let image = ImageSavingManager.loadImageFromDocument(filename: imageId)  {
                 //파일매니저에 저장된 이미지가 있으면
@@ -75,7 +77,7 @@ final class PhotoCollectionViewCell : UICollectionViewCell {
             }
         }
         //파일매니저에 저장된 이미지가 없으면
-        photoImageView.loadImage(urlString: urlString)
+        photoImageView.loadImage(urlString: urlString ?? "")
     }
     
     private func configureSubView() {

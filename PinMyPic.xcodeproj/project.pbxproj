@@ -14,6 +14,9 @@
 		7D84BD2F2C5506100093C6DE /* TopicTrendPhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D84BD2E2C5506100093C6DE /* TopicTrendPhotoViewModel.swift */; };
 		7D84BD322C550CC90093C6DE /* TopicPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D84BD312C550CC90093C6DE /* TopicPhoto.swift */; };
 		7D84BD342C55279E0093C6DE /* TopicQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D84BD332C55279E0093C6DE /* TopicQuery.swift */; };
+		7D84BD362C552FCD0093C6DE /* PhotoListBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D84BD352C552FCD0093C6DE /* PhotoListBaseView.swift */; };
+		7D84BD3A2C55341D0093C6DE /* LikePhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D84BD392C55341D0093C6DE /* LikePhotoViewModel.swift */; };
+		7D84BD3D2C553E240093C6DE /* LikePhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D84BD3C2C553E240093C6DE /* LikePhotoCollectionViewCell.swift */; };
 		7D8EA03C2C523A0200077A7A /* CornerRadiusButton .swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8EA03B2C523A0200077A7A /* CornerRadiusButton .swift */; };
 		7D8EA03F2C5245CB00077A7A /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8EA03E2C5245CB00077A7A /* PhotoCollectionViewCell.swift */; };
 		7D8EA0412C52462700077A7A /* UIImageView++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8EA0402C52462700077A7A /* UIImageView++.swift */; };
@@ -96,6 +99,9 @@
 		7D84BD2E2C5506100093C6DE /* TopicTrendPhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicTrendPhotoViewModel.swift; sourceTree = "<group>"; };
 		7D84BD312C550CC90093C6DE /* TopicPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicPhoto.swift; sourceTree = "<group>"; };
 		7D84BD332C55279E0093C6DE /* TopicQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicQuery.swift; sourceTree = "<group>"; };
+		7D84BD352C552FCD0093C6DE /* PhotoListBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListBaseView.swift; sourceTree = "<group>"; };
+		7D84BD392C55341D0093C6DE /* LikePhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikePhotoViewModel.swift; sourceTree = "<group>"; };
+		7D84BD3C2C553E240093C6DE /* LikePhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikePhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		7D8EA03B2C523A0200077A7A /* CornerRadiusButton .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CornerRadiusButton .swift"; sourceTree = "<group>"; };
 		7D8EA03E2C5245CB00077A7A /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		7D8EA0402C52462700077A7A /* UIImageView++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView++.swift"; sourceTree = "<group>"; };
@@ -201,6 +207,30 @@
 				7D84BD312C550CC90093C6DE /* TopicPhoto.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		7D84BD372C552FD30093C6DE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7D84BD352C552FCD0093C6DE /* PhotoListBaseView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7D84BD382C55340B0093C6DE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7D84BD392C55341D0093C6DE /* LikePhotoViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7D84BD3B2C553E150093C6DE /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				7D84BD3C2C553E240093C6DE /* LikePhotoCollectionViewCell.swift */,
+			);
+			path = CollectionViewCell;
 			sourceTree = "<group>";
 		};
 		7D8EA03D2C5245B900077A7A /* CollectionViewCell */ = {
@@ -616,6 +646,9 @@
 		7D9D1AD02C51CE2D004FD89A /* LikePhoto */ = {
 			isa = PBXGroup;
 			children = (
+				7D84BD3B2C553E150093C6DE /* CollectionViewCell */,
+				7D84BD382C55340B0093C6DE /* ViewModel */,
+				7D84BD372C552FD30093C6DE /* View */,
 				7D9D1AD12C51CE40004FD89A /* ViewController */,
 			);
 			path = LikePhoto;
@@ -737,6 +770,7 @@
 				7D8EA0442C538C7400077A7A /* SearchPhotoViewModel.swift in Sources */,
 				7D9D1AC92C51CD19004FD89A /* TopicTrendPhotoViewController.swift in Sources */,
 				7D92B7D12C4E82050000EEB0 /* SearchPhoto.swift in Sources */,
+				7D84BD3A2C55341D0093C6DE /* LikePhotoViewModel.swift in Sources */,
 				7D84BD272C54F37C0093C6DE /* TopicTrendPhotoView.swift in Sources */,
 				7D84BD2C2C54FD800093C6DE /* TopicContentsCollectionViewCell.swift in Sources */,
 				7D92B7F52C4E90450000EEB0 /* NormalTextFieldView.swift in Sources */,
@@ -784,6 +818,8 @@
 				7D9D1A882C4FE81B004FD89A /* LikedPhotoInfoRepository.swift in Sources */,
 				7D9D1ACF2C51CDBC004FD89A /* RandomPhotoViewController.swift in Sources */,
 				7D92B7DE2C4E88690000EEB0 /* OnboardingView.swift in Sources */,
+				7D84BD3D2C553E240093C6DE /* LikePhotoCollectionViewCell.swift in Sources */,
+				7D84BD362C552FCD0093C6DE /* PhotoListBaseView.swift in Sources */,
 				7D9D1AD82C51CF49004FD89A /* TabViewType.swift in Sources */,
 				7D9D1ADC2C51CFD7004FD89A /* CustomTabBarController.swift in Sources */,
 				7D8EA04C2C541FE300077A7A /* ImageSavingManager.swift in Sources */,

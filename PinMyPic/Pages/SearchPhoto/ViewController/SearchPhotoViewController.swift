@@ -30,6 +30,13 @@ final class SearchPhotoViewController : UIViewController {
         setupSortMenuItem()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //좋아요 탭에서 좋아요 해제하고 다시 돌아왔을 때 데이터 동기화 시켜주기 위해
+        self.viewManager.photosCollectionView.reloadData()
+    }
+    
     
     // MARK: - setupBind
     private func setupBind() {
@@ -107,19 +114,6 @@ final class SearchPhotoViewController : UIViewController {
         viewManager.sortButton.menu = menu
         viewManager.sortButton.showsMenuAsPrimaryAction = true
     }
-    
-    
-
-    
-    // MARK: - AddTarget
-    private func setupAddTarget() {
-
-
-    }
-    // MARK: - EventSelector
-    // MARK: - SetupUI
-    // MARK: - APIFetch
-    // MARK: - PageTransition
 }
 
 
@@ -136,7 +130,7 @@ extension SearchPhotoViewController : UICollectionViewDataSource, UICollectionVi
         guard let searchResult = vm.outputSearchResult.value?.results else{return cell}
         let data = searchResult[indexPath.item]
         let alreadyLikedItem = vm.likedItemListData?.first(where: {$0.imageId == data.id})
-        cell.configureData(data: data, isLiked : !(alreadyLikedItem==nil) )
+        cell.configureData(likes : data.likes, id : data.id, url : data.urls.small, isLiked : !(alreadyLikedItem==nil) )
         cell.toggleLikeStatus = {[weak self] image in
             guard let self else{return}
             let likedTappedPhoto = SearchPhotoViewModel.LikedTappedPhoto(imageId: data.id, image: image)
