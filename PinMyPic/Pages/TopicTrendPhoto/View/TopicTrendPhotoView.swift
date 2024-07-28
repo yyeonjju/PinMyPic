@@ -10,6 +10,9 @@ import SnapKit
 
 final class TopicTrendPhotoView : BaseView {
     // MARK: - UI
+    
+    let profileCircleView = ProfileCircleView(width: Constants.Size.microProfileImageWidth, isCameraIconShown: false)
+    
     private let mainLabel = {
         let label = UILabel()
         label.text = "OUR TOPIC"
@@ -39,15 +42,20 @@ final class TopicTrendPhotoView : BaseView {
     // MARK: - ConfigureUI
     
     override func configureSubView() {
-        [mainLabel, topicsTableView]
+        [profileCircleView, mainLabel, topicsTableView]
             .forEach{
                 addSubview($0)
             }
     }
     
     override func configureLayout() {
-        mainLabel.snp.makeConstraints { make in
+        profileCircleView.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide)
+            make.trailing.equalTo(safeAreaLayoutGuide).offset(-10)
+        }
+        
+        mainLabel.snp.makeConstraints { make in
+            make.top.equalTo(profileCircleView.snp.bottom)
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(20)
             
         }

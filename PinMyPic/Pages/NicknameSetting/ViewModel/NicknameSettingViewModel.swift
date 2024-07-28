@@ -172,9 +172,12 @@ final class NicknameSettingViewModel {
     }
     
     private func saveUserData(profile : UserInfo) {
-        print("💚💚profile💚💚", profile)
-//        userInfoRepository.createItem(profile)
-        outputPermitToPageTransition.value = ()
+        let noUser = userInfoRepository.getUser(tableModel: UserInfo.self) == nil
+        if noUser {
+            userInfoRepository.createItem(profile)
+            outputPermitToPageTransition.value = ()
+        }
+
     }
     
     

@@ -67,12 +67,10 @@ final class NicknameSettingViewController : UIViewController {
             guard let self else {return }
             if self.pageMode == .create {
                 ///루트뷰 변경
-                print("💚💚 루트뷰 변경")
                 let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
                 sceneDelegate?.changeRootViewControllerToHome()
             }else {
                 ///pop 뷰컨트롤러
-                print("💚💚 pop 뷰컨트롤러")
                 self.navigationController?.popViewController(animated: true)
             }
         }
@@ -145,7 +143,12 @@ final class NicknameSettingViewController : UIViewController {
                 self.userInfo.registerDate = Date()
             }
             
-            vm.inputPermitToSaveProfile.value = self.userInfo
+            if self.pageMode == .create {
+                vm.inputPermitToSaveProfile.value = self.userInfo
+            }else {
+                
+            }
+
         }
     }
     

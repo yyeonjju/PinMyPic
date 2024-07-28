@@ -23,10 +23,11 @@ final class TopicTrendPhotoViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        print("vm.userInfoData", vm.userInfoData)
         
         setupDelegate()
         setupBind()
-        
+        addGestureEvent()
     }
     
     private func setupBind() {
@@ -57,6 +58,17 @@ final class TopicTrendPhotoViewController : UIViewController {
         viewManager.topicsTableView.register(TopicsTableViewCell.self, forCellReuseIdentifier: TopicsTableViewCell.description())
         
     }
+    
+    // MARK: - AddGestureEvent
+    private func addGestureEvent() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(profileImageTapped))
+        viewManager.profileCircleView.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func profileImageTapped() {
+        print("💚💚💚💚 프로필 이미지 탭됐다")
+    }
+
 }
 
 

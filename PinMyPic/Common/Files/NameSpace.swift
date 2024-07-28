@@ -59,6 +59,8 @@ enum Constants {
     enum Size {
         static let bigProfileImageWidth = CGFloat(110)
         static let middleProfileImageWidth = CGFloat(80)
+        static let smallProfileImageWidth = CGFloat(60)
+        static let microProfileImageWidth = CGFloat(40)
         
         static let mbtiCollectionViewWidth = CGFloat(260)
         

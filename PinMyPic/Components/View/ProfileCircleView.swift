@@ -20,7 +20,7 @@ final class ProfileCircleView : UIView {
     
     let imageView : UIImageView = {
         let iv = UIImageView()
-//        iv.image = AssetImage.profile0
+//        iv.image = UIImage(named: ProfileImageName.profile0)!.withRenderingMode(.alwaysOriginal)
         iv.contentMode = .scaleAspectFill
         return iv
     }()
