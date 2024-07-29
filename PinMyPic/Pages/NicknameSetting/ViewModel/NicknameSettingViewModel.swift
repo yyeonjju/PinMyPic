@@ -16,7 +16,7 @@ struct MbtiItem : Equatable {
 
 class NicknameSettingViewModel {
 
-    private let userInfoRepository = UserInfoRepository()
+    private let userInfoRepository = UserInfoRepository.shared
     lazy var userInfoData : UserInfo? = userInfoRepository.getUser(tableModel: UserInfo.self)
     var mbtiItemList = [
         MbtiItem(itemInitialString: "E", isSelected: false, mbtiIndex: 0),

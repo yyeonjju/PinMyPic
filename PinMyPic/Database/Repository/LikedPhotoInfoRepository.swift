@@ -6,22 +6,41 @@
 //
 
 import UIKit
+import RealmSwift
 
 final class LikedPhotoInfoRepository : BaseRepository {
     typealias Item = LikedPhotoInfo
     
-    func createItemAndSaveToDocument(_ data: BaseRepository.Item, _ imageForSavingAtDocument : UIImage?) {
-        super.createItem(data)
+    static let shared = LikedPhotoInfoRepository()
+    private override init(){}
+    
+    func createItemAndSaveToDocument(_ user: UserInfo, _ data: Item, _ imageForSavingAtDocument : UIImage?) {
         
-        let likedPhotoData = data as? Item
+        //직접 저장해주지 말고❌
+        //createItem(data)
+        //유저의 하위에 List로 추가해주기⭕️
+        UserInfoRepository.shared.addLikeItemInUser(parentData: user, childData: data)
+        
+        
+        let likedPhotoData = data
         //파일매니저에 이미지 저장
         if #available(iOS 16.0, *) {
-            ImageSavingManager.saveImageToDocument(image: imageForSavingAtDocument, filename: likedPhotoData?.imageId ?? "")
+            ImageSavingManager.saveImageToDocument(image: imageForSavingAtDocument, filename: likedPhotoData.imageId)
         }
     }
     
+    //유저를 삭제할 때 하위 list를 모두 삭제하기 위해
+    /*
+     func removeAllItemInDocument(list : List<LikedPhotoInfo>) {
+         for item in list {
+             removeItem(item)
+         }
+     }
+     */
+
     override func removeItem(_ data: BaseRepository.Item) {
         let likedPhotoData = data as? Item
+
         //파일매니저에서 이미지 삭제
         if #available(iOS 16.0, *) {
             ImageSavingManager.removeImageFromDocument(filename: likedPhotoData?.imageId ?? "")

@@ -15,8 +15,9 @@ final class PhotoDetailViewModel {
         case downloads = "다운로드"
     }
     let informationOptions = PhotoInformationOptions.allCases
-    private let likedPhotoRepository = LikedPhotoInfoRepository()
+    private let likedPhotoRepository = LikedPhotoInfoRepository.shared
     lazy var likedItemListData : Results<LikedPhotoInfo>! = likedPhotoRepository.getAllObjects(tableModel: LikedPhotoInfo.self)
+    let userInfo : UserInfo? = UserInfoRepository.shared.getUser(tableModel: UserInfo.self)
     
     //init
     //이미지 아이디로 satistic 데이터 받기
@@ -81,8 +82,8 @@ final class PhotoDetailViewModel {
             
         } else{
             //좋아요 안되어 있다면 -> realm에 추가
-            let itemData = photoInfo
-            likedPhotoRepository.createItemAndSaveToDocument(itemData, image)
+            guard let userInfo else{return}
+            likedPhotoRepository.createItemAndSaveToDocument(userInfo, photoInfo, image)
             
         }
         outputConfigureLikeImageTrigger.value = ()

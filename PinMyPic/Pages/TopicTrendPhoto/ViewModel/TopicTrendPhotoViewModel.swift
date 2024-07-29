@@ -15,10 +15,8 @@ struct TopicContent {
 
 final class TopicTrendPhotoViewModel {
     let topicQueryList = [TopicQuery.goldenHour.rawValue, TopicQuery.businessWork.rawValue, TopicQuery.architectureInterior.rawValue]
-    private let likedPhotoRepository = LikedPhotoInfoRepository()
-    lazy var likedItemListData : Results<LikedPhotoInfo>! = likedPhotoRepository.getAllObjects(tableModel: LikedPhotoInfo.self)
-    private let userInfoRepository = UserInfoRepository()
-    lazy var userInfoData : UserInfo? = userInfoRepository.getUser(tableModel: UserInfo.self)
+    let likedItemListData : Results<LikedPhotoInfo>! = LikedPhotoInfoRepository.shared.getAllObjects(tableModel: LikedPhotoInfo.self)
+    let userInfoData : UserInfo? = UserInfoRepository.shared.getUser(tableModel: UserInfo.self)
     
     
     //input

@@ -11,6 +11,42 @@ import RealmSwift
 final class UserInfoRepository : BaseRepository {
     typealias Item = UserInfo
     
+    static let shared = UserInfoRepository()
+    private override init(){}
+    
+    
+    //좋아요한 아이템을 유저에 1:n으로 저장
+    func addLikeItemInUser(parentData : Item, childData : LikedPhotoInfo) {
+        do {
+            try realm.write{
+                parentData.likedPhoto.append(childData)
+                print("유저가 좋아하는 사진 저장")
+            }
+        } catch {
+            print(error)
+        }
+    }
+    
+    
+    //유저 지울 때 먼저 1:n relationship 자식 삭제하고 지워야함
+    override func removeItem(_ data: Object) {
+        do {
+            try realm.write {
+                if let data = data as? Item{
+                    print("자식관계 먼저 삭제해주기")
+                    realm.delete(data.likedPhoto)
+                }
+                
+                realm.delete(data)
+                print("delete succeed")
+            }
+        }catch {
+            print(error)
+        }
+        
+    }
+    
+    
     func getUser<M : Item>(tableModel : M.Type) -> Item? {
         let value =  realm.objects(M.self).first
         return value

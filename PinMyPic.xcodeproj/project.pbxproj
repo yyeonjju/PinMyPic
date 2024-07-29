@@ -81,6 +81,7 @@
 		7DCDB1FF2C4FD0EA0055CBF3 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7DCDB1FE2C4FD0EA0055CBF3 /* RealmSwift */; };
 		7DDD6EEA2C56AD590093543B /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDD6EE92C56AD590093543B /* LaunchScreenViewController.swift */; };
 		7DDD6EEC2C56C2870093543B /* EditNicknameSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDD6EEB2C56C2870093543B /* EditNicknameSettingViewController.swift */; };
+		7DDD6EF02C5779810093543B /* LikedPhotoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDD6EEF2C5779810093543B /* LikedPhotoInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -169,6 +170,7 @@
 		7DCDB1FB2C4F9BF20055CBF3 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		7DDD6EE92C56AD590093543B /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		7DDD6EEB2C56C2870093543B /* EditNicknameSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNicknameSettingViewController.swift; sourceTree = "<group>"; };
+		7DDD6EEF2C5779810093543B /* LikedPhotoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedPhotoInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -455,6 +457,7 @@
 			isa = PBXGroup;
 			children = (
 				7DCDB1FB2C4F9BF20055CBF3 /* UserInfo.swift */,
+				7DDD6EEF2C5779810093543B /* LikedPhotoInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -882,6 +885,7 @@
 				7D92B7F92C4E90DC0000EEB0 /* UITextField++.swift in Sources */,
 				7D9D1A862C4FE77B004FD89A /* UserInfoRepository.swift in Sources */,
 				7D92B8052C4E94010000EEB0 /* NicknameInputError.swift in Sources */,
+				7DDD6EF02C5779810093543B /* LikedPhotoInfo.swift in Sources */,
 				7D84BD4B2C5650580093C6DE /* PhotoInformationTableViewCell.swift in Sources */,
 				7D8EA0492C53DB7100077A7A /* ResultEmptyView.swift in Sources */,
 				7D8EA0412C52462700077A7A /* UIImageView++.swift in Sources */,

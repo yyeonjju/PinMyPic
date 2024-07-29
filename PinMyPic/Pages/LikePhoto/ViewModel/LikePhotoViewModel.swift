@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 
 final class LikePhotoViewModel {
-    private let likedPhotoRepository = LikedPhotoInfoRepository()
+    private let likedPhotoRepository = LikedPhotoInfoRepository.shared
     var likedItemListData : Results<LikedPhotoInfo>! {
         didSet{
             //inputLoadLikedItem 시점에 didSet됨

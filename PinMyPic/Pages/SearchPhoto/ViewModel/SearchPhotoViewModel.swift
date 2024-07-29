@@ -15,8 +15,9 @@ struct LikedTappedPhoto{
 
 final class SearchPhotoViewModel {
     var page = 0
-    private let likedPhotoRepository = LikedPhotoInfoRepository()
+    private let likedPhotoRepository = LikedPhotoInfoRepository.shared
     lazy var likedItemListData : Results<LikedPhotoInfo>! = likedPhotoRepository.getAllObjects(tableModel: LikedPhotoInfo.self)
+    let userInfo : UserInfo? = UserInfoRepository.shared.getUser(tableModel: UserInfo.self)
     
     //input
     //search button clicked -> page 1
@@ -108,8 +109,8 @@ final class SearchPhotoViewModel {
             
         } else{
             //좋아요 안되어 있다면 -> realm에 추가
-            let itemData = photoInfo
-            likedPhotoRepository.createItemAndSaveToDocument(itemData, image)
+            guard let userInfo else{return}
+            likedPhotoRepository.createItemAndSaveToDocument(userInfo, photoInfo, image)
             
         }
         outputReloadCollectionViewTrigger.value = ()
