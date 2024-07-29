@@ -15,8 +15,8 @@ final class EditNicknameSettingViewController : NicknameSettingViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Edit Profile"
-        
+        navigationItem.title = Texts.PageTitle.editProfile
+        configureNavigationBackButtonItem()
         setupUserData()
         modifyUI()
         addTarget()

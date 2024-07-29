@@ -22,7 +22,7 @@ final class LikePhotoViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "What I Pin"
+        navigationItem.title = Texts.PageTitle.whatIPin
         
         setupBind()
         setupDelegate()

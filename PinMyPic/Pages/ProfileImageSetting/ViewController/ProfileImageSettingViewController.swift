@@ -27,11 +27,8 @@ final class ProfileImageSettingViewController : UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = Texts.PageTitle.profileImageSetting
-//        navigationItem.backBarButtonItem?.title = ""
-//        configureNavigationBackButtonItem()
-//        configureBackgroundColor()
+        configureNavigationBackButtonItem()
         bindData()
-
         setupDelegate()
     }
     

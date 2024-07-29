@@ -23,6 +23,8 @@ final class PhotoDetailViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = Texts.PageTitle.photoDetail
+        configureNavigationBackButtonItem()
         setupBind()
         setupBasicData()
         setupDelegate()

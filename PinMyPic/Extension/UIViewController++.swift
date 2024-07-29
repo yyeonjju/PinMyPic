@@ -69,4 +69,14 @@ extension UIViewController {
         view.endEditing(true)
     }
     
+    // MARK: - ConfigureNavigation
+    func configureNavigationBackButtonItem() {
+        let backButton = UIBarButtonItem(image: Assets.IconImage.chevronLeft, style: .plain, target: self, action: #selector(popToPrevPage))
+        backButton.tintColor = Assets.Colors.gray1
+        navigationItem.leftBarButtonItems = [backButton]
+    }
+    @objc private func popToPrevPage() {
+        navigationController?.popViewController(animated: true)
+    }
+    
 }

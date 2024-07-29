@@ -21,9 +21,10 @@ final class SearchPhotoViewController : UIViewController {
     }
     
     override func viewDidLoad() {
-//        view.backgroundColor = .blue
+        super.viewDidLoad()
         
-        print("SearchPhotoViewController")
+        navigationItem.title = Texts.PageTitle.searchPhoto
+
         hideKeyboardWhenTappedAround()
         setupBind()
         setupDelegate()

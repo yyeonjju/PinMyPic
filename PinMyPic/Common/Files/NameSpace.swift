@@ -32,15 +32,8 @@ enum Assets{
     }
     
     enum IconImage {
-//        static let search = UIImage(systemName: "magnifyingglass")
-//        static let clock = UIImage(systemName: "clock")
-//        static let person = UIImage(systemName: "person")
-//        static let xmark = UIImage(systemName: "xmark")
-//        static let chevronRight = UIImage(systemName: "chevron.right")
-//        static let chevronLeft = UIImage(systemName: "chevron.left")
+        static let chevronLeft = UIImage(systemName: "chevron.left")
         static let cameraFill = UIImage(systemName: "camera.fill")
-//        static let starFill = UIImage(systemName: "star.fill")
-//        static let cartFill = UIImage(systemName: "cart.fill")
     }
     
     
@@ -104,10 +97,10 @@ enum Texts {
     enum PageTitle {
         static let nicknameSetting = "Nickname Setting"
         static let profileImageSetting = "Profile Image Setting"
-//        static func searchMain(nickname:String) -> String {
-//            return "\(nickname)'s Meaning Out"
-//        }
-//        static let Settings = "Settings"
+        static let whatIPin = "What I Pin"
+        static let editProfile = "Edit Profile"
+        static let searchPhoto = "Search Photo"
+        static let photoDetail = "Photo Detail"
     }
     
     enum Placeholder {
