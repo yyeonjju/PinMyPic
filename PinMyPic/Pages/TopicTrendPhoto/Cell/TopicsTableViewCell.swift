@@ -58,9 +58,6 @@ final class TopicsTableViewCell : UITableViewCell {
             make.top.equalTo(topicTitleLabel.snp.bottom)
             make.horizontalEdges.bottom.equalTo(contentView)
             
-//            make.horizontalEdges.equalTo(contentView)
-//            make.height.equalTo(200)
-            
         }
        
     }

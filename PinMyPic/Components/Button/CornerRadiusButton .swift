@@ -8,13 +8,6 @@
 import UIKit
 
 final class CornerRadiusButton : UIButton {
-//    
-//    override var isSelected: Bool {
-//        didSet {
-//            print("button isSelected -> ", isSelected)
-//        }
-//        
-//    }
     
     var title : String? {
         didSet{
@@ -37,9 +30,6 @@ final class CornerRadiusButton : UIButton {
         super.draw(rect)
         
         self.titleLabel?.font = Font.bold13
-        
-
-        
     }
     
     // MARK: - Initializer
@@ -59,46 +49,18 @@ final class CornerRadiusButton : UIButton {
         
         self.title = title
         self.normalTitleColor = normalTitleColor
-    
-//        self.isSelected = isSelected
-//        self.normalTitleColor = normalTitleColor
-//        self.selectedTitleColor = Color.white!
-//        
-//        //Button 타이틀 설정
-//        self.setTitle(title, for: .normal)
-//        ///isSelected = false 상태일 때 TitleColor
-//        self.setTitleColor(normalTitleColor, for: .normal)
-//        ///isSelected = true 상태일 때 TitleColor
-//        self.setTitleColor(selectedTitleColor, for: .selected)
         
         //Button UI 설정
         self.layer.borderWidth = 2
         self.layer.borderColor = normalBorderColor.cgColor
         self.layer.masksToBounds = true
-        
         self.backgroundColor = normalBgColr
-//        self.setTitleColor(normalTitleColor, for: .normal)
-        
         let img = image?.withRenderingMode(.alwaysTemplate)
         self.setImage(img, for: .normal)
 //        self.tintColor = .yellow
         
-        
         self.configuration = makeConfig(title: title, normalTitleColor: normalTitleColor)
 
-        
-//        self.titleLabel?.font = .systemFont(ofSize: 10)
-        
-        
-
-        
-
-        
-//        configureButtonBackgroundColor(
-//            isSelected: isSelected,
-//            normalTitleColor : normalTitleColor,
-//            selectedTitleColor : selectedTitleColor
-//        )
     }
     
     required init?(coder: NSCoder) {
@@ -112,26 +74,12 @@ final class CornerRadiusButton : UIButton {
         config.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10)
         config.title = title
         config.baseForegroundColor = normalTitleColor
-//        config.baseBackgroundColor = normalBgColr
-        
-//        config.background.cornerRadius = 10
-//        config.background.strokeWidth = 2
-        
         config.titleAlignment = .center
-//        config.attributedTitle = Attri
-        
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 10)
         config.preferredSymbolConfigurationForImage = imageConfig
         
         return config
 
     }
-    
-//    private func configureButtonBackgroundColor(isSelected: Bool, normalTitleColor : UIColor?, selectedTitleColor : UIColor?) {
-//        guard let normalTitleColor else {return }
-//
-//        ///isSelected 상태에 따른 backgroundColor
-//        self.backgroundColor = isSelected ? normalTitleColor : selectedTitleColor
-//    }
 
 }

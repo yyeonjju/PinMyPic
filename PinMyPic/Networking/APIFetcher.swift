@@ -15,11 +15,6 @@ protocol APIFetchable {
     func getPhotoStatistic(imageId : String, handler: @escaping (Result<PhotoStatistic, RequestError>) -> Void)
 }
 
-struct errorsResponse : Decodable {
-    let errors : [String]
-}
-
-
 
 class APIFetcher {
     static let shared = APIFetcher()

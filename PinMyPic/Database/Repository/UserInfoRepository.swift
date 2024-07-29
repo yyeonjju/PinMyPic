@@ -20,7 +20,6 @@ final class UserInfoRepository : BaseRepository {
         do {
             try realm.write{
                 parentData.likedPhoto.append(childData)
-                print("유저가 좋아하는 사진 저장")
             }
         } catch {
             print(error)
@@ -33,7 +32,6 @@ final class UserInfoRepository : BaseRepository {
         do {
             try realm.write {
                 if let data = data as? Item{
-                    print("자식관계 먼저 삭제해주기")
                     realm.delete(data.likedPhoto)
                 }
                 

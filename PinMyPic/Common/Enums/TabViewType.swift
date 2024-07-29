@@ -17,7 +17,7 @@ protocol TabBarProtocol{
 
 enum TabViewType : String, CaseIterable, TabBarProtocol{
     case topicTrend
-    case randomPhoto
+//    case randomPhoto
     case searchPhoto
     case likePhoto
     
@@ -26,8 +26,8 @@ enum TabViewType : String, CaseIterable, TabBarProtocol{
         switch self {
         case .topicTrend:
             return TopicTrendPhotoViewController.self
-        case .randomPhoto:
-            return RandomPhotoViewController.self
+//        case .randomPhoto:
+//            return RandomPhotoViewController.self
         case .searchPhoto:
             return SearchPhotoViewController.self
         case .likePhoto:
@@ -39,8 +39,8 @@ enum TabViewType : String, CaseIterable, TabBarProtocol{
         switch self {
         case .topicTrend:
             return Assets.Images.tabTrend
-        case .randomPhoto:
-            return Assets.Images.tabRandom
+//        case .randomPhoto:
+//            return Assets.Images.tabRandom
         case .searchPhoto:
             return Assets.Images.tabSearch
         case .likePhoto:
@@ -50,7 +50,7 @@ enum TabViewType : String, CaseIterable, TabBarProtocol{
     
     var title : String? {
         switch self {
-        case .topicTrend, .randomPhoto, .searchPhoto, .likePhoto:
+        case .topicTrend, .searchPhoto, .likePhoto:
             return nil
         }
     }

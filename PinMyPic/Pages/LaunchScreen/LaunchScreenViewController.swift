@@ -15,13 +15,10 @@ final class LaunchScreenViewController : OnboardingViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
             if let user = UserInfoRepository.shared.getUser(tableModel: UserInfo.self){
-                print("📍📍📍 유저 있음!")
-//                if let user = userInfoRepository.getUser(tableModel: UserInfo.self) {
-//                    userInfoRepository.removeItem(user)
-//                }
+                //유저 있다면
                 sceneDelegate?.changeRootViewControllerToHome()
             }else{
-                print("📍📍📍 유저 없음!")
+                //유저 없다면
                 sceneDelegate?.changeRootViewControllerToOnboarding()
             }
         }

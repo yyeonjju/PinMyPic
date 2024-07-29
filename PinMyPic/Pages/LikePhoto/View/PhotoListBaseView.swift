@@ -10,8 +10,6 @@ import UIKit
 class PhotoListBaseView : BaseView {
     // MARK: - UI
     
-//    let filterButtonsView = UIView()
-    
     let sortButton = CornerRadiusButton(title: SortOrder.relevant.koText, image: Assets.Images.sort, allowSelection: true)
     
     
