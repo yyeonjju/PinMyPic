@@ -34,7 +34,7 @@ final class TopicContentsCollectionViewCell : UICollectionViewCell {
     
     // MARK: - ConfigureData
     func configureData(data : PhotoResult) {
-        photoImageView.loadImage(urlString: data.urls.small)
+        photoImageView.loadImage(urlString: data.urls.small, filename: data.id)
 //        likedAmount.title = data.likes.formatted()
         likedAmount.setTitle(data.likes.formatted(), for: .normal)
     }

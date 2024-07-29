@@ -61,15 +61,7 @@ final class PhotoDetailViewController : UIViewController {
     }
     
     private func configurePhotoImage() {
-        if #available(iOS 16.0, *) {
-            if let imageId = photoData?.id, let image = ImageSavingManager.loadImageFromDocument(filename: imageId)  {
-                //파일매니저에 저장된 이미지가 있으면
-                viewManager.photoImageView.image = image
-                return
-            }
-        }
-        //파일매니저에 저장된 이미지가 없으면
-        viewManager.photoImageView.loadImage(urlString: photoData?.urls.small ?? "")
+        viewManager.photoImageView.loadImage(urlString: photoData?.urls.small ?? "", filename:photoData?.id)
     }
     
     private func configureLikeStatusImage(){

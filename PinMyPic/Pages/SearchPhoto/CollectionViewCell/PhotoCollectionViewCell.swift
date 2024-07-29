@@ -69,15 +69,7 @@ class PhotoCollectionViewCell : UICollectionViewCell {
     // MARK: - ConfigureUI
     
     private func loadImage(imageId :String , urlString : String?) {
-        if #available(iOS 16.0, *) {
-            if let image = ImageSavingManager.loadImageFromDocument(filename: imageId)  {
-                //파일매니저에 저장된 이미지가 있으면
-                photoImageView.image = image
-                return
-            }
-        }
-        //파일매니저에 저장된 이미지가 없으면
-        photoImageView.loadImage(urlString: urlString ?? "")
+        photoImageView.loadImage(urlString: urlString ?? "", filename : imageId)
     }
     
     private func configureSubView() {

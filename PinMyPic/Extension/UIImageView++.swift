@@ -14,7 +14,16 @@ extension UIImageView {
         self.clipsToBounds = true
     }
     
-    func loadImage(urlString : String) {
+    func loadImage(urlString : String, filename : String? = nil) {
+        
+        if #available(iOS 16.0, *) {
+            if let filename, let image = ImageSavingManager.loadImageFromDocument(filename: filename)  {
+                //파일매니저에 저장된 이미지가 있으면
+                self.image = image
+                return
+            }
+        }
+        
         guard let url = URL(string: urlString) else { return }
         let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             guard let self, let data, let image = UIImage(data: data) else {
