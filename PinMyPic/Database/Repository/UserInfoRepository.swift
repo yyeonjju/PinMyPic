@@ -11,14 +11,24 @@ import RealmSwift
 final class UserInfoRepository : BaseRepository {
     typealias Item = UserInfo
     
-    
-    override func getAllObjects<M : Object>(tableModel : M.Type) -> Results<M>? {
-        return nil
-    }
-    
     func getUser<M : Item>(tableModel : M.Type) -> Item? {
         let value =  realm.objects(M.self).first
         return value
+    }
+    
+    func editUser(originalUserInfo : Item, newInfo : Item) {
+        //newInfo로 그대로 갈아끼면 id 값이 다른 유저가 되므로 안됨
+        
+        do {
+            try realm.write {
+                originalUserInfo.profileImageName = newInfo.profileImageName
+                originalUserInfo.nickname = newInfo.nickname
+                originalUserInfo.mbti = newInfo.mbti
+            }
+            
+        }catch {
+            print("editUser error")
+        }
     }
     
 }

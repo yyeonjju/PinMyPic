@@ -23,13 +23,22 @@ final class TopicTrendPhotoViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        print("vm.userInfoData", vm.userInfoData)
         
         setupDelegate()
         setupBind()
         addGestureEvent()
+        setupProfileImage()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setupProfileImage()
+    }
+    
+    
+    // MARK: - SetupBind
+
     private func setupBind() {
         vm.inputViewDidLoadTrigger.value = ()
         
@@ -47,11 +56,16 @@ final class TopicTrendPhotoViewController : UIViewController {
             }
         }
     }
+    
+    // MARK: - SetupUI
+    private func setupProfileImage() {
+        if let profileImageName = vm.userInfoData?.profileImageName {
+            viewManager.profileCircleView.imageView.image = UIImage(named: profileImageName)
+        }
+    }
 
     // MARK: - SetupDelegate
     private func setupDelegate() {
-        
-//        viewManager.topicsTableView.rowHeight = UITableView.automaticDimension
         viewManager.topicsTableView.rowHeight = Constants.Size.topicsTableViewRowHeight
         viewManager.topicsTableView.dataSource = self
         viewManager.topicsTableView.delegate = self
@@ -66,7 +80,10 @@ final class TopicTrendPhotoViewController : UIViewController {
     }
     
     @objc private func profileImageTapped() {
-        print("💚💚💚💚 프로필 이미지 탭됐다")
+        let vc = EditNicknameSettingViewController()
+        vc.pageMode = .edit
+        vc.hidesBottomBarWhenPushed = true
+        pageTransition(to: vc, type: .push)
     }
 
 }

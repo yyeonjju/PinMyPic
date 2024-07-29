@@ -10,12 +10,9 @@ import Toast
 import RealmSwift
 
 
-
-
-
-final class NicknameSettingViewController : UIViewController {
+class NicknameSettingViewController : UIViewController {
     // MARK: - UI
-    private let viewManager = NicknameSettingView()
+    let viewManager = NicknameSettingView()
     
     // MARK: - Properties
     var pageMode : PageMode = .create
@@ -31,20 +28,18 @@ final class NicknameSettingViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupBind()
         setupDelegate()
         setupAddTarget()
         setupGestureEvent()
         if pageMode == .create {
             vm.inputViewDidLoadTrigger.value = ()
         }
-        
-        bindData()
+
     }
     
     // MARK: - BindData
-    func bindData() {
-        //💚💚 outputValidationNoticeText, mbti 모두 선택되었나에 대한 output bind에 버튼 색깔 configure해주는 코드 실행해주기
-        
+    func setupBind() {
         vm.outputValidationNoticeText.bind(onlyCallWhenValueDidSet: true) { [weak self] value in
             guard let self else {return }
             self.changeWarningLabel(value)
@@ -96,8 +91,7 @@ final class NicknameSettingViewController : UIViewController {
         
         vm.outputActivateCompleteButton.bind {[weak self] isActivate in
             guard let self else {return }
-            self.viewManager.completeButton.backgroundColor = isActivate ? Assets.Colors.mainBlue : Assets.Colors.gray2
-            
+            self.configureCompleteButton(isActivate : isActivate)
         }
 
     }
@@ -143,12 +137,8 @@ final class NicknameSettingViewController : UIViewController {
                 self.userInfo.registerDate = Date()
             }
             
-            if self.pageMode == .create {
-                vm.inputPermitToSaveProfile.value = self.userInfo
-            }else {
-                
-            }
-
+            vm.inputPermitToSaveProfile.value = self.userInfo
+            
         }
     }
     
@@ -189,8 +179,12 @@ final class NicknameSettingViewController : UIViewController {
 
     }
     
-    private func configureProfileImage(imageName : String) {
+    func configureProfileImage(imageName : String) {
         viewManager.profileCircleView.imageView.image = UIImage(named: imageName)
+    }
+    
+    func configureCompleteButton(isActivate : Bool) {
+        self.viewManager.completeButton.backgroundColor = isActivate ? Assets.Colors.mainBlue : Assets.Colors.gray2
     }
     
 }

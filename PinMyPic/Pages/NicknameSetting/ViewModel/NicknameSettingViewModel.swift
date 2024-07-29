@@ -14,10 +14,11 @@ struct MbtiItem : Equatable {
 }
 
 
-final class NicknameSettingViewModel {
+class NicknameSettingViewModel {
 
     private let userInfoRepository = UserInfoRepository()
-    private var mbtiItemList = [
+    lazy var userInfoData : UserInfo? = userInfoRepository.getUser(tableModel: UserInfo.self)
+    var mbtiItemList = [
         MbtiItem(itemInitialString: "E", isSelected: false, mbtiIndex: 0),
         MbtiItem(itemInitialString: "S", isSelected: false, mbtiIndex: 1),
         MbtiItem(itemInitialString: "T", isSelected: false, mbtiIndex: 2),
@@ -60,7 +61,7 @@ final class NicknameSettingViewModel {
     var outputProfileImageName = Observable("")
     //프로필 세팅하거나 수정완료하고 저장 잘 됐을 때 페이지 이동할 수 있도록
     var outputPermitToPageTransition : Observable<Void?> = Observable(nil)
-    //mbti 아이템 리스트 전달
+    //mbti 아이템 리스트 전달 -> mbtiCollectionView.reloadData()
     var outputMbtiList : Observable<[MbtiItem]?> = Observable(nil)
     //완료버튼눌렀을 때 최종 유효성에 따른 토스트 메세지
     var outputValidationToastText : Observable<String?> = Observable(nil)
@@ -70,6 +71,12 @@ final class NicknameSettingViewModel {
     var outputAllowComplete : Observable<Void?> = Observable(nil)
     
     init() {
+        setupBind()
+    }
+    
+    func setupBind() {
+        
+        userInfoRepository.checkFileURL()
         
         inputNicknameWillReplaced.bind { [weak self] value in
             guard let self else {return }
@@ -83,7 +90,7 @@ final class NicknameSettingViewModel {
 
         }
         
-        inputViewDidLoadTrigger.bind {[weak self] _ in
+        inputViewDidLoadTrigger.bind(onlyCallWhenValueDidSet: true) {[weak self] _ in
             guard let self else {return }
             let ramdomProfileImageName = ProfileImageName.returnRandomProfileImageName()
             //랜덤으로 선택된 이미지 화면에 반영
@@ -172,8 +179,13 @@ final class NicknameSettingViewModel {
     }
     
     private func saveUserData(profile : UserInfo) {
-        let noUser = userInfoRepository.getUser(tableModel: UserInfo.self) == nil
-        if noUser {
+        if let user = userInfoRepository.getUser(tableModel: UserInfo.self) {
+            //이미 유저가 있을 경우 - 수정 화면
+            userInfoRepository.editUser(originalUserInfo: user, newInfo: profile)
+            outputPermitToPageTransition.value = ()
+            
+        } else {
+            // 유저가 없을 경우 - 온보딩 화면
             userInfoRepository.createItem(profile)
             outputPermitToPageTransition.value = ()
         }
