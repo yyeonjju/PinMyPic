@@ -27,6 +27,15 @@ final class NicknameSettingView : BaseView {
 //        cv.backgroundColor = .cyan
         return cv
     }()
+    
+    let deleteAccountButton = {
+        let btn = UIButton()
+        btn.setTitle("회원탈퇴", for: .normal)
+        btn.setTitleColor(Assets.Colors.mainBlue, for: .normal)
+        btn.titleLabel?.font = Font.regular13
+        btn.isHidden = true
+        return btn
+    }()
 
     
     let completeButton = MainNormalButton(title: "완료")
@@ -35,7 +44,7 @@ final class NicknameSettingView : BaseView {
     // MARK: - ConfigureUI
     
     override func configureSubView() {
-        [profileCircleView, nicknameTextFieldView, completeButton, mbtiLabel, mbtiCollectionView]
+        [profileCircleView, nicknameTextFieldView, completeButton, mbtiLabel, mbtiCollectionView, deleteAccountButton]
             .forEach{
                 addSubview($0)
             }
@@ -67,6 +76,11 @@ final class NicknameSettingView : BaseView {
         completeButton.snp.makeConstraints { make in
             make.bottom.equalTo(safeAreaLayoutGuide).inset(50)
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(20)
+        }
+        
+        deleteAccountButton.snp.makeConstraints { make in
+            make.bottom.equalTo(safeAreaLayoutGuide).inset(30)
+            make.centerX.equalTo(safeAreaLayoutGuide.snp.centerX)
         }
     }
 }

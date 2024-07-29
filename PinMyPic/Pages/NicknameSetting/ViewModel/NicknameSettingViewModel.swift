@@ -48,6 +48,8 @@ class NicknameSettingViewModel {
     var inputSelectedMbti : Observable<MbtiItem?> = Observable(nil)
     //완료버튼눌렀을 때 최종 유효성 -> alert 띄울지, 미완료 toast 띄울지 output
     var inputCompleteButtonValidation : Observable<String?> = Observable(nil)
+    //회원탈퇴 버튼 눌렸을 때
+    var inputRequestToDeleteAccount : Observable<Void?> = Observable(nil)
     
     
     //out
@@ -69,6 +71,8 @@ class NicknameSettingViewModel {
     var outputActivateCompleteButton : Observable<Bool> = Observable(false)
     //완료버튼눌렀을 때 유효성 통과 -> 유저 데이터 저장하고 페이지 이동할 수 있도록
     var outputAllowComplete : Observable<Void?> = Observable(nil)
+    //회원 탈퇴 후 온보딩뷰로 돌아가기
+    var outputChangeRootVCToOnboarding : Observable<Void?> = Observable(nil)
     
     init() {
         setupBind()
@@ -118,6 +122,14 @@ class NicknameSettingViewModel {
         inputCompleteButtonValidation.bind(onlyCallWhenValueDidSet: true) {[weak self] finalNickname in
             guard let self, let finalNickname else {return }
             self.completeButtonValidation(nickname: finalNickname)
+        }
+        
+        inputRequestToDeleteAccount.bind(onlyCallWhenValueDidSet: true) {[weak self] _ in
+            guard let self, let userInfoData else {return }
+            //유저 데이터 삭제
+            self.userInfoRepository.removeItem(userInfoData)
+            //온보딩 뷰로 이동
+            self.outputChangeRootVCToOnboarding.value = ()
         }
     }
     

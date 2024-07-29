@@ -19,12 +19,24 @@ final class EditNicknameSettingViewController : NicknameSettingViewController {
         
         setupUserData()
         modifyUI()
+        addTarget()
     }
     
     // MARK: - Override Method
 
     override func configureCompleteButton(isActivate: Bool) {
         configureNavigation(isActivate: isActivate)
+    }
+    
+    override func setupBind() {
+        super.setupBind()
+        
+        vm.outputChangeRootVCToOnboarding.bind(onlyCallWhenValueDidSet: true) {[weak self] _ in
+            guard let self else{return}
+            ///루트뷰 변경
+            let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+            sceneDelegate?.changeRootViewControllerToOnboarding()
+        }
     }
 
 
@@ -57,6 +69,18 @@ final class EditNicknameSettingViewController : NicknameSettingViewController {
     
     private func modifyUI() {
         viewManager.completeButton.isHidden = true
+        viewManager.deleteAccountButton.isHidden = false
+    }
+    
+    private func addTarget() {
+        viewManager.deleteAccountButton.addTarget(self, action: #selector(deleteAccountButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func deleteAccountButtonTapped() {
+        showAlert(title: "정말 탈퇴하시겠습니까?", message: "탈퇴하면 모든 정보가 사라집니다.", style: .alert) {[weak self] in
+            guard let self else{return}
+            vm.inputRequestToDeleteAccount.value = ()
+        }
     }
     
     private func configureNavigation(isActivate : Bool) {
