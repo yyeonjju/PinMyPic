@@ -28,6 +28,7 @@ class NicknameSettingViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        hideKeyboardWhenTappedAround()
         setupBind()
         setupDelegate()
         setupAddTarget()

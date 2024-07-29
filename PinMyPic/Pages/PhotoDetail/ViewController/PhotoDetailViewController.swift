@@ -53,9 +53,10 @@ final class PhotoDetailViewController : UIViewController {
     
     // MARK: - SetupBasicData
     private func setupBasicData() {
-        viewManager.uploaderProfileImageView.loadImage(urlString: photoData?.user.profileImage.medium ?? "")
-        viewManager.uploaderNameLabel.text = photoData?.user.name ?? "-"
-        viewManager.createdAtLabel.text = photoData?.createdAt ?? "-"
+        guard let photoData else{return}
+        viewManager.uploaderProfileImageView.loadImage(urlString: photoData.user.profileImage.medium)
+        viewManager.uploaderNameLabel.text = photoData.user.name
+        viewManager.createdAtLabel.text = photoData.createdAtText
         
         configureLikeStatusImage()
         configurePhotoImage()
@@ -63,7 +64,8 @@ final class PhotoDetailViewController : UIViewController {
     }
     
     private func configurePhotoImage() {
-        viewManager.photoImageView.loadImage(urlString: photoData?.urls.small ?? "", filename:photoData?.id)
+        guard let url = photoData?.urls.small else{return}
+        viewManager.photoImageView.loadImage(urlString: url, filename:photoData?.id)
     }
     
     private func configureLikeStatusImage(){

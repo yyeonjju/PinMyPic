@@ -39,6 +39,14 @@ struct PhotoResult : Decodable{
     var resolutionText : String{
         return "\(width) x \(height)"
     }
+    
+    var createdAtText : String {
+        let utcZoneFormatter = DateFormatManager.shared.getDateFormatter(format: .fullDateAndTime, timeZone: TimeZone(secondsFromGMT:0))
+        let utcDate = utcZoneFormatter.date(from: createdAt)
+        let formatter = DateFormatManager.shared.getDateFormatter(format: .koDate)
+        let dateString = formatter.string(from: utcDate ?? Date())
+        return "\(dateString) 게시됨"
+    }
 }
 
 struct PhotoURL : Decodable {

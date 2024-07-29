@@ -81,6 +81,7 @@
 		7DDD6EEC2C56C2870093543B /* EditNicknameSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDD6EEB2C56C2870093543B /* EditNicknameSettingViewController.swift */; };
 		7DDD6EF02C5779810093543B /* LikedPhotoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDD6EEF2C5779810093543B /* LikedPhotoInfo.swift */; };
 		7DDD6EF32C5799B30093543B /* LikePhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDD6EF22C5799B30093543B /* LikePhotoCollectionViewCell.swift */; };
+		7DDD6EF52C57A6080093543B /* DateFormatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDD6EF42C57A6080093543B /* DateFormatManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -169,6 +170,7 @@
 		7DDD6EEB2C56C2870093543B /* EditNicknameSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNicknameSettingViewController.swift; sourceTree = "<group>"; };
 		7DDD6EEF2C5779810093543B /* LikedPhotoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedPhotoInfo.swift; sourceTree = "<group>"; };
 		7DDD6EF22C5799B30093543B /* LikePhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikePhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		7DDD6EF42C57A6080093543B /* DateFormatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -421,6 +423,7 @@
 			children = (
 				7D92B7BD2C4E6FAF0000EEB0 /* NameSpace.swift */,
 				7D9D1A902C4FFF94004FD89A /* Utilfunc.swift */,
+				7DDD6EF42C57A6080093543B /* DateFormatManager.swift */,
 			);
 			path = Files;
 			sourceTree = "<group>";
@@ -842,6 +845,7 @@
 				7D9D1A8F2C4FFE28004FD89A /* ProfileImageSettingView.swift in Sources */,
 				7DDD6EF32C5799B30093543B /* LikePhotoCollectionViewCell.swift in Sources */,
 				7D8EA03F2C5245CB00077A7A /* PhotoCollectionViewCell.swift in Sources */,
+				7DDD6EF52C57A6080093543B /* DateFormatManager.swift in Sources */,
 				7D92B7C52C4E74A60000EEB0 /* NetworkRequest.swift in Sources */,
 				7D9D1ACB2C51CD56004FD89A /* SearchPhotoViewController.swift in Sources */,
 				7D92B7DC2C4E877F0000EEB0 /* UIView++.swift in Sources */,
