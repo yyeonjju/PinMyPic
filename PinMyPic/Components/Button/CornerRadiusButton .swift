@@ -11,11 +11,11 @@ final class CornerRadiusButton : UIButton {
     
     var title : String? {
         didSet{
-            guard let title, let normalTitleColor else{return}
-            self.configuration = makeConfig(title:title, normalTitleColor:normalTitleColor)
+            guard let title else{return}
+            self.configuration?.title = title
         }
     }
-    var normalTitleColor : UIColor?
+
     
     // MARK: - Lifecycle
     
@@ -48,19 +48,12 @@ final class CornerRadiusButton : UIButton {
         super.init(frame: .zero)
         
         self.title = title
-        self.normalTitleColor = normalTitleColor
         
         //Button UI 설정
         self.layer.borderWidth = 2
         self.layer.borderColor = normalBorderColor.cgColor
         self.layer.masksToBounds = true
-        self.backgroundColor = normalBgColr
-        let img = image?.withRenderingMode(.alwaysTemplate)
-        self.setImage(img, for: .normal)
-//        self.tintColor = .yellow
-        
-        self.configuration = makeConfig(title: title, normalTitleColor: normalTitleColor)
-
+        self.configuration = makeConfig(title: title, normalTitleColor: normalTitleColor, image : image)
     }
     
     required init?(coder: NSCoder) {
@@ -69,15 +62,24 @@ final class CornerRadiusButton : UIButton {
     
     // MARK: - Method
     
-    private func makeConfig(title:String, normalTitleColor:UIColor) -> UIButton.Configuration{
-        var config = UIButton.Configuration.plain()
+    private func makeConfig(title:String, normalTitleColor:UIColor, image : UIImage?) -> UIButton.Configuration{
+        var config = UIButton.Configuration.borderedTinted()
         config.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10)
+        
+        //title
         config.title = title
-        config.baseForegroundColor = normalTitleColor
-        config.titleAlignment = .center
+        //image
+        config.image = image
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 10)
         config.preferredSymbolConfigurationForImage = imageConfig
+        config.imagePlacement = .leading
+        config.imagePadding = 8
         
+        
+        config.baseForegroundColor = normalTitleColor
+        config.baseBackgroundColor = .white
+        config.titleAlignment = .center
+        config.buttonSize = .small
         return config
 
     }
