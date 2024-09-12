@@ -1,9 +1,8 @@
 # PinMyPic | 감성 사진 검색/저장 앱
 
 
-![image.jpg1](https://github.com/user-attachments/assets/a70c3928-a53a-42d3-9672-d5d88ebba96c) |![image.jpg2](https://github.com/user-attachments/assets/30308a26-375e-4fef-891c-ce9368ad2c7a) |![image.jpg3](https://github.com/user-attachments/assets/32eea4b1-6a4d-422d-b194-c1d7e84a5cf7) |![image.jpg4](https://github.com/user-attachments/assets/f7bfe01a-676d-46ac-a206-f42c6baca6bc)
---- | --- | --- | --- | 
-
+![image.jpg4](https://github.com/user-attachments/assets/e04f48b7-3fbe-49c9-9fb5-596e421b97fc) |![image.jpg1](https://github.com/user-attachments/assets/a70c3928-a53a-42d3-9672-d5d88ebba96c) |![image.jpg2](https://github.com/user-attachments/assets/30308a26-375e-4fef-891c-ce9368ad2c7a) |![image.jpg3](https://github.com/user-attachments/assets/32eea4b1-6a4d-422d-b194-c1d7e84a5cf7) |![image.jpg4](https://github.com/user-attachments/assets/f7bfe01a-676d-46ac-a206-f42c6baca6bc)
+--- | --- | --- | --- | --- | 
 
 
 <br/><br/>
@@ -328,25 +327,6 @@ private func validateNicknameInputCount(text : String?) throws {
 <br/><br/><br/>
 
 
-
-
-## 🔥 트러블 슈팅
-
-
-<br/>
-
-### 1️. 
-
-
-#### 📍 이슈 : 
-#### 📍 문제 코드
-#### 📍 문제 원인
-#### 📍 해결 코드 및 인사이트
-
-
-
-
-<br/><br/><br/>
 
 
 
