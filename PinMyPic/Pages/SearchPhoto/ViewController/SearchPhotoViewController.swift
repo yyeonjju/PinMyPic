@@ -13,7 +13,7 @@ final class SearchPhotoViewController : UIViewController {
     private let viewManager = SearchPhotoView()
     
     // MARK: - Properties
-    private let vm = SearchPhotoViewModel()
+    private let vm = SearchPhotoViewModel(likedPhotoRepository: LikedPhotoInfoRepository())
     
     // MARK: - Lifecycle
     override func loadView() {

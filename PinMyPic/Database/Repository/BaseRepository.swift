@@ -5,9 +5,12 @@
 //  Created by 하연주 on 7/23/24.
 //
 
-import Foundation
+import UIKit
 import RealmSwift
 
+protocol LikedPhotoInfoType {
+    func createItemAndSaveToDocument(_ user: UserInfo, _ data: LikedPhotoInfo, _ imageForSavingAtDocument : UIImage?)
+}
 
 protocol RepositoryType {
     associatedtype Item = Object
@@ -18,7 +21,7 @@ protocol RepositoryType {
     func checkSchemaVersion()
     func createItem(_ data : Item)
     func getAllObjects<M : Object>(tableModel : M.Type) -> Results<M>?
-    func removeItem(_ data : Item)
+    func removeItem<M : Object>(_ data : M)
     func editItem<M : Object>(_ data : M.Type, at id : ObjectId ,editKey : String, to editValue : Any)
 }
 
@@ -56,7 +59,8 @@ class BaseRepository : RepositoryType {
         return value
     }
     
-    func removeItem(_ data : Item) {
+    func removeItem<M : Object>(_ data : M) {
+        print("❤️removeItem")
         do {
             try realm.write {
                 realm.delete(data)

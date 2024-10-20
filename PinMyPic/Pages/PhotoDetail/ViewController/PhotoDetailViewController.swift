@@ -13,7 +13,7 @@ final class PhotoDetailViewController : UIViewController {
     private let viewManager = PhotoDetailView()
     
     // MARK: - Properties
-    private let vm = PhotoDetailViewModel()
+    private let vm = PhotoDetailViewModel(likedPhotoRepository: LikedPhotoInfoRepository())
     var photoData : PhotoResult?
     
     // MARK: - Lifecycle
@@ -21,6 +21,7 @@ final class PhotoDetailViewController : UIViewController {
         view = viewManager
     }
     override func viewDidLoad() {
+        BaseRepository().checkFileURL()
         super.viewDidLoad()
         
         navigationItem.title = Texts.PageTitle.photoDetail

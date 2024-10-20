@@ -15,7 +15,8 @@ struct LikedTappedPhoto{
 
 final class SearchPhotoViewModel {
     var page = 0
-    private let likedPhotoRepository = LikedPhotoInfoRepository.shared
+    
+    private let likedPhotoRepository : any RepositoryType&LikedPhotoInfoType
     lazy var likedItemListData : Results<LikedPhotoInfo>! = likedPhotoRepository.getAllObjects(tableModel: LikedPhotoInfo.self)
     let userInfo : UserInfo? = UserInfoRepository.shared.getUser(tableModel: UserInfo.self)
     
@@ -39,9 +40,8 @@ final class SearchPhotoViewModel {
     var outputReloadCollectionViewTrigger : Observable<Void?> = Observable(nil)
     
     
-    init(){
-//        likedPhotoRepository.checkFileURL()
-        
+    init(likedPhotoRepository : any RepositoryType&LikedPhotoInfoType) {
+        self.likedPhotoRepository = likedPhotoRepository
         setupBind()
     }
     

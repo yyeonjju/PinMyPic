@@ -18,7 +18,7 @@ final class ImageSavingManager  {
         
         //이미지를 저장할 경로(파일명) 지정
         let fileURL = documentDirectory.appendingPathComponent("\(filename).jpg")
-//        print("fileURL - ", fileURL)
+        print("fileURL - ", fileURL)
         
         //이미지 압축
         guard let image ,let data = image.jpegData(compressionQuality: 0.5) else { return }
@@ -60,7 +60,7 @@ final class ImageSavingManager  {
             in: .userDomainMask).first else { return }
 
         let fileURL = documentDirectory.appendingPathComponent("\(filename).jpg")
-        
+        print(fileURL)
         if FileManager.default.fileExists(atPath: fileURL.path()) {
             
             do {

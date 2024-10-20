@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 
 final class LikePhotoViewModel {
-    private let likedPhotoRepository = LikedPhotoInfoRepository.shared
+    private let likedPhotoRepository : any RepositoryType&LikedPhotoInfoType
     var likedItemListData : Results<LikedPhotoInfo>! {
         didSet{
             //inputLoadLikedItem 시점에 didSet됨
@@ -31,7 +31,8 @@ final class LikePhotoViewModel {
     let outputReloadCollectionViewTrigger : Observable<Void?> = Observable(nil)
     
     
-    init() {
+    init(likedPhotoRepository : any RepositoryType&LikedPhotoInfoType) {
+        self.likedPhotoRepository = likedPhotoRepository
         setupBind()
     }
     

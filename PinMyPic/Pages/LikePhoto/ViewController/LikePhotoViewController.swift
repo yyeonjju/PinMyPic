@@ -12,7 +12,7 @@ final class LikePhotoViewController : UIViewController {
     // MARK: - UI
     private let viewManager = PhotoListBaseView()
     // MARK: - Properties
-    private let vm = LikePhotoViewModel()
+    private let vm = LikePhotoViewModel(likedPhotoRepository: LikedPhotoInfoRepository())
     
     // MARK: - Lifecycle
     

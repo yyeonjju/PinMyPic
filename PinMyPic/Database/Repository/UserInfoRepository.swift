@@ -28,7 +28,7 @@ final class UserInfoRepository : BaseRepository {
     
     
     //유저 지울 때 먼저 1:n relationship 자식 삭제하고 지워야함
-    override func removeItem(_ data: Object) {
+    override func removeItem<M : Object>(_ data : M)  {
         do {
             try realm.write {
                 if let data = data as? Item{

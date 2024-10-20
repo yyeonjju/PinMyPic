@@ -15,7 +15,6 @@ struct TopicContent {
 
 final class TopicTrendPhotoViewModel {
     let topicQueryList = [TopicQuery.goldenHour.rawValue, TopicQuery.businessWork.rawValue, TopicQuery.architectureInterior.rawValue]
-    let likedItemListData : Results<LikedPhotoInfo>! = LikedPhotoInfoRepository.shared.getAllObjects(tableModel: LikedPhotoInfo.self)
     let userInfoData : UserInfo? = UserInfoRepository.shared.getUser(tableModel: UserInfo.self)
     
     

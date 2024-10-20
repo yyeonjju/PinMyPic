@@ -15,7 +15,7 @@ final class PhotoDetailViewModel {
         case downloads = "다운로드"
     }
     let informationOptions = PhotoInformationOptions.allCases
-    private let likedPhotoRepository = LikedPhotoInfoRepository.shared
+    private let likedPhotoRepository : any RepositoryType&LikedPhotoInfoType
     lazy var likedItemListData : Results<LikedPhotoInfo>! = likedPhotoRepository.getAllObjects(tableModel: LikedPhotoInfo.self)
     let userInfo : UserInfo? = UserInfoRepository.shared.getUser(tableModel: UserInfo.self)
     
@@ -32,8 +32,8 @@ final class PhotoDetailViewModel {
     //좋아요 여부에 따라 다시 하트 모양 바뀔 수 있도록
     let outputConfigureLikeImageTrigger : Observable<Void?> = Observable(nil)
     
-    
-    init() {
+    init(likedPhotoRepository : any RepositoryType&LikedPhotoInfoType) {
+        self.likedPhotoRepository = likedPhotoRepository
         setupBind()
     }
     
