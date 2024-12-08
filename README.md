@@ -15,16 +15,16 @@
 - 최소 버전 : 15.0
 
 
-<br/><br/><br/>
+<br/><br/>
 
 ## 📎 기술 스택
+- UI : UIKit, SnapKit
+- Network : URLSession
+- Architecture : MVVM
+- Local DB : Realm
 
-- UIKit, Realm, Kingfisher, snapkit, Toast
 
-
-
-<br/><br/><br/>
-
+<br/><br/>
 
 
 ## 📝 핵심 기능
@@ -33,9 +33,23 @@
 - 특정 사진 좋아요 / 사진 디테일 데이터 조회
 
 
-<br/><br/><br/>
+<br/><br/>
+
+## ✅ 핵심 기술 구현 사항
+- 이벤트 발생에 따라 변경 내용을 전파하는 비동기적 반응형 프로그래밍 구현을 위해 Custom Observable 클래스를 이용해서 MVVM 패턴 구현
+- Realm 테이블의 CRUD를 정의하는 Repository클래스들에 대한 요구 사항을 추상화하기 위해 RepositoryType 프로토콜 생성 및 associatedType 활용
+- RepositoryType 프로토콜을 준수하는 BaseRepository 클래스를 생성하여 각 Realm 테이블들에 대한 Repository 클래스 정의 시, 불필요한 중복코드 방지
+- ViewModel과 Repository 객체의 결합도를 낮추기 위해 RepositoryType 프로토콜을 활용하여 의존성 주입(DI) 및 의존 관계 역전 원칙(DIP)을 준수하도록 설계
+- 사용자가 좋아요한 사진을 영구적으로 저장하고 저장했던 이미지를 조회하기 위해 FileManager 사용하여 저장/조회 로직 구현
+- 닉네임 유효성 검증을 위해 error throws 함수 구현
 
 
+<br/>
+
+<image width = "900" src = "https://github.com/user-attachments/assets/0cfbbcb5-0c98-47ec-b7b5-1b52c40f01a2" />
+
+
+<br/><br/>
 
 ## 💎 주요 구현 내용
 ### 1. Custom Observable 클래스를 이용한 반응형 MVVM 구현
